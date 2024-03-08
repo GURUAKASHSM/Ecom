@@ -370,6 +370,8 @@ function DisplayListUsers() {
     document.getElementById('workersnip').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'block';
@@ -488,6 +490,8 @@ function DisplayListSeller() {
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'block';
     fetch("http://localhost:8080/getallsellerdata", {
@@ -562,6 +566,8 @@ function DisplayListInventory() {
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'block';
     document.getElementById('update-form-admin-container').style.display = 'none';
     fetch("http://localhost:8080/getallinventorydata", {
@@ -645,6 +651,8 @@ function Deletedata() {
     document.getElementById('feedbacksnip').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
 }
 
@@ -695,6 +703,8 @@ function DisplayEdit() {
     document.getElementById('feedbacksnip').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'block';
 }
 
@@ -755,12 +765,12 @@ document.getElementById("update-form").addEventListener("submit", function (even
     })
         .then(response => response.json())
         .then(data => {
-            
+
             if (data) {
-               showToast("Updated Successfully","Success",3)
+                showToast("Updated Successfully", "Success", 3)
                 document.getElementById("update-form").reset();
             } else {
-                showToast("Update Failes","Danger",0)
+                showToast("Update Failes", "Danger", 0)
                 document.getElementById("update-form").reset();
             }
         })
@@ -783,6 +793,8 @@ function CreateSeller() {
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
 }
 
@@ -855,6 +867,8 @@ function DisplayDrashBord() {
     document.getElementById('employee-wrapper').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
 }
 
@@ -869,6 +883,8 @@ function CreateWorker() {
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'block';
     document.getElementById('admin-wrapper').style.display = 'none';
 }
@@ -925,6 +941,8 @@ function DisplayCreateAdmin() {
     document.getElementById("qr-code").style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById("admin-input").style.display = 'block';
 }
 
@@ -1024,6 +1042,8 @@ function DisplayFeedBacks() {
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     fetch("http://localhost:8080/getfeedback", {
         method: "POST",
@@ -1094,6 +1114,8 @@ function DisplayAllWorkers() {
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('workersnip').style.display = 'block';
     fetch("http://localhost:8080/getworkers", {
         method: "POST",
@@ -1162,6 +1184,8 @@ function ViewData(id, profession) {
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
 
     fetch("http://localhost:8080/getdata", {
         method: "POST", // Use DELETE method to delete data
@@ -1577,14 +1601,170 @@ function togglePasswordVisibility() {
     }
 }
 var recentPage = ''
-function BackButton(){
-   if(recentPage == 'inventory'){
-    DisplayListInventory()
-   }else if(recentPage == 'seller'){
-    DisplayListSeller()
-   }else if(recentPage == 'customer'){
-    DisplayListUsers()
-   }else if(recentPage == 'worker'){
-    DisplayAllWorkers()
-   }
+function BackButton() {
+    if (recentPage == 'inventory') {
+        DisplayListInventory()
+    } else if (recentPage == 'seller') {
+        DisplayListSeller()
+    } else if (recentPage == 'customer') {
+        DisplayListUsers()
+    } else if (recentPage == 'worker') {
+        DisplayAllWorkers()
+    }
 }
+
+$(document).ready(async function () {
+    // Initialize FullCalendar
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        editable: true,
+        events: await fetchEventsFromBackend(),
+
+        eventClick: function (event) {
+            showTodoList(event);
+        },
+        dayClick: function () {
+            // Handle day click (add to-do item)
+            DisplayEventForm();
+        }
+
+    });
+
+    async function fetchEventsFromBackend() {
+        var adminData = localStorage.getItem('admindata');
+        var adminObject = JSON.parse(adminData);
+        const data = {
+            email: adminObject.username,
+        };
+
+        try {
+            const response = await fetch("http://localhost:8080/getevent", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const apiResponse = await response.json();
+            const fullCalendarEvents = convertApiResponseToFullCalendarEvents(apiResponse.message);
+
+            console.log('FullCalendar Events:', fullCalendarEvents); // Log the events before returning
+
+            return fullCalendarEvents;
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function convertApiResponseToFullCalendarEvents(apiResponse) {
+        console.log(apiResponse)
+        return apiResponse.map(event => {
+            console.log('Converted Event:', event.title);
+            return {
+                title: event.title,
+                start: event.start,
+                end: event.end,
+                todos: event.todos
+            };
+        });
+    }
+
+    function showTodoList(event) {
+        const todos = event.todos || [];
+        let todoList = `To-Do :`;
+        if (todos.length === 0) {
+            todoList += 'No items.';
+        } else {
+            todos.forEach((item, index) => {
+                todoList += ` ${item}`;
+            });
+        }
+        showToast(todoList, "Info", 3)
+    }
+
+
+
+});
+function DisplayCalender() {
+    document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById("calendar").style.display = 'block';
+    document.getElementById("event-wrapper").style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+}
+
+function DisplayEventForm() {
+    document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById("calendar").style.display = 'block';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'block';
+}
+
+document.getElementById("event-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const start = document.getElementById("event-start").value;
+    const end = document.getElementById("event-end").value;
+    const title = document.getElementById("event-title").value;
+    const todo = document.getElementById("event-todo").value;
+    var adminData = localStorage.getItem('admindata');
+    var adminObject = JSON.parse(adminData);
+    console.log(adminData.username)
+
+    const requestData = {
+        email: adminObject.username,
+        start,
+        end,
+        title,
+        todos: [todo]
+    };
+    console.log(requestData)
+
+    // Send a DELETE request to your server to delete the data
+    fetch("http://localhost:8080/addevent", {
+        method: "POST", // Use DELETE method to delete data
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestData)
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.message) {
+                showToast(data.message, "Success", 3)
+                document.getElementById("event-form").reset()
+            } else if (data.error) {
+                showToast(data.error, "Warning", 0)
+            }
+        })
+        .catch(error => {
+            showToast(data.error, "Warning", 0)
+        });
+
+});

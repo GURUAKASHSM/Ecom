@@ -8,6 +8,10 @@
   <!-- LINEARICONS -->
   <link rel="stylesheet" href="./fonts/linearicons/style.css">
   <link rel="icon" type="image/png" href="./images/icons/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
 
   <!--===============================================================================================-->
   <!-- <link rel="icon" type="image/png" href="/images/icons/favicon.ico" /> -->
@@ -104,6 +108,62 @@
       #fiveserver-info {
         border-radius: 0px;
       }
+    }
+
+    #calendar {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+
+    .fc-prev-button,
+    .fc-next-button,
+    .fc-today-button {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin: 5px;
+    }
+
+    .fc-prev-button:hover,
+    .fc-next-button:hover,
+    .fc-today-button:hover {
+      background-color: #45a049;
+    }
+
+    .fc-button-group {
+      float: none;
+      text-align: center;
+    }
+
+    .fc-day-header {
+      background-color: #4CAF50;
+      color: #fff;
+      border: 1px solid #4CAF50;
+      border-radius: 5px;
+    }
+
+    .fc-day {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 2px;
+      background-color: #fff;
+    }
+
+    .fc-event {
+      background-color: #337ab7;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .fc-event:hover {
+      background-color: #286090;
     }
   </style>
   <style type="text/css">
@@ -1103,6 +1163,113 @@
       max-height: 1000px;
       /* Adjust this value to provide spacing between outer and inner containers */
     }
+
+    .outer-container {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      transition: all 0.3s ease-in-out;
+      width: 70%;
+      /* Adjust the width as needed */
+      align-self: center;
+      max-width: 600px;
+      height: 1000px;
+      /* Adjust the max-width as needed */
+      border-radius: 15px;
+    }
+
+    #calendar {
+      max-width: 1000px;
+      /* Adjust the max-width as needed */
+      margin: 0 auto;
+      background-color: #87CEEB;
+      /* Sky Blue color */
+      box-shadow: 0 0 15px rgba(33, 37, 41, 0.1);
+      border-radius: 15px;
+      padding: 10px;
+      margin-left: 500px;
+      height: 900px;
+      width: 1000;
+      max-height: 1000px;
+    }
+
+    /* Add these styles to the existing styles */
+
+    .fc-prev-button,
+    .fc-next-button,
+    .fc-today-button {
+      background-color: #4CAF50;
+      color: #2980b9;
+      border: none;
+      border-radius: 5px;
+      margin: 5px;
+      display: inline-block;
+      /* Add this line */
+    }
+
+    .fc-prev-button:hover,
+    .fc-next-button:hover,
+    .fc-today-button:hover {
+      background-color: #45a049;
+    }
+
+    .fc-button-group {
+      float: none;
+      text-align: center;
+      display: inline-block;
+      /* Add this line */
+    }
+
+
+    .fc-prev-button:hover,
+    .fc-next-button:hover,
+    .fc-today-button:hover {
+      background-color: #2980b9;
+    }
+
+    .fc-button-group {
+      float: none;
+      text-align: center;
+    }
+
+    .fc-day-header {
+      background-color: #87CEEB;
+      /* Sky Blue color */
+      color: #fff;
+      border: 1px solid #87CEEB;
+      /* Sky Blue color */
+      border-radius: 5px;
+    }
+
+    .fc-day {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 2px;
+      background-color: #fff;
+    }
+
+    .fc-event {
+      background-color: #87CEEB;
+      /* Sky Blue color */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .fc-event:hover {
+      background-color: #5F9EA0;
+      /* Darker shade of Sky Blue color */
+    }
+
+    #eventForm {
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            height: 300px;
+            width: 300px;
+        }
+
+    /* Add other calendar-specific styles as needed */
   </style>
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -1224,7 +1391,7 @@
         </li>
 
         <li class="menu-item">
-          <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-calendar.html"
+          <a onclick="DisplayCalender()"
             class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-calendar-blank-outline"></i>
             <div data-i18n="Calendar" style="cursor: pointer;">Calendar</div>
@@ -1249,8 +1416,15 @@
         </li>
         <li class="menu-item">
           <a onclick="DisplayListSeller();" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-lock-open-outline"></i>
+            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
             <div data-i18n="Authentications" style="cursor: pointer;">Seller</div>
+          </a>
+
+        </li>
+        <li class="menu-item">
+          <a onclick="DisplayAllWorkers()" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
+            <div data-i18n="Misc" style="cursor: pointer;">Workers</div>
           </a>
 
         </li>
@@ -1262,13 +1436,7 @@
 
         </li>
 
-        <li class="menu-item">
-          <a onclick="DisplayAllWorkers()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Misc" style="cursor: pointer;">Workers</div>
-          </a>
 
-        </li>
 
 
         <!-- Extended components -->
@@ -1800,11 +1968,11 @@
           <!--Delete-->
 
           <div id="delete-form-container" class="outer-container" style="display: none;">
-            <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
+            <i class="fas fa-arrow-left back-icon" onclick="BackButton()" style="margin-left: -70px;"></i>
 
             <div class="limiter">
               <div class="container-login100"
-                style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -110px;">
+                style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -110px; width: 1000px;margin-left: -110px;">
 
                 <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 500px;"
                   id="delete-form">
@@ -1858,31 +2026,13 @@
 
           <!--Edit Data-->
           <div id="update-form-admin-container" class="outer-container" style="display: none;">
-            <!-- <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
-            <h3>Edit Data:</h3>
-            <form id="update-form" style="margin-top: 30px;">
-              <label for="updatecollection">Select Collection:</label>
-              <select id="updatecollection" name="updatecollection" onchange="populateFieldOptions()">
-                <option value="customer">Customer</option>
-                <option value="inventory">Inventory</option>
-                <option value="seller">Seller</option>
-              </select>
-              <label for="idname">IdName:</label>
-              <input type="text" id="idname" name="idname" required><br>
-              <label for="field">Field:</label>
-              <select id="field" name="field">
-                
-              </select>
-              <label for="newvalue">New Value:</label>
-              <input type="text" id="newvalue" name="newvalue" required><br>
-              <button type="submit">Update</button>
-            </form> -->
 
-            <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
+
+            <i class="fas fa-arrow-left back-icon" onclick="BackButton()" style="margin-left: -100px;"></i>
 
             <div class="limiter">
               <div class="container-login100"
-                style="background-image: url('images/bg-01.jpg'); background-size: 90% 82%; margin-top: -110px;">
+                style="background-image: url('images/bg-01.jpg'); background-size: 90% 82%; margin-top: -110px;width: 1000px; margin-left: -90px">
 
                 <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 600px;"
                   id="update-form">
@@ -2109,12 +2259,71 @@
 
           </div>
 
-          <div class="display-view" style="display: block;">
+          <div class="display-view" style="display: none;"></div>
+
+          <div id="calendar" style="display: none;"></div>
+
+          <div class="event-wrapper" id="event-wrapper" style="display: none; margin-left: 35%; margin-top: 100px;">
+            <div class="inner">
+              <img src="images/image-1.png" alt="" class="image-1">
+              <form action="" id="event-form">
+                <div id="event-input">
+                  <h3 style="margin-top: -10px ;padding: 10px;">Add Event</h3>
+                  <div class="form-holder">
+                    <span class="far fa-clock"></span>
+                    <input type="datetime-local" class="form-control" id="event-start" placeholder="UserName"
+                      style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;"
+                      required>
+                  </div>
+                  <div class="form-holder">
+                    <span class="far fa-hourglass"></span>
+                    <input type="datetime-local" class="form-control" id="event-end" placeholder="Email"
+                      style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;"
+                      required>
+                  </div>
+                  <div class="form-holder">
+                    <span class="far fa-check-square"></span>
+                    <input type="text" class="form-control" id="event-title" placeholder="Title"
+                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;"
+                      required>
+                  </div>
+                  <div class="form-holder">
+                    <span class="far fa-check-square"></span>
+                    <input type="text" class="form-control" id="event-todo" placeholder="Todo"
+                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;"
+                      required>
+                  </div>
+                  <button type="submit">
+                    <span>Add</span>
+                  </button>
+                </div>
+                <div style="display: none;" id="qr-code">
+                  <div id="qrcode"></div>
+                  <h9 class="totp" style="margin-top: 20px;"></h9>
+                </div>
+              </form>
+
+
+              <img src="images/image-2.png" alt="" class="image-2">
+            </div>
 
           </div>
-
-
-
+          <!-- <div id="eventForm">
+              <h3>Add Event</h3>
+              <form id="eventForm">
+                  <label for="eventStartDateTime">Start:</label>
+                  <input type="datetime-local" id="eventStartDateTime" name="eventStartDateTime" required><br>
+          
+                  <label for="eventEndDateTime">End:</label>
+                  <input type="datetime-local" id="eventEndDateTime" name="eventEndDateTime" required><br>
+          
+                  <label for="eventTitle">About:</label>
+                  <input type="text" id="eventTitle" name="eventTitle" required><br>
+          
+                  <input type="submit" value="Add Event">
+              </form>
+          </div> -->
+        
 
           <!-- / Footer -->
 
@@ -2180,6 +2389,10 @@
   <script src="vendor/countdowntime/countdowntime.js"></script>
   <!--===============================================================================================-->
   <script src="js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
 </body>
 
 </html>
