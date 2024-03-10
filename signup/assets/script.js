@@ -1,3 +1,4 @@
+var email = ""
 document.getElementById("customerForm").addEventListener("click", function (event) {
     event.preventDefault();
     const formData = {
@@ -8,6 +9,7 @@ document.getElementById("customerForm").addEventListener("click", function (even
         confirmpassword: document.getElementById("re_pass").value,
         address: document.getElementById("address").value,
     };
+    email = formData.email
     // Create a JSON object from the form data
 
 
@@ -48,8 +50,8 @@ document.getElementById("customerForm").addEventListener("click", function (even
 
         .then(data => {
             if (data === 1) {
-                RegisterUser();
-                // Redirect to /signin if the response is true
+                document.getElementById("otp-form").style.display = 'block'
+                document.getElementById("register-form").style.display = 'none' 
             }
             else if (data === 0) {
                 // Handle other responses here, e.g. show an error message
@@ -77,7 +79,7 @@ document.getElementById("customerForm").addEventListener("click", function (even
 
 
 var togleEyeforImage = true
-export function togleEye() {
+ function togleEye() {
     var passwordInput = document.getElementById('password');
     var eyeIcon = document.getElementById('eye-icon');
     if (togleEyeforImage == true) {
@@ -95,7 +97,7 @@ export function togleEye() {
 
 
 var toglesignupEyeforImage = true
-export function toglesignupEye() {
+ function toglesignupEye() {
     var passwordInput = document.getElementById('re_pass');
     var eyeIcon = document.getElementById('eye-icon');
     if (toglesignupEyeforImage == true) {
@@ -112,11 +114,11 @@ export function toglesignupEye() {
 };
 
 
-export function DisplayDontSee() {
+ function DisplayDontSee() {
     console.log("Dont see")
     document.querySelector('.signup-image-src').src = './assets/dontsee.webp'
 }
-export function DisplaySee() {
+ function DisplaySee() {
     document.querySelector('.signup-image-src').src = './images/typing.png'
 
 }
@@ -188,76 +190,50 @@ function isUsernameValid(username) {
     return isValid;
 }
 
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
-import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// Can Get from Firebase Settings ==> SDN
-const firebaseConfig = {
-    apiKey: "AIzaSyCBQSAtCbq6-QWo0UCU2R1G4t-f5OQKw1k",
-    authDomain: "avian-pact-378003.firebaseapp.com",
-    databaseURL: "https://avian-pact-378003-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "avian-pact-378003",
-    storageBucket: "avian-pact-378003.appspot.com",
-    messagingSenderId: "960981261075",
-    appId: "1:960981261075:web:0eea8a286549efc5f058e6",
-    measurementId: "G-LPBMBH2TFM"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getDatabase()
-const auth = getAuth(app)
-
-let RegisterUser = evt => {
-    // evt.preventDefault(); // (Optional) Prevents the default form submission behavior
+function VerifyOTP() {
+    let otp = document.getElementById("otp").value
+    if (otp.trim() == "") {
+        showToast(`Please enter the otp`, "Danger", 0);
+        return
+    }
     const formData = {
-        name: document.getElementById("name").value,
         email: document.getElementById("email").value,
-        phonenumber: parseInt(document.getElementById("phone").value),
-        password: document.getElementById("password").value,
-        confirmpassword: document.getElementById("re_pass").value,
-        address: document.getElementById("address").value,
+        verification: otp,
     };
+    fetch("http://localhost:8080/verifyemail", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+    })
+        .then(response => response.json())
 
-    // Creating a new user with email and password
-    createUserWithEmailAndPassword(auth, formData.email, formData.password)
-        .then((credentials) => {
-            set(ref(db, "LoginCredentials/" + formData.name), {
-                UserName: formData.name,
-                Email: formData.email,
-                Phone_No: formData.phonenumber,
+        .then(data => {
+            if (data.message == "Wrong OTP") {
+                showToast(`${data.message}`, "Danger", 0);
+            } else {
+                showToast(`${data.message}`, "Success", 3);
+                setTimeout(()=>{
+                document.getElementById("name").value = ''
+                document.getElementById("email").value = ''
+                document.getElementById("phone").value = ''
+                document.getElementById("password").value = ''
+                document.getElementById("re_pass").value = ''
+                document.getElementById("address").value = ''
+                document.getElementById("otp").value = ''
+                localStorage.removeItem('signupdata');
+                document.getElementById("otp-form").style.display = 'none'
+                document.getElementById("register-form").style.display = 'block'
+                window.location.href = "anon/signin"
+                },2000)
+               
 
-            })
-                .then(() => {
-                    showToast("Sign up Successfull", "Success", 3)
-                    setTimeout(() => {
-                        document.getElementById("name").value = ''
-                        document.getElementById("email").value = ''
-                        document.getElementById("phone").value = ''
-                        document.getElementById("password").value = ''
-                        document.getElementById("re_pass").value = ''
-                        document.getElementById("address").value = ''
-                        localStorage.removeItem('signupdata');
-                        window.location.href = "/anon/signin";
-    
-                    }, 1000);
-                })
-                .catch((error) => {
-                    showToast(error,"Error",0)
-                });
+            }
         })
-        .catch((error) => {
-        
-            showToast(error.message,"Error",0);
+        .catch(error => {
+            // Handle errors, e.g., display an error message
+            showToast(`Error : ${error.message}`, "Danger", 0);
         });
-
-
-        
 }
+

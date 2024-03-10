@@ -76,7 +76,20 @@
                                     value="Register">Register</button>
                             </div>
                         </form>
+                        <form method="POST" class="register-form" id="otp-form" style="display: none;">
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="otp" id="otp" oninput="DisplaySee();"
+                                    placeholder="Enter the OTP Sent to Mail" />
+                            </div>
+
+                            <div class="form-group form-button">
+                                <button type="click" class="form-submit" value="Register"
+                                    onclick="VerifyOTP()">Verify</button>
+                            </div>
+                        </form>
                     </div>
+
                     <div class="signup-image">
                         <figure><img src="images/signup-image.jpg" class="signup-image-src" alt="sing up image">
                         </figure>
@@ -96,7 +109,7 @@
     <!-- JS -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/main.js"></script>
-    <script type="module" src="./assets/script.js"></script>
+    <script src="./assets/script.js"></script>
     <script>
         var togleEyeforImage = true
         function togleEye() {
@@ -164,6 +177,10 @@
                 document.getElementById("address").value = userData.address
             }
         };
+
+        
+
+
     </script>
 </body>
 
