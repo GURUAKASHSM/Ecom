@@ -32,7 +32,7 @@ function validateEmail(email) {
 document.getElementById("signin-button").addEventListener("click", function (event) {
 
   event.preventDefault();
-  const rememberMeCheckbox = document.getElementById('remember-me');
+
   // Create a JSON object from the form data
   const formData = {
     email: document.getElementById("email").value,
@@ -71,17 +71,17 @@ document.getElementById("signin-button").addEventListener("click", function (eve
         showToast("Login Successfull", "Success", 3);
 
         setTimeout(() => {
+          const rememberMeCheckbox = document.getElementById('remember-me');
           if (rememberMeCheckbox.checked) {
             const userData = {
-              'token': token,
+              'token': data.token,
               'username': formData.email
             }
             const jsonString = JSON.stringify(userData);
             localStorage.setItem('userdata', `${jsonString}`);
            
-            window.location.href = `/anon/home/`;
+            window.location.href = `/anon/home`;
           } else {
-            localStorage.setItem('token', `${data.token}`);
             window.location.href = `/anon/home/?token=${data.token}`;
           }
           document.getElementById("email").value = '';

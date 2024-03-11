@@ -5,7 +5,325 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <title>Virtual Shopping Site</title>
+  <style>
+    .product-content {
+    border: 2px solid #dfe5e9;
+    margin-bottom: 20px;
+    margin-top: 12px;
+    background: #fff;
+    padding: 4px;
+        -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+}
+
+.product-content .carousel-control.left {
+    margin-left: 0
+}
+
+.product-content .product-image {
+    background-color: #fff;
+    display: block;
+    min-height: 238px;
+    overflow: hidden;
+    position: relative
+}
+
+.product-content .product-deatil {
+    border-bottom: 1px solid #dfe5e9;
+    padding-bottom: 17px;
+    padding-left: 16px;
+    padding-top: 16px;
+    position: relative;
+    background: #fff
+}
+
+.product-content .product-deatil h5 a {
+    color: #2f383d;
+    font-size: 15px;
+    line-height: 19px;
+    text-decoration: none;
+    padding-left: 0;
+    margin-left: 0
+}
+
+.product-content .product-deatil h5 a span {
+    color: #9aa7af;
+    display: block;
+    font-size: 13px
+}
+
+.product-content .product-deatil span.tag1 {
+    border-radius: 50%;
+    color: #fff;
+    font-size: 15px;
+    height: 50px;
+    padding: 13px 0;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    top: 10px;
+    width: 50px
+}
+
+.product-content .product-deatil span.sale {
+    background-color: #21c2f8
+}
+
+.product-content .product-deatil span.discount {
+    background-color: #71e134
+}
+
+.product-content .product-deatil span.hot {
+    background-color: #fa9442
+}
+
+.product-content .description {
+    font-size: 12.5px;
+    line-height: 20px;
+    padding: 10px 14px 16px 19px;
+    background: #fff
+}
+
+.product-content .product-info {
+    padding: 11px 19px 10px 20px
+}
+
+.product-content .product-info a.add-to-cart {
+    color: #2f383d;
+    font-size: 13px;
+    padding-left: 16px
+}
+
+.product-content name.a {
+    padding: 5px 10px;
+    margin-left: 16px
+}
+
+.product-info.smart-form .btn {
+    padding: 6px 12px;
+    margin-left: 12px;
+    margin-top: -10px
+}
+
+.product-entry .product-deatil {
+    border-bottom: 1px solid #dfe5e9;
+    padding-bottom: 17px;
+    padding-left: 16px;
+    padding-top: 16px;
+    position: relative
+}
+
+.product-entry .product-deatil h5 a {
+    color: #2f383d;
+    font-size: 15px;
+    line-height: 19px;
+    text-decoration: none
+}
+
+.product-entry .product-deatil h5 a span {
+    color: #9aa7af;
+    display: block;
+    font-size: 13px
+}
+
+.load-more-btn {
+    background-color: #21c2f8;
+    border-bottom: 2px solid #037ca5;
+    border-radius: 2px;
+    border-top: 2px solid #0cf;
+    margin-top: 20px;
+    padding: 9px 0;
+    width: 100%
+}
+
+.product-block .product-deatil p.price-container span,
+.product-content .product-deatil p.price-container span,
+.product-entry .product-deatil p.price-container span,
+.shipping table tbody tr td p.price-container span,
+.shopping-items table tbody tr td p.price-container span {
+    color: #21c2f8;
+    font-family: Lato, sans-serif;
+    font-size: 24px;
+    line-height: 20px
+}
+
+.product-info.smart-form .rating label {
+    margin-top: 0
+}
+
+.product-wrap .product-image span.tag2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 11px;
+    text-align: center
+}
+
+.product-wrap .product-image span.sale {
+    background-color: #57889c
+}
+
+.product-wrap .product-image span.hot {
+    background-color: #a90329
+}
+
+.shop-btn {
+    position: relative
+}
+
+.shop-btn>span {
+    background: #a90329;
+    display: inline-block;
+    font-size: 10px;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+    font-weight: 700;
+    border-radius: 50%;
+    padding: 2px 4px 3px!important;
+    text-align: center;
+    line-height: normal;
+    width: 19px;
+    top: -7px;
+    left: -7px
+}
+
+.description-tabs {
+    padding: 30px 0 5px!important
+}
+
+.description-tabs .tab-content {
+    padding: 10px 0
+}
+
+.product-deatil {
+    padding: 30px 30px 50px
+}
+
+.product-deatil hr+.description-tabs {
+    padding: 0 0 5px!important
+}
+
+.product-deatil .carousel-control.left,
+.product-deatil .carousel-control.right {
+    background: none!important
+}
+
+.product-deatil .glyphicon {
+    color: #3276b1
+}
+
+.product-deatil .product-image {
+    border-right: 0px solid #fff !important
+}
+
+.product-deatil .name {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.product-deatil .name small {
+    display: block
+}
+
+.product-deatil .name a {
+    margin-left: 0
+}
+
+.product-deatil .price-container {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 300
+}
+
+.product-deatil .price-container small {
+    font-size: 12px
+}
+
+.product-deatil .fa-2x {
+    font-size: 16px!important
+}
+
+.product-deatil .fa-2x>h5 {
+    font-size: 12px;
+    margin: 0
+}
+
+.product-deatil .fa-2x+a,
+.product-deatil .fa-2x+a+a {
+    font-size: 13px
+}
+
+.product-deatil .certified {
+    margin-top: 10px
+}
+
+.product-deatil .certified ul {
+    padding-left: 0
+}
+
+.product-deatil .certified ul li:not(first-child) {
+    margin-left: -3px
+}
+
+.product-deatil .certified ul li {
+    display: inline-block;
+    background-color: #f9f9f9;
+    padding: 13px 19px
+}
+
+.product-deatil .certified ul li:first-child {
+    border-right: none
+}
+
+.product-deatil .certified ul li a {
+    text-align: left;
+    font-size: 12px;
+    color: #6d7a83;
+    line-height: 16px;
+    text-decoration: none
+}
+
+.product-deatil .certified ul li a span {
+    display: block;
+    color: #21c2f8;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center
+}
+
+.product-deatil .message-text {
+    width: calc(100% - 70px)
+}
+
+@media only screen and (min-width:1024px) {
+    .product-content div[class*=col-md-4] {
+        padding-right: 0
+    }
+    .product-content div[class*=col-md-8] {
+        padding: 0 13px 0 0
+    }
+    .product-wrap div[class*=col-md-5] {
+        padding-right: 0
+    }
+    .product-wrap div[class*=col-md-7] {
+        padding: 0 13px 0 0
+    }
+    .product-content .product-image {
+        border-right: 1px solid #dfe5e9
+    }
+    .product-content .product-info {
+        position: relative
+    }
+}
+  </style>
 
   <!--
     - favicon
@@ -35,21 +353,7 @@
   <!--
     - MODAL
   -->
-  <script>
 
-    var urlParams = new URLSearchParams(window.location.search);
-
-    var token = urlParams.get('token');
-
-    document.addEventListener("DOMContentLoaded", function () {
-      var cartButton = document.querySelector(".action-btn a");
-      if (cartButton) {
-        cartButton.href = "/cart/?token=" + token;
-      } else {
-        console.error("Button not found in the DOM.");
-      }
-    });
-  </script>
 
 
   <div class="modal" data-modal>
@@ -214,16 +518,6 @@
         </div>
 
 
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            const token1 = token; // Replace with your actual token value
-            const searchBtn = document.getElementById("searchBtn");
-            searchBtn.addEventListener("click", function () {
-              const url = `/inventory/?token=${token1}`;
-              window.location.href = url;
-            });
-          });
-        </script>
 
 
         <div class="header-user-actions">
@@ -248,16 +542,7 @@
       </div>
 
     </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const token1 = token; // Replace with your actual token value
-        const searchBtn = document.getElementById("personoutline");
-        searchBtn.addEventListener("click", function () {
-          const url = `/ordereditems?token=${token1}`;
-          window.location.href = url;
-        });
-      });
-    </script>
+
     <nav class="desktop-navigation-menu">
 
       <div class="container">
@@ -327,7 +612,7 @@
                 </li>
 
                 <li class="panel-list-item">
-                  <a href="#" class="item-link" data-item="JACKET"Jacket</a>
+                  <a href="#" class="item-link" data-item="JACKET" Jacket</a>
                 </li>
 
                 <li class="panel-list-item">
@@ -826,7 +1111,9 @@
                 starting at &dollar; <b>20</b>.00
               </p>
 
-              <a href="#" class="item-link" data-item="WOMEN" style="height: 0.7cm;width: 2cm;background: var(--salmon-pink); color: var(--white); width: -webkit-max-content; width: -moz-max-content; width: max-content; font-size: var(--fs-11); font-weight: var(--weight-600); text-transform: uppercase; padding: 4px 10px; -webkit-border-radius: var(--border-radius-sm); border-radius: var(--border-radius-sm); -webkit-transition: var(--transition-timing); -o-transition: var(--transition-timing); transition: var(--transition-timing);">Shop now</a>
+              <a href="#" class="item-link" data-item="WOMEN"
+                style="height: 0.7cm;width: 2cm;background: var(--salmon-pink); color: var(--white); width: -webkit-max-content; width: -moz-max-content; width: max-content; font-size: var(--fs-11); font-weight: var(--weight-600); text-transform: uppercase; padding: 4px 10px; -webkit-border-radius: var(--border-radius-sm); border-radius: var(--border-radius-sm); -webkit-transition: var(--transition-timing); -o-transition: var(--transition-timing); transition: var(--transition-timing);">Shop
+                now</a>
 
             </div>
 
@@ -846,7 +1133,9 @@
                 starting at &dollar; <b>15</b>.00
               </p>
 
-              <a href="#" class="item-link" data-item="SUNGLASSES" style="height: 0.7cm;width: 2cm;background: var(--salmon-pink); color: var(--white); width: -webkit-max-content; width: -moz-max-content; width: max-content; font-size: var(--fs-11); font-weight: var(--weight-600); text-transform: uppercase; padding: 4px 10px; -webkit-border-radius: var(--border-radius-sm); border-radius: var(--border-radius-sm); -webkit-transition: var(--transition-timing); -o-transition: var(--transition-timing); transition: var(--transition-timing);">Shop now</a>
+              <a href="#" class="item-link" data-item="SUNGLASSES"
+                style="height: 0.7cm;width: 2cm;background: var(--salmon-pink); color: var(--white); width: -webkit-max-content; width: -moz-max-content; width: max-content; font-size: var(--fs-11); font-weight: var(--weight-600); text-transform: uppercase; padding: 4px 10px; -webkit-border-radius: var(--border-radius-sm); border-radius: var(--border-radius-sm); -webkit-transition: var(--transition-timing); -o-transition: var(--transition-timing); transition: var(--transition-timing);">Shop
+                now</a>
 
             </div>
 
@@ -866,7 +1155,9 @@
                 starting at &dollar; <b>29</b>.99
               </p>
 
-              <a href="#" class="item-link" data-item="SUMMER DRESS" style="height: 0.7cm;width: 2cm;background: var(--salmon-pink); color: var(--white); width: -webkit-max-content; width: -moz-max-content; width: max-content; font-size: var(--fs-11); font-weight: var(--weight-600); text-transform: uppercase; padding: 4px 10px; -webkit-border-radius: var(--border-radius-sm); border-radius: var(--border-radius-sm); -webkit-transition: var(--transition-timing); -o-transition: var(--transition-timing); transition: var(--transition-timing);">Shop now</a>
+              <a href="#" class="item-link" data-item="SUMMER DRESS"
+                style="height: 0.7cm;width: 2cm;background: var(--salmon-pink); color: var(--white); width: -webkit-max-content; width: -moz-max-content; width: max-content; font-size: var(--fs-11); font-weight: var(--weight-600); text-transform: uppercase; padding: 4px 10px; -webkit-border-radius: var(--border-radius-sm); border-radius: var(--border-radius-sm); -webkit-transition: var(--transition-timing); -o-transition: var(--transition-timing); transition: var(--transition-timing);">Shop
+                now</a>
 
             </div>
 
@@ -906,7 +1197,8 @@
                 <p class="category-item-amount">(53)</p>
               </div>
 
-              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link" data-item="DRESS & FROCK">Show all</a>
+              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link"
+                data-item="DRESS & FROCK">Show all</a>
 
             </div>
 
@@ -926,7 +1218,8 @@
                 <p class="category-item-amount">(58)</p>
               </div>
 
-              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link" data-item="WINTER WEAR">Show all</a>
+              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link"
+                data-item="WINTER WEAR">Show all</a>
 
             </div>
 
@@ -946,7 +1239,8 @@
                 <p class="category-item-amount">(68)</p>
               </div>
 
-              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link" data-item="GLASS & LENS">Show all</a>
+              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link"
+                data-item="GLASS & LENS">Show all</a>
 
             </div>
 
@@ -966,7 +1260,8 @@
                 <p class="category-item-amount">(84)</p>
               </div>
 
-              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link" data-item="SHORTS & JEANS">Show all</a>
+              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link"
+                data-item="SHORTS & JEANS">Show all</a>
 
             </div>
 
@@ -986,7 +1281,8 @@
                 <p class="category-item-amount">(35)</p>
               </div>
 
-              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link" data-item="T SHIRT">Show all</a>
+              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link"
+                data-item="T SHIRT">Show all</a>
 
             </div>
 
@@ -1006,7 +1302,8 @@
                 <p class="category-item-amount">(16)</p>
               </div>
 
-              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link" data-item="JACKET">Show all</a>
+              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link"
+                data-item="JACKET">Show all</a>
 
             </div>
 
@@ -1026,7 +1323,8 @@
                 <p class="category-item-amount">(27)</p>
               </div>
 
-              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link" data-item="WATCH">Show all</a>
+              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link"
+                data-item="WATCH">Show all</a>
 
             </div>
 
@@ -1046,7 +1344,8 @@
                 <p class="category-item-amount">(39)</p>
               </div>
 
-              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link" data-item="HAT & CAP">Show all</a>
+              <a style="font-size: small;font-style:bold; color: #FF8F9C;" href="#" class="item-link"
+                data-item="HAT & CAP">Show all</a>
 
             </div>
 
@@ -2330,7 +2629,7 @@
                     </div>
 
                     <h3 href="#" class="item-link" data-item="ROSE GOLD EARRINGS">
-                      <a  class="showcase-title">Rose Gold diamonds Earring</a>
+                      <a class="showcase-title">Rose Gold diamonds Earring</a>
                     </h3>
 
                     <p class="showcase-desc">
@@ -2754,22 +3053,22 @@
                 <div class="showcase-content">
                   <a href="#" class="showcase-category">watches</a>
 
-                  <h3href="#" class="item-link" data-item="SMART WATCH" >
+                  <h3href="#" class="item-link" data-item="SMART WATCH">
                     <a href="#" class="showcase-title">Smart watche Vital Plus</a>
-                  </h3>
+                    </h3>
 
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
+                    <div class="showcase-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star-outline"></ion-icon>
+                    </div>
 
-                  <div class="price-box">
-                    <p class="price">$100.00</p>
-                    <del>$120.00</del>
-                  </div>
+                    <div class="price-box">
+                      <p class="price">$100.00</p>
+                      <del>$120.00</del>
+                    </div>
 
                 </div>
 
@@ -3015,7 +3314,7 @@
                 <div class="showcase-content">
                   <a href="#" class="showcase-category">shorts</a>
 
-                  <h3 href="#" class="item-link" data-item="SWEATSHORTS" >
+                  <h3 href="#" class="item-link" data-item="SWEATSHORTS">
                     <a href="#" class="showcase-title">Better Basics French Terry Sweatshorts</a>
                   </h3>
 
@@ -3104,7 +3403,8 @@
 
               <h2 class="cta-title">Summer collection</h2>
 
-              <p style=" color: var(--sonic-silver);font-size: var(--fs-7);margin-bottom: 5px;--fs-7: 1rem; "href="#" class="item-link" data-item="SUMMER COLLECTION" class="cta-text">Starting @ $10</p>
+              <p style=" color: var(--sonic-silver);font-size: var(--fs-7);margin-bottom: 5px;--fs-7: 1rem; " href="#"
+                class="item-link" data-item="SUMMER COLLECTION" class="cta-text">Starting @ $10</p>
 
               <button class="cta-btn">Shop now</button>
 
@@ -3217,7 +3517,7 @@
       - BLOG
     -->
 
-    <div class="blog">
+    <div class="blog" >
 
       <div class="container">
 
@@ -3234,7 +3534,7 @@
 
               <a href="#" class="blog-category">Fashion</a>
 
-              <a >
+              <a>
                 <h3 class="blog-title">Clothes Retail KPIs 2021 Guide for Clothes Executives.</h3>
               </a>
 
@@ -3324,7 +3624,9 @@
   </main>
 
 
+  <div class="container" style="display: block;" id="js-display-items">
 
+    </div>
 
 
   <!--
@@ -3333,141 +3635,9 @@
 
   <footer>
 
-    <div class="footer-category">
-
-      <div class="container">
-
-        <h2 class="footer-category-title">Brand directory</h2>
-
-        <div class="footer-category-box">
-
-          <h3 class="category-box-title">Fashion :</h3>
-
-          <a href="#" class="footer-category-link">T-shirt</a>
-          <a href="#" class="footer-category-link">Shirts</a>
-          <a href="#" class="footer-category-link">shorts & jeans</a>
-          <a href="#" class="footer-category-link">jacket</a>
-          <a href="#" class="footer-category-link">dress & frock</a>
-          <a href="#" class="footer-category-link">innerwear</a>
-          <a href="#" class="footer-category-link">hosiery</a>
-
-        </div>
-
-        <div class="footer-category-box">
-          <h3 class="category-box-title">footwear :</h3>
-
-          <a href="#" class="footer-category-link">sport</a>
-          <a href="#" class="footer-category-link">formal</a>
-          <a href="#" class="footer-category-link">Boots</a>
-          <a href="#" class="footer-category-link">casual</a>
-          <a href="#" class="footer-category-link">cowboy shoes</a>
-          <a href="#" class="footer-category-link">safety shoes</a>
-          <a href="#" class="footer-category-link">Party wear shoes</a>
-          <a href="#" class="footer-category-link">Branded</a>
-          <a href="#" class="footer-category-link">Firstcopy</a>
-          <a href="#" class="footer-category-link">Long shoes</a>
-        </div>
-
-        <div class="footer-category-box">
-          <h3 class="category-box-title">jewellery :</h3>
-
-          <a href="#" class="footer-category-link">Necklace</a>
-          <a href="#" class="footer-category-link">Earrings</a>
-          <a href="#" class="footer-category-link">Couple rings</a>
-          <a href="#" class="footer-category-link">Pendants</a>
-          <a href="#" class="footer-category-link">Crystal</a>
-          <a href="#" class="footer-category-link">Bangles</a>
-          <a href="#" class="footer-category-link">bracelets</a>
-          <a href="#" class="footer-category-link">nosepin</a>
-          <a href="#" class="footer-category-link">chain</a>
-          <a href="#" class="footer-category-link">Earrings</a>
-          <a href="#" class="footer-category-link">Couple rings</a>
-        </div>
-
-        <div class="footer-category-box">
-          <h3 class="category-box-title">cosmetics :</h3>
-
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Bodywash</a>
-          <a href="#" class="footer-category-link">Facewash</a>
-          <a href="#" class="footer-category-link">makeup kit</a>
-          <a href="#" class="footer-category-link">liner</a>
-          <a href="#" class="footer-category-link">lipstick</a>
-          <a href="#" class="footer-category-link">prefume</a>
-          <a href="#" class="footer-category-link">Body soap</a>
-          <a href="#" class="footer-category-link">scrub</a>
-          <a href="#" class="footer-category-link">hair gel</a>
-          <a href="#" class="footer-category-link">hair colors</a>
-          <a href="#" class="footer-category-link">hair dye</a>
-          <a href="#" class="footer-category-link">sunscreen</a>
-          <a href="#" class="footer-category-link">skin loson</a>
-          <a href="#" class="footer-category-link">liner</a>
-          <a href="#" class="footer-category-link">lipstick</a>
-        </div>
-
-      </div>
-
-    </div>
-
     <div class="footer-nav">
 
       <div class="container">
-
-        <ul class="footer-nav-list">
-
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Popular Categories</h2>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Fashion</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Electronic</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Cosmetic</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Health</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Watches</a>
-          </li>
-
-        </ul>
-
-        <ul class="footer-nav-list">
-
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Products</h2>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Prices drop</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">New products</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Best sales</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Contact us</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Sitemap</a>
-          </li>
-
-        </ul>
 
         <ul class="footer-nav-list">
 
@@ -3621,80 +3791,7 @@
 
 
 
-  <script>
-    document.querySelector('#cart-form').addEventListener('submit', function (event) {
-      event.preventDefault(); // Prevent the default form submission behavior
 
-      const titleElement = document.querySelector('.showcase-title1');
-      const priceElement = document.querySelector('.pricesoap'); // Note the class name change
-      const itemTitle = titleElement.textContent;
-      const priceText = priceElement.textContent;
-      const price = parseFloat(priceText.replace('$', ''));
-      const dataToSend = {
-        name: itemTitle,
-        price: price,
-      };
-
-      fetch('http://localhost:8080/addtocart', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataToSend),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Item Title stored in the database:', data);
-        })
-        .catch((error) => {
-          console.error('Error storing item title:', error);
-        });
-    });
-  </script>
-  <script>
-    document.getElementById("searchBtn").addEventListener("click", function () {
-      // Get the product name from the input field
-      const productName = document.getElementById("searchField").value;
-
-      // Convert the product name to uppercase
-      const productNameInUpperCase = productName.toUpperCase();
-
-      // Send the productNameInUpperCase to the backend using fetch or any other method
-      // Example:
-      fetch("http://localhost:8080/search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ productName: productNameInUpperCase }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          // Handle the response from the backend
-          console.log("Response from backend:", data);
-          // You can process the data or update the UI as needed
-        })
-        .catch(error => {
-          console.error("Error:", error);
-        });
-    });
-  </script>
-      <script>
-        // JavaScript to handle the item clicks and generate dynamic URLs
-        const itemLinks = document.querySelectorAll(".item-link");
-        const baseURL = "/items"; // The base URL for your items route
-
-        itemLinks.forEach(link => {
-            link.addEventListener("click", function (event) {
-                event.preventDefault();
-                const itemName = link.getAttribute("data-item"); // Get the item name
-                const token = urlParams.get('token'); // Replace with your dynamic token logic
-
-                const url = `${baseURL}?item=${itemName}&token=${token}`;
-                window.location.href = url; // Redirect to the dynamic URL
-            });
-        });
-    </script>
 
   <!--
     - custom js link
@@ -3706,6 +3803,9 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="./script.js"></script>
 
 </body>
 
