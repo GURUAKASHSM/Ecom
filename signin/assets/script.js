@@ -32,7 +32,7 @@ function validateEmail(email) {
 document.getElementById("signin-button").addEventListener("click", function (event) {
 
   event.preventDefault();
-
+  const rememberMeCheckbox = document.getElementById('remember-me');
   // Create a JSON object from the form data
   const formData = {
     email: document.getElementById("email").value,
@@ -64,8 +64,31 @@ document.getElementById("signin-button").addEventListener("click", function (eve
   })
     .then(response => response.json())
     .then(data => {
-      if (data.token) {
-        SigninUser(data.token)
+      if(data.message){
+        showToast(data.message, "Warning", 2);
+      }
+      else if (data.token) {
+        showToast("Login Successfull", "Success", 3);
+
+        setTimeout(() => {
+          if (rememberMeCheckbox.checked) {
+            const userData = {
+              'token': token,
+              'username': formData.email
+            }
+            const jsonString = JSON.stringify(userData);
+            localStorage.setItem('userdata', `${jsonString}`);
+           
+            window.location.href = `/anon/home/`;
+          } else {
+            localStorage.setItem('token', `${data.token}`);
+            window.location.href = `/anon/home/?token=${data.token}`;
+          }
+          document.getElementById("email").value = '';
+          document.getElementById("password").value = "";
+          localStorage.removeItem('signindata');
+
+        }, 1000);
       } else {
         document.querySelector('.js-image').src = './images/wrongpassword.avif'
         event.preventDefault();
@@ -129,69 +152,6 @@ function showToast(str, war, no) {
       toastContainer.style.display = 'none';
     }, transitionDuration * 1000);
   }, 3000);
-}
-
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
-import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// Can Get from Firebase Settings ==> SDN
-const firebaseConfig = {
-  apiKey: "AIzaSyCBQSAtCbq6-QWo0UCU2R1G4t-f5OQKw1k",
-  authDomain: "avian-pact-378003.firebaseapp.com",
-  databaseURL: "https://avian-pact-378003-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "avian-pact-378003",
-  storageBucket: "avian-pact-378003.appspot.com",
-  messagingSenderId: "960981261075",
-  appId: "1:960981261075:web:0eea8a286549efc5f058e6",
-  measurementId: "G-LPBMBH2TFM"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getDatabase()
-const auth = getAuth(app)
-const dbref = ref(db)
-
-let SigninUser = (token) => {
-  const rememberMeCheckbox = document.getElementById('remember-me');
-  const formData = {
-    email: document.getElementById("email").value,
-    password: document.getElementById("password").value,
-  };
-  // evt.preventDefault();
-  signInWithEmailAndPassword(auth, formData.email, formData.password)
-    .then((credentials) => {
-      showToast("Login Successfull", "Success", 3);
-
-      setTimeout(() => {
-        if (rememberMeCheckbox.checked) {
-          const userData = {
-            'token': token,
-            'username': formData.email
-          }
-          const jsonString = JSON.stringify(userData);
-          localStorage.setItem('userdata', `${jsonString}`);
-         
-          window.location.href = `/anon/home/`;
-        } else {
-          localStorage.setItem('token', `${data.token}`);
-          window.location.href = `/anon/home/?token=${data.token}`;
-        }
-        document.getElementById("email").value = '';
-        document.getElementById("password").value = "";
-        localStorage.removeItem('signindata');
-      }, 1000);
-    })
-    .catch((error) => {
-      showToast(error.message, "Danger", 0);
-    })
 }
 
 

@@ -1,6 +1,6 @@
-var email = ""
+
 document.getElementById("customerForm").addEventListener("click", function (event) {
-    event.preventDefault();
+    event.preventDefault(); 
     const formData = {
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
@@ -9,9 +9,6 @@ document.getElementById("customerForm").addEventListener("click", function (even
         confirmpassword: document.getElementById("re_pass").value,
         address: document.getElementById("address").value,
     };
-    email = formData.email
-    // Create a JSON object from the form data
-
 
 
     if (formData.name.trim() === "" || formData.email.trim() === "" || formData.password.trim() === "" || formData.confirmpassword.trim() === "" || formData.address.trim() === "") {
@@ -47,14 +44,12 @@ document.getElementById("customerForm").addEventListener("click", function (even
         body: JSON.stringify(formData),
     })
         .then(response => response.json())
-
         .then(data => {
             if (data === 1) {
-                document.getElementById("otp-form").style.display = 'block'
-                document.getElementById("register-form").style.display = 'none' 
+                console.log("Clalled verify otp")
+              VerifyOTP()  
             }
             else if (data === 0) {
-                // Handle other responses here, e.g. show an error message
                 showToast("Error creating customer profile.", "Danger", 0);
             }
             else if (data === 2) {
@@ -78,50 +73,7 @@ document.getElementById("customerForm").addEventListener("click", function (even
 });
 
 
-var togleEyeforImage = true
- function togleEye() {
-    var passwordInput = document.getElementById('password');
-    var eyeIcon = document.getElementById('eye-icon');
-    if (togleEyeforImage == true) {
-        togleEyeforImage = false
-        document.querySelector('.signup-image-src').src = './images/peaking.webp'
-    } else {
-        togleEyeforImage = true
-        document.querySelector('.signup-image-src').src = './assets/dontsee.webp'
-    }
 
-    passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
-    eyeIcon.classList.toggle('zmdi-eye');
-    eyeIcon.classList.toggle('zmdi-eye-off');
-};
-
-
-var toglesignupEyeforImage = true
- function toglesignupEye() {
-    var passwordInput = document.getElementById('re_pass');
-    var eyeIcon = document.getElementById('eye-icon');
-    if (toglesignupEyeforImage == true) {
-        toglesignupEyeforImage = false
-        document.querySelector('.signup-image-src').src = './images/peaking.webp'
-    } else {
-        toglesignupEyeforImage = true
-        document.querySelector('.signup-image-src').src = './assets/dontsee.webp'
-    }
-
-    passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
-    eyeIcon.classList.toggle('zmdi-eye');
-    eyeIcon.classList.toggle('zmdi-eye-off');
-};
-
-
- function DisplayDontSee() {
-    console.log("Dont see")
-    document.querySelector('.signup-image-src').src = './assets/dontsee.webp'
-}
- function DisplaySee() {
-    document.querySelector('.signup-image-src').src = './images/typing.png'
-
-}
 
 function showToast(str, war, no) {
     const toastContainer = document.querySelector('.toast-container');
@@ -191,11 +143,17 @@ function isUsernameValid(username) {
 }
 
 function VerifyOTP() {
+    document.getElementById("otp-form").style.display = 'block'
+    document.getElementById("register-form").style.display = 'none' 
+}
+document.getElementById("otp-verify").addEventListener("click",(event)=>{
+    event.preventDefault();
     let otp = document.getElementById("otp").value
-    if (otp.trim() == "") {
-        showToast(`Please enter the otp`, "Danger", 0);
-        return
+    if (otp === "") {
+        showToast("Please enter the OTP", "Danger", 0);
+        return false;
     }
+    console.log("Returned")
     const formData = {
         email: document.getElementById("email").value,
         verification: otp,
@@ -208,32 +166,98 @@ function VerifyOTP() {
         body: JSON.stringify(formData),
     })
         .then(response => response.json())
-
         .then(data => {
             if (data.message == "Wrong OTP") {
                 showToast(`${data.message}`, "Danger", 0);
             } else {
                 showToast(`${data.message}`, "Success", 3);
-                setTimeout(()=>{
-                document.getElementById("name").value = ''
-                document.getElementById("email").value = ''
-                document.getElementById("phone").value = ''
-                document.getElementById("password").value = ''
-                document.getElementById("re_pass").value = ''
-                document.getElementById("address").value = ''
-                document.getElementById("otp").value = ''
-                localStorage.removeItem('signupdata');
-                document.getElementById("otp-form").style.display = 'none'
-                document.getElementById("register-form").style.display = 'block'
-                window.location.href = "anon/signin"
-                },2000)
-               
-
+                setTimeout(() => {
+                    // Clear form fields and perform other actions
+                    document.getElementById("name").value = '';
+                    document.getElementById("email").value = '';
+                    document.getElementById("phone").value = '';
+                    document.getElementById("password").value = '';
+                    document.getElementById("re_pass").value = '';
+                    document.getElementById("address").value = '';
+                    document.getElementById("otp").value = '';
+                    localStorage.removeItem('signupdata');
+                    document.getElementById("register-form").style.display = 'block';
+                    window.location.href = "anon/signin";
+                }, 2000);
             }
         })
         .catch(error => {
-            // Handle errors, e.g., display an error message
-            showToast(`Error : ${error.message}`, "Danger", 0);
+            
+            showToast(`Error: ${error.message}`, "Danger", 0);
         });
+    return false; 
+})
+
+var togleEyeforImage = true
+function togleEye() {
+    var passwordInput = document.getElementById('password');
+    var eyeIcon = document.getElementById('eye-icon');
+    if (togleEyeforImage == true) {
+        togleEyeforImage = false
+        document.querySelector('.signup-image-src').src = './images/peaking.webp'
+    } else {
+        togleEyeforImage = true
+        document.querySelector('.signup-image-src').src = './assets/dontsee.webp'
+    }
+
+    passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
+    eyeIcon.classList.toggle('zmdi-eye');
+    eyeIcon.classList.toggle('zmdi-eye-off');
+};
+
+
+var toglesignupEyeforImage = true
+function toglesignupEye() {
+    var passwordInput = document.getElementById('re_pass');
+    var eyeIcon = document.getElementById('eye-icon');
+    if (toglesignupEyeforImage == true) {
+        toglesignupEyeforImage = false
+        document.querySelector('.signup-image-src').src = './images/peaking.webp'
+    } else {
+        toglesignupEyeforImage = true
+        document.querySelector('.signup-image-src').src = './assets/dontsee.webp'
+    }
+
+    passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
+    eyeIcon.classList.toggle('zmdi-eye');
+    eyeIcon.classList.toggle('zmdi-eye-off');
+};
+
+
+function DisplayDontSee() {
+    console.log("Dont see")
+    document.querySelector('.signup-image-src').src = './assets/dontsee.webp'
 }
+function DisplaySee() {
+    document.querySelector('.signup-image-src').src = './images/typing.png'
+
+}
+function setinlocal() {
+    const userData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phonenumber: parseInt(document.getElementById("phone").value),
+        confirmpassword: document.getElementById("re_pass").value,
+        address: document.getElementById("address").value,
+    };
+    const jsonString = JSON.stringify(userData);
+    localStorage.setItem('signupdata', `${jsonString}`);
+}
+
+window.onload = function () {
+    const data = localStorage.getItem('signupdata');
+    const userData = JSON.parse(data)
+    if (userData) {
+        document.getElementById("name").value = userData.name
+        document.getElementById("email").value = userData.email
+        document.getElementById("phone").value = userData.phonenumber
+        document.getElementById("address").value = userData.address
+    }
+};
+
 

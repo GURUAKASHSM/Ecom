@@ -416,6 +416,8 @@ function DisplayListUsers() {
               </li>
                 <li  onclick="DeleteData('${customer.email}','cus');recentPage = 'customer';"><a class="text-danger" data-toggle="tooltip" title=""
                     data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                <li  onclick="BlockUser('${customer.email}','customer');DisplayListUsers();recentPage = 'customer';"><a class="text-danger" data-toggle="tooltip" title=""
+                    data-original-title="Delete"><i class="fas fa-ban"></i></a></li>
               </ul>
             </td>
           </tr>`;
@@ -542,6 +544,8 @@ function DisplayListSeller() {
               </li>
                 <li  onclick="DeleteData('${seller.selleremail}','sel');recentPage = 'inventory';"><a class="text-danger" data-toggle="tooltip" title=""
                     data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                    <li  onclick="BlockUser('${seller.selleremail}','seller');DisplayListSeller();recentPage = 'seller';"><a class="text-danger" data-toggle="tooltip" title=""
+                data-original-title="Delete"><i class="fas fa-ban"></i></a></li>
               </ul>
             </td>
           </tr>`;
@@ -1157,8 +1161,8 @@ function DisplayAllWorkers() {
               <ul class="list-unstyled mb-0 d-flex justify-content-end">
                <li  onclick="ViewData('${worker.email}','worker');recentPage = 'worker';"><a class="text-danger" data-toggle="tooltip" title=""
               data-original-title="Delete"><i class="far fa-eye"></i></a></li>
-                <li  onclick="deleteWorker('${worker.email}');DisplayFeedBacks();recentPage = 'worker';"><a class="text-danger" data-toggle="tooltip" title=""
-                    data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                <li  onclick="deleteWorker('${worker.email}');DisplayAllWorkers();recentPage = 'worker';"><a class="text-danger" data-toggle="tooltip" title=""
+                data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
               </ul>
             </td>
           </tr>`;
@@ -1336,6 +1340,15 @@ function ViewData(id, profession) {
                 <h5 class="section-heading">ID : <span class="message" >${data.message.customerid}  </span> </h5>
                 </div>
                 <div class="body-section">
+                <h5 class="section-heading">EmailVerified : <span class="message" >${data.message.isemailverified}  </span> </h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Blocked : <span class="message" >${data.message.blockeduser}  </span> </h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Wrong Attempts : <span class="message" >${data.message.wronginput} (today)</span> </h5>
+                </div>
+                <div class="body-section">
                 <!-- <a href="#" class="btn btn-purple btn-sm">Edit</a> -->
                 </div>
                 </div>
@@ -1429,6 +1442,12 @@ function ViewData(id, profession) {
             <h5 class="section-heading">ID : <span class="message" >${data.message.sellerid}  </span> </h5>
             </div>
             <div class="body-section">
+            <h5 class="section-heading">Blocked : <span class="message" >${data.message.blockeduser}  </span> </h5>
+            </div>
+            <div class="body-section">
+            <h5 class="section-heading">Wrong Attempts : <span class="message" >${data.message.wronginput} (today)</span> </h5>
+            </div>
+            <div class="body-section">
             <!-- <a href="#" class="btn btn-purple btn-sm">Edit</a> -->
             </div>
             </div>
@@ -1465,6 +1484,7 @@ function ViewData(id, profession) {
             <div class="body-section">
             <h5 class="section-heading">Address : <span class="message">${data.message.address}</span></h5>
             </div>
+
         
             </div>
             </div>
@@ -1768,3 +1788,29 @@ document.getElementById("event-form").addEventListener("submit", function (event
         });
 
 });
+
+function BlockUser(email,collection){
+   const formData = {
+        email,
+        collection,
+    }
+    fetch("http://localhost:8080/block", {
+        method: "POST", // Use DELETE method to delete data
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.message) {
+                showToast(data.message, "Success", 3)
+            } else if (data.error) {
+                showToast(data.error, "Warning", 0)
+            }
+        })
+        .catch(error => {
+            showToast(data.error, "Warning", 0)
+        });
+}
