@@ -8,321 +8,684 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+    integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <title>Virtual Shopping Site</title>
   <style>
+    /* Toast container styles */
+    /* Toast container styles */
+    /* Basic Styling */
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px;
+      display: flex;
+    }
+
+    /* Columns */
+    .left-column {
+      width: 65%;
+      position: relative;
+    }
+
+    .right-column {
+      width: 35%;
+      margin-top: 60px;
+    }
+
+    .avatar-lg {
+      height: 5rem;
+      width: 5rem;
+    }
+
+    .font-size-18 {
+      font-size: 18px !important;
+    }
+
+    .text-truncate {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    a {
+      text-decoration: none !important;
+    }
+
+    .w-xl {
+      min-width: 160px;
+    }
+
+    .card {
+      margin-bottom: 24px;
+      -webkit-box-shadow: 0 2px 3px #e4e8f0;
+      box-shadow: 0 2px 3px #e4e8f0;
+    }
+
+    .card {
+      position: relative;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 1px solid #eff0f2;
+      border-radius: 1rem;
+    }
+
+    /* Left Column */
+    .left-column img {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .left-column img.active {
+      opacity: 1;
+    }
+
+
+    /* Right Column */
+
+    /* Product Description */
+    .product-description {
+      border-bottom: 1px solid #E1E8EE;
+      margin-bottom: 20px;
+    }
+
+    .product-description span {
+      font-size: 12px;
+      color: #358ED7;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .product-description h1 {
+      font-weight: 300;
+      font-size: 52px;
+      color: #43484D;
+      letter-spacing: -2px;
+    }
+
+    .product-description p {
+      font-size: 16px;
+      font-weight: 300;
+      color: #86939E;
+      line-height: 24px;
+    }
+
+    /* Product Configuration */
+    .product-color span,
+    .cable-config span {
+      font-size: 14px;
+      font-weight: 400;
+      color: #86939E;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    /* Product Color */
+    .product-color {
+      margin-bottom: 30px;
+    }
+
+    .color-choose div {
+      display: inline-block;
+    }
+
+    .color-choose input[type="radio"] {
+      display: none;
+    }
+
+    .color-choose input[type="radio"]+label span {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      margin: -1px 4px 0 0;
+      vertical-align: middle;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .color-choose input[type="radio"]+label span {
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+    }
+
+    .color-choose input[type="radio"]#red+label span {
+      background-color: #C91524;
+    }
+
+    .color-choose input[type="radio"]#blue+label span {
+      background-color: #314780;
+    }
+
+    .color-choose input[type="radio"]#black+label span {
+      background-color: #323232;
+    }
+
+    .color-choose input[type="radio"]:checked+label span {
+      background-image: url(images/check-icn.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* Cable Configuration */
+    .cable-choose {
+      margin-bottom: 20px;
+    }
+
+    .cable-choose button {
+      border: 2px solid #E1E8EE;
+      border-radius: 6px;
+      padding: 13px 20px;
+      font-size: 14px;
+      color: #5E6977;
+      background-color: #fff;
+      cursor: pointer;
+      transition: all .5s;
+    }
+
+    .cable-choose button:hover,
+    .cable-choose button:active,
+    .cable-choose button:focus {
+      border: 2px solid #86939E;
+      outline: none;
+    }
+
+    .cable-config {
+      border-bottom: 1px solid #E1E8EE;
+      margin-bottom: 20px;
+    }
+
+    .cable-config a {
+      color: #358ED7;
+      text-decoration: none;
+      font-size: 12px;
+      position: relative;
+      margin: 10px 0;
+      display: inline-block;
+    }
+
+    .cable-config a:before {
+      content: "?";
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      border: 2px solid rgba(53, 142, 215, 0.5);
+      display: inline-block;
+      text-align: center;
+      line-height: 16px;
+      opacity: 0.5;
+      margin-right: 5px;
+    }
+
+    /* Product Price */
+    .product-price {
+      display: flex;
+      align-items: center;
+    }
+
+    .product-price span {
+      font-size: 26px;
+      font-weight: 300;
+      color: #43474D;
+      margin-right: 20px;
+    }
+
+    .cart-btn {
+      display: inline-block;
+      background-color: #7DC855;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 12px 30px;
+      transition: all .5s;
+    }
+
+    .cart-btn:hover {
+      background-color: #64af3d;
+    }
+
+    /* Responsive */
+    @media (max-width: 940px) {
+      .container {
+        flex-direction: column;
+        margin-top: 60px;
+      }
+
+      .left-column,
+      .right-column {
+        width: 100%;
+      }
+
+      .left-column img {
+        width: 300px;
+        right: 0;
+        top: -65px;
+        left: initial;
+      }
+    }
+
+    @media (max-width: 535px) {
+      .left-column img {
+        width: 220px;
+        top: -85px;
+      }
+    }
+
+    .toast-container {
+      position: fixed;
+      top: 60px;
+      right: 150px;
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      display: block;
+      align-items: center;
+      width: 500px;
+      height: 70px;
+      max-width: 900px;
+      /* Adjust the max-width as needed */
+    }
+
+    /* Icon styles */
+    .js-toast-img {
+      margin-right: 10px;
+      /* Adjust the margin as needed */
+      height: 30px;
+      width: 30px;
+      align-items: center;
+      margin-top: -8px;
+    }
+
+    /* Toast title styles */
+    .js-toast-title {
+      font-weight: bold;
+      font-size: 17px;
+      margin-right: 15px;
+      align-items: center;
+    }
+
+    /* Toast content styles */
+    .js-toast-content {
+      margin-top: 5px;
+      /* Adjust the margin as needed */
+      margin-right: 15px;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    /* Close icon styles (assuming close icon is present) */
+    .js-icon-close {
+      cursor: pointer;
+      margin-left: auto;
+      align-items: center;
+    }
+
+    /* Add more styles as needed */
+    .toast-container.danger-color {
+      background-color: #ff6347;
+      /* Tomato color for danger */
+    }
+
+    .toast-container.info-color {
+      background-color: #87ceeb;
+      /* SkyBlue color for info */
+    }
+
+    .toast-container.warning-color {
+      background-color: #ffd700;
+      /* Gold color for warning */
+    }
+
+    .toast-container.success-color {
+      background-color: #32cd32;
+      /* LimeGreen color for success */
+    }
+
     .product-content {
-    border: 2px solid #dfe5e9;
-    margin-bottom: 20px;
-    margin-top: 12px;
-    background: #fff;
-    padding: 4px;
-        -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
-}
-
-.product-content .carousel-control.left {
-    margin-left: 0
-}
-
-.product-content .product-image {
-    background-color: #fff;
-    display: block;
-    min-height: 238px;
-    overflow: hidden;
-    position: relative
-}
-
-.product-content .product-deatil {
-    border-bottom: 1px solid #dfe5e9;
-    padding-bottom: 17px;
-    padding-left: 16px;
-    padding-top: 16px;
-    position: relative;
-    background: #fff
-}
-
-.product-content .product-deatil h5 a {
-    color: #2f383d;
-    font-size: 15px;
-    line-height: 19px;
-    text-decoration: none;
-    padding-left: 0;
-    margin-left: 0
-}
-
-.product-content .product-deatil h5 a span {
-    color: #9aa7af;
-    display: block;
-    font-size: 13px
-}
-
-.product-content .product-deatil span.tag1 {
-    border-radius: 50%;
-    color: #fff;
-    font-size: 15px;
-    height: 50px;
-    padding: 13px 0;
-    position: absolute;
-    right: 10px;
-    text-align: center;
-    top: 10px;
-    width: 50px
-}
-
-.product-content .product-deatil span.sale {
-    background-color: #21c2f8
-}
-
-.product-content .product-deatil span.discount {
-    background-color: #71e134
-}
-
-.product-content .product-deatil span.hot {
-    background-color: #fa9442
-}
-
-.product-content .description {
-    font-size: 12.5px;
-    line-height: 20px;
-    padding: 10px 14px 16px 19px;
-    background: #fff
-}
-
-.product-content .product-info {
-    padding: 11px 19px 10px 20px
-}
-
-.product-content .product-info a.add-to-cart {
-    color: #2f383d;
-    font-size: 13px;
-    padding-left: 16px
-}
-
-.product-content name.a {
-    padding: 5px 10px;
-    margin-left: 16px
-}
-
-.product-info.smart-form .btn {
-    padding: 6px 12px;
-    margin-left: 12px;
-    margin-top: -10px
-}
-
-.product-entry .product-deatil {
-    border-bottom: 1px solid #dfe5e9;
-    padding-bottom: 17px;
-    padding-left: 16px;
-    padding-top: 16px;
-    position: relative
-}
-
-.product-entry .product-deatil h5 a {
-    color: #2f383d;
-    font-size: 15px;
-    line-height: 19px;
-    text-decoration: none
-}
-
-.product-entry .product-deatil h5 a span {
-    color: #9aa7af;
-    display: block;
-    font-size: 13px
-}
-
-.load-more-btn {
-    background-color: #21c2f8;
-    border-bottom: 2px solid #037ca5;
-    border-radius: 2px;
-    border-top: 2px solid #0cf;
-    margin-top: 20px;
-    padding: 9px 0;
-    width: 100%
-}
-
-.product-block .product-deatil p.price-container span,
-.product-content .product-deatil p.price-container span,
-.product-entry .product-deatil p.price-container span,
-.shipping table tbody tr td p.price-container span,
-.shopping-items table tbody tr td p.price-container span {
-    color: #21c2f8;
-    font-family: Lato, sans-serif;
-    font-size: 24px;
-    line-height: 20px
-}
-
-.product-info.smart-form .rating label {
-    margin-top: 0
-}
-
-.product-wrap .product-image span.tag2 {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    padding: 10px 0;
-    color: #fff;
-    font-size: 11px;
-    text-align: center
-}
-
-.product-wrap .product-image span.sale {
-    background-color: #57889c
-}
-
-.product-wrap .product-image span.hot {
-    background-color: #a90329
-}
-
-.shop-btn {
-    position: relative
-}
-
-.shop-btn>span {
-    background: #a90329;
-    display: inline-block;
-    font-size: 10px;
-    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
-    font-weight: 700;
-    border-radius: 50%;
-    padding: 2px 4px 3px!important;
-    text-align: center;
-    line-height: normal;
-    width: 19px;
-    top: -7px;
-    left: -7px
-}
-
-.description-tabs {
-    padding: 30px 0 5px!important
-}
-
-.description-tabs .tab-content {
-    padding: 10px 0
-}
-
-.product-deatil {
-    padding: 30px 30px 50px
-}
-
-.product-deatil hr+.description-tabs {
-    padding: 0 0 5px!important
-}
-
-.product-deatil .carousel-control.left,
-.product-deatil .carousel-control.right {
-    background: none!important
-}
-
-.product-deatil .glyphicon {
-    color: #3276b1
-}
-
-.product-deatil .product-image {
-    border-right: 0px solid #fff !important
-}
-
-.product-deatil .name {
-    margin-top: 0;
-    margin-bottom: 0
-}
-
-.product-deatil .name small {
-    display: block
-}
-
-.product-deatil .name a {
-    margin-left: 0
-}
-
-.product-deatil .price-container {
-    font-size: 24px;
-    margin: 0;
-    font-weight: 300
-}
-
-.product-deatil .price-container small {
-    font-size: 12px
-}
-
-.product-deatil .fa-2x {
-    font-size: 16px!important
-}
-
-.product-deatil .fa-2x>h5 {
-    font-size: 12px;
-    margin: 0
-}
-
-.product-deatil .fa-2x+a,
-.product-deatil .fa-2x+a+a {
-    font-size: 13px
-}
-
-.product-deatil .certified {
-    margin-top: 10px
-}
-
-.product-deatil .certified ul {
-    padding-left: 0
-}
-
-.product-deatil .certified ul li:not(first-child) {
-    margin-left: -3px
-}
-
-.product-deatil .certified ul li {
-    display: inline-block;
-    background-color: #f9f9f9;
-    padding: 13px 19px
-}
-
-.product-deatil .certified ul li:first-child {
-    border-right: none
-}
-
-.product-deatil .certified ul li a {
-    text-align: left;
-    font-size: 12px;
-    color: #6d7a83;
-    line-height: 16px;
-    text-decoration: none
-}
-
-.product-deatil .certified ul li a span {
-    display: block;
-    color: #21c2f8;
-    font-size: 13px;
-    font-weight: 700;
-    text-align: center
-}
-
-.product-deatil .message-text {
-    width: calc(100% - 70px)
-}
-
-@media only screen and (min-width:1024px) {
-    .product-content div[class*=col-md-4] {
-        padding-right: 0
+      border: 2px solid #dfe5e9;
+      margin-bottom: 20px;
+      margin-top: 12px;
+      background: #fff;
+      padding: 4px;
+      -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
     }
-    .product-content div[class*=col-md-8] {
-        padding: 0 13px 0 0
+
+    .product-content .carousel-control.left {
+      margin-left: 0
     }
-    .product-wrap div[class*=col-md-5] {
-        padding-right: 0
-    }
-    .product-wrap div[class*=col-md-7] {
-        padding: 0 13px 0 0
-    }
+
     .product-content .product-image {
-        border-right: 1px solid #dfe5e9
+      background-color: #fff;
+      display: block;
+      min-height: 238px;
+      overflow: hidden;
+      position: relative
     }
+
+    .product-content .product-deatil {
+      border-bottom: 1px solid #dfe5e9;
+      padding-bottom: 17px;
+      padding-left: 16px;
+      padding-top: 16px;
+      position: relative;
+      background: #fff
+    }
+
+    .product-content .product-deatil h5 a {
+      color: #2f383d;
+      font-size: 15px;
+      line-height: 19px;
+      text-decoration: none;
+      padding-left: 0;
+      margin-left: 0
+    }
+
+    .product-content .product-deatil h5 a span {
+      color: #9aa7af;
+      display: block;
+      font-size: 13px
+    }
+
+    .product-content .product-deatil span.tag1 {
+      border-radius: 50%;
+      color: #fff;
+      font-size: 15px;
+      height: 50px;
+      padding: 13px 0;
+      position: absolute;
+      right: 10px;
+      text-align: center;
+      top: 10px;
+      width: 50px
+    }
+
+    .product-content .product-deatil span.sale {
+      background-color: #21c2f8
+    }
+
+    .product-content .product-deatil span.discount {
+      background-color: #71e134
+    }
+
+    .product-content .product-deatil span.hot {
+      background-color: #fa9442
+    }
+
+    .product-content .description {
+      font-size: 12.5px;
+      line-height: 20px;
+      padding: 10px 14px 16px 19px;
+      background: #fff
+    }
+
     .product-content .product-info {
-        position: relative
+      padding: 11px 19px 10px 20px
     }
-}
+
+    .product-content .product-info a.add-to-cart {
+      color: #2f383d;
+      font-size: 13px;
+      padding-left: 16px
+    }
+
+    .product-content name.a {
+      padding: 5px 10px;
+      margin-left: 16px
+    }
+
+    .product-info.smart-form .btn {
+      padding: 6px 12px;
+      margin-left: 12px;
+      margin-top: -10px
+    }
+
+    .product-entry .product-deatil {
+      border-bottom: 1px solid #dfe5e9;
+      padding-bottom: 17px;
+      padding-left: 16px;
+      padding-top: 16px;
+      position: relative
+    }
+
+    .product-entry .product-deatil h5 a {
+      color: #2f383d;
+      font-size: 15px;
+      line-height: 19px;
+      text-decoration: none
+    }
+
+    .product-entry .product-deatil h5 a span {
+      color: #9aa7af;
+      display: block;
+      font-size: 13px
+    }
+
+    .load-more-btn {
+      background-color: #21c2f8;
+      border-bottom: 2px solid #037ca5;
+      border-radius: 2px;
+      border-top: 2px solid #0cf;
+      margin-top: 20px;
+      padding: 9px 0;
+      width: 100%
+    }
+
+    .product-block .product-deatil p.price-container span,
+    .product-content .product-deatil p.price-container span,
+    .product-entry .product-deatil p.price-container span,
+    .shipping table tbody tr td p.price-container span,
+    .shopping-items table tbody tr td p.price-container span {
+      color: #21c2f8;
+      font-family: Lato, sans-serif;
+      font-size: 24px;
+      line-height: 20px
+    }
+
+    .product-info.smart-form .rating label {
+      margin-top: 0
+    }
+
+    .product-wrap .product-image span.tag2 {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      padding: 10px 0;
+      color: #fff;
+      font-size: 11px;
+      text-align: center
+    }
+
+    .product-wrap .product-image span.sale {
+      background-color: #57889c
+    }
+
+    .product-wrap .product-image span.hot {
+      background-color: #a90329
+    }
+
+    .shop-btn {
+      position: relative
+    }
+
+    .shop-btn>span {
+      background: #a90329;
+      display: inline-block;
+      font-size: 10px;
+      box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+      font-weight: 700;
+      border-radius: 50%;
+      padding: 2px 4px 3px !important;
+      text-align: center;
+      line-height: normal;
+      width: 19px;
+      top: -7px;
+      left: -7px
+    }
+
+    .description-tabs {
+      padding: 30px 0 5px !important
+    }
+
+    .description-tabs .tab-content {
+      padding: 10px 0
+    }
+
+    .product-deatil {
+      padding: 30px 30px 50px
+    }
+
+    .product-deatil hr+.description-tabs {
+      padding: 0 0 5px !important
+    }
+
+    .product-deatil .carousel-control.left,
+    .product-deatil .carousel-control.right {
+      background: none !important
+    }
+
+    .product-deatil .glyphicon {
+      color: #3276b1
+    }
+
+    .product-deatil .product-image {
+      border-right: 0px solid #fff !important
+    }
+
+    .product-deatil .name {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    .product-deatil .name small {
+      display: block
+    }
+
+    .product-deatil .name a {
+      margin-left: 0
+    }
+
+    .product-deatil .price-container {
+      font-size: 24px;
+      margin: 0;
+      font-weight: 300
+    }
+
+    .product-deatil .price-container small {
+      font-size: 12px
+    }
+
+    .product-deatil .fa-2x {
+      font-size: 16px !important
+    }
+
+    .product-deatil .fa-2x>h5 {
+      font-size: 12px;
+      margin: 0
+    }
+
+    .product-deatil .fa-2x+a,
+    .product-deatil .fa-2x+a+a {
+      font-size: 13px
+    }
+
+    .product-deatil .certified {
+      margin-top: 10px
+    }
+
+    .product-deatil .certified ul {
+      padding-left: 0
+    }
+
+    .product-deatil .certified ul li:not(first-child) {
+      margin-left: -3px
+    }
+
+    .product-deatil .certified ul li {
+      display: inline-block;
+      background-color: #f9f9f9;
+      padding: 13px 19px
+    }
+
+    .product-deatil .certified ul li:first-child {
+      border-right: none
+    }
+
+    .product-deatil .certified ul li a {
+      text-align: left;
+      font-size: 12px;
+      color: #6d7a83;
+      line-height: 16px;
+      text-decoration: none
+    }
+
+    .product-deatil .certified ul li a span {
+      display: block;
+      color: #21c2f8;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center
+    }
+
+    .product-deatil .message-text {
+      width: calc(100% - 70px)
+    }
+
+    @media only screen and (min-width:1024px) {
+      .product-content div[class*=col-md-4] {
+        padding-right: 0
+      }
+
+      .product-content div[class*=col-md-8] {
+        padding: 0 13px 0 0
+      }
+
+      .product-wrap div[class*=col-md-5] {
+        padding-right: 0
+      }
+
+      .product-wrap div[class*=col-md-7] {
+        padding: 0 13px 0 0
+      }
+
+      .product-content .product-image {
+        border-right: 1px solid #dfe5e9
+      }
+
+      .product-content .product-info {
+        position: relative
+      }
+    }
   </style>
 
   <!--
@@ -355,7 +718,7 @@
   -->
 
 
-
+  <!-- 
   <div class="modal" data-modal>
 
     <div class="modal-close-overlay" data-modal-overlay></div>
@@ -394,7 +757,7 @@
 
     </div>
 
-  </div>
+  </div> -->
 
 
 
@@ -513,7 +876,8 @@
         </a>
 
         <div class="header-search-container">
-          <input type="search" id="searchField" class="search-field" placeholder="Enter your product name...">
+          <input oninput="CheckNil()" type="search" id="searchField" class="search-field"
+            placeholder="Enter your product name...">
           <button id="searchBtn" class="search-btn">Search</button>
         </div>
 
@@ -521,15 +885,14 @@
 
 
         <div class="header-user-actions">
+          <button class="action-btn" id="homeoutline" onclick="HomePage()">
+            <ion-icon name="home-outline"></ion-icon>
+          </button>
 
           <button class="action-btn" id="personoutline">
             <ion-icon name="person-outline"></ion-icon>
           </button>
 
-          <button class="action-btn">
-            <ion-icon name="heart-outline"></ion-icon>
-            <span class="count">0</span>
-          </button>
           <button class="action-btn">
             <a href="/cart/?token=" +token>
               <ion-icon name="bag-handle-outline"></ion-icon>
@@ -3517,7 +3880,7 @@
       - BLOG
     -->
 
-    <div class="blog" >
+    <div class="blog">
 
       <div class="container">
 
@@ -3621,12 +3984,282 @@
 
     </div>
 
+
   </main>
+  <div class="toast-container" style="display: none;">
+    <img class="js-toast-img" src="./assets/dontsee.webp" height="10px" width="10px" style="display: inline-flex;">
+    <span class="js-toast-title"></span>
+    <span class="js-toast-content"></span>
+  </div>
 
 
-  <div class="container" style="display: block;" id="js-display-items">
 
+
+  <div class="container" style="display: block;margin-bottom: 100px;" id="js-display-items">
+
+    <div class="row">
+      <div class="col-xl-8">
+
+        <!--
+      <div class="card border shadow-none">
+      <div class="card-body">
+      <div class="d-flex align-items-start border-bottom pb-3">
+      <div class="me-4">
+      <img src="https://www.bootdey.com/image/380x380/008B8B/000000" alt class="avatar-lg rounded">
+      </div>
+      <div class="flex-grow-1 align-self-center overflow-hidden">
+      <div>
+      <h5 class="text-truncate font-size-18"><a href="#" class="text-dark">Waterproof Mobile Phone </a></h5>
+      <p class="text-muted mb-0">
+      <i class="bx bxs-star text-warning"></i>
+      <i class="bx bxs-star text-warning"></i>
+      <i class="bx bxs-star text-warning"></i>
+      <i class="bx bxs-star text-warning"></i>
+      <i class="bx bxs-star-half text-warning"></i>
+      </p>
+      <p class="mb-0 mt-1">Color : <span class="fw-medium">Gray</span></p>
+      </div>
+      </div>
+      <div class="flex-shrink-0 ms-2">
+      <ul class="list-inline mb-0 font-size-16">
+      <li class="list-inline-item">
+      <a href="#" class="text-muted px-1">
+      <i class="mdi mdi-trash-can-outline"></i>
+      </a>
+      </li>
+      <li class="list-inline-item">
+      <a href="#" class="text-muted px-1">
+      <i class="mdi mdi-heart-outline"></i>
+      </a>
+      </li>
+      </ul>
+      </div>
+      </div>
+      <div>
+      <div class="row">
+      <div class="col-md-4">
+      <div class="mt-3">
+      <p class="text-muted mb-2">Price</p>
+      <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$500</del></span>$450</h5>
+      </div>
+      </div>
+      <div class="col-md-5">
+      <div class="mt-3">
+      <p class="text-muted mb-2">Quantity</p>
+      <div class="d-inline-flex">
+      <select class="form-select form-select-sm w-xl">
+      <option value="1">1</option>
+      <option value="2" selected>2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      </select>
+      </div>
+      </div>
+      </div>
+      <div class="col-md-3">
+      <div class="mt-3">
+      <p class="text-muted mb-2">Total</p>
+      <h5>$900</h5>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div> -->
+
+
+
+        <div class="card border shadow-none">
+          <div class="card-body">
+            <div class="d-flex align-items-start border-bottom pb-3">
+              <div class="me-4">
+                <img src="https://www.bootdey.com/image/380x380/FF00FF/000000" alt class="avatar-lg rounded">
+              </div>
+              <div class="flex-grow-1 align-self-center overflow-hidden">
+                <div>
+                  <h5 class="text-truncate font-size-18"><a href="#" class="text-dark">Smartphone Dual Camera </a></h5>
+
+                  <p class="mb-0 mt-1">Color : <span class="fw-medium">Green</span></p>
+                  <p class="text-muted mb-0" style="font-size: small; margin-top: 5px;">
+                    Sold By: GURU
+                   </p>
+                </div>
+              </div>
+              <div class="flex-shrink-0 ms-2">
+                <ul class="list-inline mb-0 font-size-16">
+                  <li class="list-inline-item">
+                    <a href="#" class="text-muted px-1">
+                      <i class="mdi mdi-trash-can-outline"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#" class="text-muted px-1">
+                      <i class="mdi mdi-heart-outline"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="mt-3">
+                    <p class="text-muted mb-2">Price</p>
+                    <h5 class="mb-0 mt-2">$240</h5>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="mt-3">
+                    <p class="text-muted mb-2">Quantity</p>
+                    <div class="d-inline-flex">
+                      <select class="form-select form-select-sm w-xl">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="mt-3">
+                    <p class="text-muted mb-2">Total</p>
+                    <h5>$720</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- <div class="card border shadow-none">
+      <div class="card-body">
+      <div class="d-flex align-items-start border-bottom pb-3">
+      <div class="me-4">
+      <img src="https://www.bootdey.com/image/380x380/FF8C00/000000" alt class="avatar-lg rounded">
+      </div>
+      <div class="flex-grow-1 align-self-center overflow-hidden">
+      <div>
+      <h5 class="text-truncate font-size-18"><a href="#" class="text-dark">Black Colour Smartphone </a></h5>
+      <p class="text-muted mb-0">
+      <i class="bx bxs-star text-warning"></i>
+      <i class="bx bxs-star text-warning"></i>
+      <i class="bx bxs-star text-warning"></i>
+      </p>
+      <p class="mb-0 mt-1">Color : <span class="fw-medium">Blue</span></p>
+      </div>
+      </div>
+      <div class="flex-shrink-0 ms-2">
+      <ul class="list-inline mb-0 font-size-16">
+      <li class="list-inline-item">
+      <a href="#" class="text-muted px-1">
+      <i class="mdi mdi-trash-can-outline"></i>
+      </a>
+      </li>
+      <li class="list-inline-item">
+      <a href="#" class="text-muted px-1">
+      <i class="mdi mdi-heart-outline"></i>
+      </a>
+      </li>
+      </ul>
+      </div>
+      </div> 
+      <div>
+      <div class="row">
+      <div class="col-md-4">
+      <div class="mt-3">
+      <p class="text-muted mb-2">Price</p>
+      <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$750</del></span>$950</h5>
+      </div>
+      </div>
+      <div class="col-md-5">
+      <div class="mt-3">
+      <p class="text-muted mb-2">Quantity</p>
+      <div class="d-inline-flex">
+      <select class="form-select form-select-sm w-xl">
+      <option value="1" selected>1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      </select>
+      </div>
+      </div>
+      </div> 
+      <div class="col-md-3">
+      <div class="mt-3">
+      <p class="text-muted mb-2">Total</p>
+      <h5>$950</h5>
+      </div>
+      </div>
+      </div>
+      </div> 
+      </div> 
+      </div> -->
+
+      <div class="row my-4">
+        <div class="col-sm-6">
+          <a href="ecommerce-products.html" class="btn btn-link text-muted">
+            <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
+        </div>
+        <div class="col-sm-6">
+          <div class="text-sm-end mt-2 mt-sm-0">
+            <a href="ecommerce-checkout.html" class="btn btn-success">
+              <i class="mdi mdi-cart-outline me-1"></i> Checkout </a>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="col-xl-4">
+      <div class="mt-5 mt-lg-0">
+        <div class="card border shadow-none">
+          <div class="card-header bg-transparent border-bottom py-3 px-4">
+            <h5 class="font-size-16 mb-0">Order Summary <span class="float-end">#MN0124</span></h5>
+          </div>
+          <div class="card-body p-4 pt-2">
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <tbody>
+                  <tr>
+                    <td>Sub Total :</td>
+                    <td class="text-end">$ 780</td>
+                  </tr>
+                  <tr>
+                    <td>Shipping Charge :</td>
+                    <td class="text-end">50</td>
+                  </tr>
+                  <tr class="bg-light">
+                    <th>Total :</th>
+                    <td class="text-end">
+                      <span class="fw-bold">
+                        $ 745.2
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
 
 
   <!--
@@ -3793,6 +4426,8 @@
 
 
 
+
+
   <!--
     - custom js link
   -->
@@ -3801,11 +4436,14 @@
   <!--
     - ionicon link
   -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="./script.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
