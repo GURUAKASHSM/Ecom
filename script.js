@@ -584,7 +584,108 @@ async function DecrementButton(productName, productQuantity) {
     showToast('Error deleting product:' + error, "Danger", 0);
   }
 }
+Checkout()
+async function Checkout() {
+  try {
+    const storedData = localStorage.getItem("userdata");
+    const retrievedUserData = JSON.parse(storedData);
 
+    const data = {
+      token: retrievedUserData.token,
+    };
+
+
+    const response = await fetch('http://localhost:8080/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.log(result)
+    let html = ""
+    if (result.message) {
+      result.message.forEach((item) => {
+        html += `
+        <div class="d-flex align-items-center mb-4">
+        <div class="me-3 position-relative">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary">
+            ${item.quantity}
+          </span>
+          <img src="data:image/jpeg;base64,${item.image}"
+            style="height: 96px; width: 96x;" class="img-sm rounded border" />
+        </div>
+        <div class="">
+          <a href="#" class="nav-link">
+            ${item.productname} <br />
+            ${item.itemcategory}
+          </a>
+          <div class="price text-muted">Total: $${item.totalprice}</div>
+        </div>
+        </div>
+      `;
+      })
+    } else if (result.error) {
+      showToast(result.error, "Danger", 0);
+    }
+    console.log(html)
+    const output = await fetch('http://localhost:8080/getuseraddress', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const address = await output.json();
+    if (address.message) {
+      console.log(address.message)
+      // document.getElementById('address-firstname').value = address.message.firstname
+      // document.getElementById('address-lastname').value = address.message.lastname
+      // document.getElementById('address-email').value = address.message.deliveryemail
+      // document.getElementById('address-streetname').value = address.message.streetname
+      // document.getElementById('address-pincode').value = address.message.pincode
+      // document.getElementById('address-city').value = address.message.city
+      // document.getElementById('address-phone').value = address.message.phonenumber
+    } else if (address.error) {
+      showToast(address.error, "Danger", 0);
+    }
+
+    document.getElementById('checkout-container').innerHTML = html
+
+
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+async function SaveAddress() {
+  try {
+   const data = {
+      firstname: document.getElementById('address-firstname').value,
+      lastname: document.getElementById('address-lastname').value,
+      deliveryemail: document.getElementById('address-email').value,
+      deliveryphoneno: document.getElementById('address-phone').value,
+      streetname: document.getElementById('address-streetname').value,
+      city: document.getElementById('address-city').value,
+      pincode: document.getElementById('address-pincode').value,
+    }
+    console.log(data)
+    const output = await fetch('http://localhost:8080/adddeliveryaddress', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const address = await output.json();
+
+  } catch (error) {
+    showToast(error, "Error", 0)
+  }
+}
 
 // document.querySelector('#cart-form').addEventListener('submit', function (event) {
 //     event.preventDefault(); // Prevent the default form submission behavior
