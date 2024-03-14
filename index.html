@@ -3992,13 +3992,11 @@
     <span class="js-toast-content"></span>
   </div>
 
-  <div class="checkout-container" style="display: block;">
+  <div class="checkout-container" style="display: none;">
     <section class="bg-light py-5">
       <div class="container">
         <div class="row">
           <div class="col-xl-8 col-lg-8 mb-4">
-
-
             <!-- Checkout -->
             <div class="card shadow-0 border">
               <div class="p-4">
@@ -4007,7 +4005,7 @@
                   <div class="col-6 mb-3">
                     <p class="mb-0">First name</p>
                     <div class="form-outline">
-                      <input type="text" placeholder="Type here" class="form-control" id="address-firstname"/>
+                      <input type="text" placeholder="Type here" class="form-control" id="address-firstname" />
                     </div>
                   </div>
 
@@ -4029,7 +4027,7 @@
                   <div class="col-sm-8 mb-3">
                     <p class="mb-0">Email</p>
                     <div class="form-outline">
-                      <input type="text" placeholder="Type here" class="form-control" id="address-email" >
+                      <input type="text" placeholder="Type here" class="form-control" id="address-email">
                     </div>
                   </div>
 
@@ -4041,21 +4039,21 @@
                   <div class="col-sm-4 mb-3">
                     <p class="mb-0">House / Street Name</p>
                     <div class="form-outline">
-                      <input type="text" placeholder="Type here" class="form-control" id="addess-streetname"/>
+                      <input type="text" placeholder="Type here" class="form-control" id="addess-streetname" />
                     </div>
                   </div>
 
                   <div class="col-sm-4 col-6 mb-3">
                     <p class="mb-0">City</p>
                     <div class="form-outline">
-                      <input type="text" class="form-control" id="address-city"/>
+                      <input type="text" class="form-control" id="address-city" />
                     </div>
                   </div>
 
                   <div class="col-sm-4 col-6 mb-3">
                     <p class="mb-0">Pincode</p>
                     <div class="form-outline">
-                      <input type="text" class="form-control" id="address-pincode"/>
+                      <input type="text" class="form-control" id="address-pincode" />
                     </div>
                   </div>
                 </div>
@@ -4074,16 +4072,16 @@
               <h6 class="mb-3">Summary</h6>
               <div class="d-flex justify-content-between">
                 <p class="mb-2">Total price:</p>
-                <p class="mb-2">$195.90</p>
+                <p class="mb-2" id="itemscost">$0.00</p>
               </div>
               <div class="d-flex justify-content-between">
                 <p class="mb-2">Shipping cost:</p>
-                <p class="mb-2">+ $14.00</p>
+                <p class="mb-2" id="shipingcost">+ $0.00</p>
               </div>
               <hr />
               <div class="d-flex justify-content-between">
                 <p class="mb-2">Total price:</p>
-                <p class="mb-2 fw-bold">$149.90</p>
+                <p class="mb-2 fw-bold" id="totalcost">₹0.00</p>
               </div>
 
               <hr />
@@ -4092,7 +4090,7 @@
 
 
               </div>
-              <button class="btn btn-success" style="margin-left: 180px;margin-top: 20px;">Pay Now</button>
+              <button class="btn btn-success" style="margin-left: 180px;margin-top: 20px;" onclick="PayNow()">Pay Now</button>
             </div>
 
           </div>
@@ -4106,7 +4104,6 @@
 
 
   <div class="container" style="display: block;margin-bottom: 100px;" id="js-display-items">
-
 
   </div>
 

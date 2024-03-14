@@ -8,7 +8,7 @@ function HideHomePage() {
   document.querySelector('.cta-container').style.display = 'none'
   document.querySelector('.service').style.display = 'none'
 }
-HideHomePage()
+
 
 function HomePage() {
   document.querySelector('.blog').style.display = 'block'
@@ -377,7 +377,7 @@ function DisplayCart() {
         </div>
         <div class="col-sm-6">
           <div class="text-sm-end mt-2 mt-sm-0">
-            <a onclick="DisplayCheckOut()" class="btn btn-success">
+            <a onclick="Checkout()" class="btn btn-success">
               <i class="mdi mdi-cart-outline me-1"></i> Checkout </a>
           </div>
         </div>
@@ -430,7 +430,7 @@ function DisplayCart() {
         </div>
         <div class="col-sm-6">
           <div class="text-sm-end mt-2 mt-sm-0">
-            <a onclick="DisplayCheckOut()" class="btn btn-success">
+            <a onclick="Checkout()" class="btn btn-success">
               <i class="mdi mdi-cart-outline me-1"></i> Checkout </a>
           </div>
         </div>
@@ -584,9 +584,12 @@ async function DecrementButton(productName, productQuantity) {
     showToast('Error deleting product:' + error, "Danger", 0);
   }
 }
-Checkout()
+
+
 async function Checkout() {
   try {
+    GetUserAddress()
+   
     const storedData = localStorage.getItem("userdata");
     const retrievedUserData = JSON.parse(storedData);
 
@@ -605,7 +608,9 @@ async function Checkout() {
     const result = await response.json();
     console.log(result)
     let html = ""
+    let price = 0
     if (result.message) {
+      document.querySelector('.checkout-container').style.display = 'block';
       result.message.forEach((item) => {
         html += `
         <div class="d-flex align-items-center mb-4">
@@ -621,15 +626,41 @@ async function Checkout() {
             ${item.productname} <br />
             ${item.itemcategory}
           </a>
-          <div class="price text-muted">Total: $${item.totalprice}</div>
+          <div class="price text-muted">Total: ₹${item.totalprice}</div>
         </div>
         </div>
       `;
+      price += Number(item.totalprice)
       })
+      if(price >= 500){
+         document.getElementById('itemscost').innerHTML = '₹'+price
+         document.getElementById('shipingcost').innerHTML = '₹'+0
+         document.getElementById('totalcost').innerHTML = '₹'+price
+      }else{
+        document.getElementById('itemscost').innerHTML = '₹'+price
+        document.getElementById('shipingcost').innerHTML = '₹'+50
+        document.getElementById('totalcost').innerHTML = '₹'+(price + 50)
+      }
     } else if (result.error) {
       showToast(result.error, "Danger", 0);
+      return
     }
-    console.log(html)
+    document.getElementById('js-display-items').style.display = 'none';
+    document.getElementById('checkout-container').innerHTML = html
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// Get and Display User Address
+async function GetUserAddress() {
+  try {
+    const storedData = localStorage.getItem("userdata");
+    const retrievedUserData = JSON.parse(storedData);
+    const data = {
+      token: retrievedUserData.token,
+    };
     const output = await fetch('http://localhost:8080/getuseraddress', {
       method: 'POST',
       headers: {
@@ -640,37 +671,36 @@ async function Checkout() {
     const address = await output.json();
     if (address.message) {
       console.log(address.message)
-      // document.getElementById('address-firstname').value = address.message.firstname
-      // document.getElementById('address-lastname').value = address.message.lastname
-      // document.getElementById('address-email').value = address.message.deliveryemail
-      // document.getElementById('address-streetname').value = address.message.streetname
-      // document.getElementById('address-pincode').value = address.message.pincode
-      // document.getElementById('address-city').value = address.message.city
-      // document.getElementById('address-phone').value = address.message.phonenumber
+      document.getElementById('address-firstname').value = address.message.firstname
+      document.getElementById('address-lastname').value = address.message.lastname
+      document.getElementById('address-email').value = address.message.deliveryemail
+      document.getElementById('addess-streetname').value = address.message.streetname
+      document.getElementById('address-pincode').value = address.message.pincode
+      document.getElementById('address-city').value = address.message.city
+      document.getElementById('address-phone').value = address.message.deliveryphoneno
     } else if (address.error) {
       showToast(address.error, "Danger", 0);
     }
-
-    document.getElementById('checkout-container').innerHTML = html
-
-
-
   } catch (error) {
-    console.log(error)
+    showToast(error, "Error", 0)
   }
 }
 
 
+// Save User Address
 async function SaveAddress() {
   try {
-   const data = {
+    const storedData = localStorage.getItem("userdata");
+    const retrievedUserData = JSON.parse(storedData);
+    const data = {
+      token: retrievedUserData.token,
       firstname: document.getElementById('address-firstname').value,
       lastname: document.getElementById('address-lastname').value,
       deliveryemail: document.getElementById('address-email').value,
-      deliveryphoneno: document.getElementById('address-phone').value,
-      streetname: document.getElementById('address-streetname').value,
+      deliveryphoneno: Number(document.getElementById('address-phone').value),
+      streetname: document.getElementById('addess-streetname').value,
       city: document.getElementById('address-city').value,
-      pincode: document.getElementById('address-pincode').value,
+      pincode: Number(document.getElementById('address-pincode').value),
     }
     console.log(data)
     const output = await fetch('http://localhost:8080/adddeliveryaddress', {
@@ -681,9 +711,58 @@ async function SaveAddress() {
       body: JSON.stringify(data)
     });
     const address = await output.json();
+    if (address.message) {
+      showToast(address.message, "Info", 3)
+    } else if (address.error) {
+      showToast(address.error, "Error", 0)
+    }
 
   } catch (error) {
     showToast(error, "Error", 0)
+  }
+}
+
+async function PayNow() {
+  try {
+    const storedData = localStorage.getItem("userdata");
+    const retrievedUserData = JSON.parse(storedData);
+    const data = {
+      token: retrievedUserData.token,
+    }
+    console.log(data)
+    const output = await fetch('http://localhost:8080/buynow', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const value = await output.json();
+    if (value.message) {
+      showToast("Your order has been Placed", "Success", 3)
+      DisplayPlacedImage()
+    } else if (value.error) {
+      showToast(value.error, "Error", 0)
+    }
+  } catch {
+    console.log(error)
+  }
+}
+
+async function DisplayPlacedImage() {
+  try {
+    document.querySelector('.checkout-container').style.display = 'none';
+    document.getElementById('js-display-items').innerHTML = 
+            `   
+            <div class="order-conformation=image">
+              <center>
+                <img class="conformation-image" src="./images/output-onlinegiftools.gif">
+              </center>
+            </div>
+           `
+    document.getElementById('js-display-items').style.display = 'block';
+  } catch {
+    console.log(error)
   }
 }
 
