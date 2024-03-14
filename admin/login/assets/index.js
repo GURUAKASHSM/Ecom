@@ -38,8 +38,23 @@ document.querySelector('.login100-form-btn').addEventListener('click', () => {
         .then(response => response.json())
         .then(data => {
             if (data.token) {
-                SigninUser(data.token)
-                console.log(data.token)
+                showToast("Login Successfull", "Success", 3);
+
+                setTimeout(() => {
+                    const userData = {
+                        'token': token,
+                        'username': formData.email
+                    };
+                    const jsonString = JSON.stringify(userData);
+                    localStorage.setItem('admindata', jsonString);
+    
+                    window.location.href = `/anon/admin/`;
+                }, 1000);
+    
+                document.querySelector(".email").value = '';
+                document.querySelector(".password").value = "";
+                document.querySelector(".totp").value="";
+                localStorage.removeItem('adminsignindata');
                 return
             } else if (data.result == 0) {
                 showToast("Email Not found", "Danger", 0)
@@ -129,65 +144,5 @@ function displayToast() {
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-}
-
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
-import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// Can Get from Firebase Settings ==> SDN
-const firebaseConfig = {
-    apiKey: "AIzaSyCBQSAtCbq6-QWo0UCU2R1G4t-f5OQKw1k",
-    authDomain: "avian-pact-378003.firebaseapp.com",
-    databaseURL: "https://avian-pact-378003-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "avian-pact-378003",
-    storageBucket: "avian-pact-378003.appspot.com",
-    messagingSenderId: "960981261075",
-    appId: "1:960981261075:web:0eea8a286549efc5f058e6",
-    measurementId: "G-LPBMBH2TFM"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getDatabase()
-const auth = getAuth(app)
-const dbref = ref(db)
-
-let SigninUser = (token) => {
-
-    const formData = {
-        email: document.querySelector(".email").value,
-        password: document.querySelector(".password").value,
-    };
-    // evt.preventDefault();
-    signInWithEmailAndPassword(auth, formData.email, formData.password)
-        .then((credentials) => {
-            showToast("Login Successfull", "Success", 3);
-
-            setTimeout(() => {
-                const userData = {
-                    'token': token,
-                    'username': formData.email
-                };
-                const jsonString = JSON.stringify(userData);
-                localStorage.setItem('admindata', jsonString);
-
-                window.location.href = `/anon/admin/`;
-            }, 1000);
-
-            document.querySelector(".email").value = '';
-            document.querySelector(".password").value = "";
-            document.querySelector(".totp").value="";
-            localStorage.removeItem('adminsignindata');
-        })
-        .catch((error) => {
-            showToast(error.message, "Danger", 0);
-        })
 }
 

@@ -9,7 +9,7 @@ function HideHomePage() {
   document.querySelector('.service').style.display = 'none'
 }
 
-
+HideHomePage()
 function HomePage() {
   document.querySelector('.blog').style.display = 'block'
   document.querySelector('.testimonial').style.display = 'block'
@@ -19,6 +19,9 @@ function HomePage() {
   document.querySelector('.desktop-navigation-menu').style.display = 'block'
   document.querySelector('.cta-container').style.display = 'block'
   document.querySelector('.service').style.display = 'block'
+  document.getElementById('js-display-items').style.display = 'none'
+  document.querySelector('.checkout-container').style.display = 'none'
+
 }
 
 
@@ -237,8 +240,8 @@ function DisplayData(productName) {
               
                     <!-- Product Pricing -->
                     <div class="product-price">
-                      <span>$${data.message.price}</span>
-                      <a onclick="AddtoCart('${data.message.itemname}')" class="cart-btn">Add to cart</a>
+                      <span>₹${data.message.price}</span>
+                      <a onclick="AddtoCart('${data.message.itemname}')" class="cart-btn" style="color:white;">Add to cart</a>
                     </div>
                   </div>
               
@@ -753,8 +756,12 @@ async function DisplayPlacedImage() {
   try {
     document.querySelector('.checkout-container').style.display = 'none';
     document.getElementById('js-display-items').innerHTML = 
-            `   
-            <div class="order-conformation=image">
+            `
+            <div class="col-sm-6">
+            <a onclick="HomePage()" class="btn btn-link text-muted">
+              <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
+            </div>   
+            <div class="order-conformation=image" style="margin-right:30px">
               <center>
                 <img class="conformation-image" src="./images/output-onlinegiftools.gif">
               </center>
@@ -765,6 +772,70 @@ async function DisplayPlacedImage() {
     console.log(error)
   }
 }
+DisplayOrders()
+
+async function DisplayOrders(){
+  try{
+    const storedData = localStorage.getItem("userdata");
+    const retrievedUserData = JSON.parse(storedData);
+    const data = {
+      token: retrievedUserData.token,
+    }
+    console.log(data)
+    const output = await fetch('http://localhost:8080/customerorders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const value = await output.json();
+    if(value.message){
+      console.log(value.message)
+      html = ""
+      value.message.forEach((item) =>{
+        html += `           
+        <div class="row mt-4">
+        <div class="col">
+          <div class="card card-2">
+            <div class="card-body">
+              <div class="media">
+                <div class="sq align-self-center "> <img
+                    class="img-fluid  my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0"
+                    src="data:image/jpeg;base64,${item.itemstobuy.image}" width="135" height="135" /> </div>
+                <div class="media-body my-auto text-right">
+                  <div class="row  my-auto flex-column flex-md-row">
+                    <div class="col-auto my-auto ">
+                      <h6 class="mb-0"></h6>
+                    </div>
+                    <div class="col my-auto  "> <small>${item.itemstobuy.productname}</small></div>
+                    <div class="col my-auto  "> <small>${item.itemstobuy.itemcategory}</small></div>
+                    <div class="col my-auto  "> <small>${item.itemstobuy.price}</small></div>
+                    <div class="col my-auto ">
+                      <h6 class="mb-0">&#8377;${item.totalamount}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`
+      })
+      document.getElementById('order-container').style.display = 'block';
+      document.getElementById('display-order-container').innerHTML = html;
+      
+    }else if(value.error){
+      showToast(error,"Error",0)
+    }
+  }catch(error){
+    showToast(error,"Error",0)
+  }
+}
+
+
+
+
 
 // document.querySelector('#cart-form').addEventListener('submit', function (event) {
 //     event.preventDefault(); // Prevent the default form submission behavior
