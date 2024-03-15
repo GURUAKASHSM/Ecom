@@ -9,7 +9,7 @@ function HideHomePage() {
   document.querySelector('.service').style.display = 'none'
 }
 
-HideHomePage()
+
 function HomePage() {
   document.querySelector('.blog').style.display = 'block'
   document.querySelector('.testimonial').style.display = 'block'
@@ -21,6 +21,9 @@ function HomePage() {
   document.querySelector('.service').style.display = 'block'
   document.getElementById('js-display-items').style.display = 'none'
   document.querySelector('.checkout-container').style.display = 'none'
+  document.getElementById("single-order-container").style.display = 'none'
+  document.getElementById("order-container").style.display = 'none'
+  document.getElementById('checkout-container').style.display = 'none'
 
 }
 
@@ -66,7 +69,7 @@ document.getElementById("searchBtn").addEventListener("click", function () {
                 </a>
                 </h5>
                 <p class="price-container">
-                <span>$${item.price.toFixed(2)}</span>
+                <span>₹${item.price.toFixed(2)}</span>
                 </p>
                 <span class="tag1"></span>
                 </div>
@@ -76,7 +79,7 @@ document.getElementById("searchBtn").addEventListener("click", function () {
                 <div class="product-info smart-form">
                 <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-6">
-                <a onclick="AddtoCart('${item.itemname}')" class="btn btn-success">Add to cart</a>
+                <a onclick="AddtoCart('${item.itemname}')" class="btn btn-success" style="color:white;">Add to cart</a>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="rating">
@@ -100,6 +103,10 @@ document.getElementById("searchBtn").addEventListener("click", function () {
       if (html == "") {
         html = `<img style="margin-left:15%;"src="./assets/images/noresult.gif" alt="No Results Found">`
       }
+      document.querySelector('.checkout-container').style.display = 'none'
+      document.getElementById("single-order-container").style.display = 'none'
+      document.getElementById("order-container").style.display = 'none'
+      document.getElementById('checkout-container').style.display = 'none'
       document.getElementById("js-display-items").innerHTML = html;
       document.getElementById("js-display-items").style.display = 'block';
       HideHomePage()
@@ -259,6 +266,10 @@ function DisplayData(productName) {
       if (html == "") {
         html = `<img style="margin-left:15%;"src="./assets/images/noresult.gif" alt="No Results Found">`
       }
+      document.querySelector('.checkout-container').style.display = 'none'
+      document.getElementById("single-order-container").style.display = 'none'
+      document.getElementById("order-container").style.display = 'none'
+      document.getElementById('checkout-container').style.display = 'none'
       document.getElementById("js-display-items").innerHTML = html;
       document.getElementById("js-display-items").style.display = 'block';
       HideHomePage()
@@ -333,9 +344,9 @@ function DisplayCart() {
                           <p class="text-muted mb-2">Quantity</p>
                           <div class="d-inline-flex">
                             <div class="quantity">
-                                <a class="btn btn-success decrement" style="display: inline;" onclick="DecrementButton('${item.productname}','${item.quantity}')" >-</a>
+                                <a class="btn btn-success decrement" style="display: inline;color:white;" onclick="DecrementButton('${item.productname}','${item.quantity}')" >-</a>
                               <span>${item.quantity}</span>
-                                <a  class="btn btn-success increment" style="display: inline;" onclick="IncrementButton('${item.productname}','${item.quantity}')"> + </a>
+                                <a  class="btn btn-success increment" style="display: inline;color:white;" onclick="IncrementButton('${item.productname}','${item.quantity}')"> + </a>
                             </div>
                           </div>
                         </div>
@@ -367,6 +378,11 @@ function DisplayCart() {
               <img style="margin-left:20%; height:500px"src="./images/empty.png" alt="No Results Found">
               <h9 style="margin-left:40%;">Oops!! Your Cart is Empty.</h9>          
             `
+        document.querySelector('.checkout-container').style.display = 'none'
+        document.getElementById("single-order-container").style.display = 'none'
+        document.getElementById("order-container").style.display = 'none'
+        document.getElementById('single-order-container').style.display ='none';
+        document.getElementById('checkout-container').style.display = 'none'
         document.getElementById("js-display-items").innerHTML = html;
         document.getElementById("js-display-items").style.display = 'block';
         HideHomePage()
@@ -433,7 +449,7 @@ function DisplayCart() {
         </div>
         <div class="col-sm-6">
           <div class="text-sm-end mt-2 mt-sm-0">
-            <a onclick="Checkout()" class="btn btn-success">
+            <a onclick="Checkout()" class="btn btn-success" style="color:white;">
               <i class="mdi mdi-cart-outline me-1"></i> Checkout </a>
           </div>
         </div>
@@ -482,7 +498,11 @@ function DisplayCart() {
       }
 
 
-
+      document.querySelector('.checkout-container').style.display = 'none'
+      document.getElementById("single-order-container").style.display = 'none'
+      document.getElementById("order-container").style.display ='none'
+      document.getElementById('checkout-container').style.display = 'none'
+      document.getElementById('single-order-container').style.display ='none';
       document.getElementById("js-display-items").innerHTML = html;
       document.getElementById("js-display-items").style.display = 'block';
       HideHomePage()
@@ -592,7 +612,7 @@ async function DecrementButton(productName, productQuantity) {
 async function Checkout() {
   try {
     GetUserAddress()
-   
+
     const storedData = localStorage.getItem("userdata");
     const retrievedUserData = JSON.parse(storedData);
 
@@ -633,23 +653,26 @@ async function Checkout() {
         </div>
         </div>
       `;
-      price += Number(item.totalprice)
+        price += Number(item.totalprice)
       })
-      if(price >= 500){
-         document.getElementById('itemscost').innerHTML = '₹'+price
-         document.getElementById('shipingcost').innerHTML = '₹'+0
-         document.getElementById('totalcost').innerHTML = '₹'+price
-      }else{
-        document.getElementById('itemscost').innerHTML = '₹'+price
-        document.getElementById('shipingcost').innerHTML = '₹'+50
-        document.getElementById('totalcost').innerHTML = '₹'+(price + 50)
+      if (price >= 500) {
+        document.getElementById('itemscost').innerHTML = '₹' + price
+        document.getElementById('shipingcost').innerHTML = '₹' + 0
+        document.getElementById('totalcost').innerHTML = '₹' + price
+      } else {
+        document.getElementById('itemscost').innerHTML = '₹' + price
+        document.getElementById('shipingcost').innerHTML = '₹' + 50
+        document.getElementById('totalcost').innerHTML = '₹' + (price + 50)
       }
     } else if (result.error) {
       showToast(result.error, "Danger", 0);
       return
     }
+    document.getElementById("single-order-container").style.display = 'none'
+    document.getElementById("order-container").style.display ='none'
+    document.getElementById('single-order-container').style.display ='none';
     document.getElementById('js-display-items').style.display = 'none';
-    document.getElementById('checkout-container').innerHTML = html
+    document.getElementById('checkout-product-container').innerHTML = html
 
   } catch (error) {
     console.log(error)
@@ -727,12 +750,12 @@ async function SaveAddress() {
 
 async function PayNow() {
   try {
+    SaveAddress()
     const storedData = localStorage.getItem("userdata");
     const retrievedUserData = JSON.parse(storedData);
     const data = {
       token: retrievedUserData.token,
     }
-    console.log(data)
     const output = await fetch('http://localhost:8080/buynow', {
       method: 'POST',
       headers: {
@@ -754,9 +777,14 @@ async function PayNow() {
 
 async function DisplayPlacedImage() {
   try {
+    document.querySelector('.checkout-container').style.display = 'none'
+    document.getElementById("single-order-container").style.display = 'none'
+    document.getElementById('single-order-container').style.display ='none';
+    document.getElementById("order-container").style.display ='none'
+    HideHomePage()
     document.querySelector('.checkout-container').style.display = 'none';
-    document.getElementById('js-display-items').innerHTML = 
-            `
+    document.getElementById('js-display-items').innerHTML =
+      `
             <div class="col-sm-6">
             <a onclick="HomePage()" class="btn btn-link text-muted">
               <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
@@ -772,10 +800,10 @@ async function DisplayPlacedImage() {
     console.log(error)
   }
 }
-DisplayOrders()
 
-async function DisplayOrders(){
-  try{
+
+async function DisplayOrders() {
+  try {
     const storedData = localStorage.getItem("userdata");
     const retrievedUserData = JSON.parse(storedData);
     const data = {
@@ -790,46 +818,258 @@ async function DisplayOrders(){
       body: JSON.stringify(data)
     });
     const value = await output.json();
-    if(value.message){
-      console.log(value.message)
+    if (value.message) {
+
       html = ""
-      value.message.forEach((item) =>{
+      value.message.forEach((item) => {
+        console.log(item)
         html += `           
-        <div class="row mt-4">
-        <div class="col">
-          <div class="card card-2">
-            <div class="card-body">
-              <div class="media">
-                <div class="sq align-self-center "> <img
-                    class="img-fluid  my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0"
-                    src="data:image/jpeg;base64,${item.itemstobuy.image}" width="135" height="135" /> </div>
-                <div class="media-body my-auto text-right">
-                  <div class="row  my-auto flex-column flex-md-row">
-                    <div class="col-auto my-auto ">
-                      <h6 class="mb-0"></h6>
-                    </div>
-                    <div class="col my-auto  "> <small>${item.itemstobuy.productname}</small></div>
-                    <div class="col my-auto  "> <small>${item.itemstobuy.itemcategory}</small></div>
-                    <div class="col my-auto  "> <small>${item.itemstobuy.price}</small></div>
-                    <div class="col my-auto ">
-                      <h6 class="mb-0">&#8377;${item.totalamount}</h6>
-                    </div>
-                  </div>
+        <div class="container-fluid my-5 justify-content-center"
+        style="margin-top: 20px !important; margin-bottom: 50px !important; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <div class="card-container" style="width: 1000px; margin-bottom: 5px;">
+          <div class="card px-2"
+            style="background-color: #fff; box-shadow: 1px 2px 5px 0px rgb(0, 0, 0); z-index: 0; padding: 5px; margin-bottom: -30px;">
+            <div class="card-header bg-white">
+              <div class="row justify-content-between">
+                <div class="col">
+                  <p class="text-muted"> Order ID <span class="font-weight-bold text-dark">${item.orderid}</span></p>
+                  <p class="text-muted"> Ordred On <span class="font-weight-bold text-dark">${item.orderdate}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 10px;">
+              <div class="media flex-column flex-sm-row">
+                <div class="media-body">
+                  <h5 class="bold">${item.itemstobuy.productname}</h5>
+                  <p style="margin-bottom: 5px;"> Qt: ${item.noofitems}</p> <!-- Reduced margin -->
+                  <h4 style="margin-top: -30px; margin-bottom: 10px;"> <span class="mt-5">&#x20B9;</span> ${item.itemstobuy.totalprice}<span
+                      style="font-size: medium;">  &nbsp;via (COD) </span></h4>
+                  <p class="text-muted">Estimated Delivery Date: <span class="Today">${item.deliverydate}</span></p>
+                </div>
+                <img class="align-self-center img-fluid" src="data:image/jpeg;base64,${item.itemstobuy.image}" width="150" height="150">
+              </div>
+            </div>
+  
+            <div class="card-footer bg-white px-sm-3 pt-sm-4 px-0" style="padding: 5px;">
+              <div class="row text-center">
+                <div class="col my-auto border-line" style=" border-right: 1px solid rgb(226, 206, 226);cursor:pointer" onclick="GetOrder('${item.orderid}')">
+                  <h5 >View Details</h5>
+                </div>
+                <div class="col my-auto border-line">
+                  <h5>Cancel Order</h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>`
+      </div>
+  </div>`
       })
-      document.getElementById('order-container').style.display = 'block';
-      document.getElementById('display-order-container').innerHTML = html;
-      
-    }else if(value.error){
-      showToast(error,"Error",0)
+      if (html == "") {
+        html = `<img src="./images/emptyorder.gif">`
+      }
+      HideHomePage()
+      document.querySelector('.checkout-container').style.display = 'none'
+      document.getElementById("single-order-container").style.display = 'none'
+      document.getElementById("order-container").style.display ='block'
+      document.getElementById('checkout-container').style.display = 'none'
+      document.getElementById('single-order-container').style.display ='none';
+      document.getElementById("js-display-items").style.display = 'none';
+      document.getElementById('display-order-conatiner').innerHTML = html;
+
+
+    } else if (value.error) {
+      showToast(error, "Error", 0)
     }
-  }catch(error){
-    showToast(error,"Error",0)
+  } catch (error) {
+    showToast(error, "Error", 0)
+  }
+}
+
+async function GetOrder(id) {
+  try {
+    console.log("On GetOrder")
+    const storedData = localStorage.getItem("userdata");
+    const retrievedUserData = JSON.parse(storedData);
+    const data = {
+      token: retrievedUserData.token,
+      orderid: id,
+    }
+    console.log(data)
+    const output = await fetch('http://localhost:8080/getcustomerorder', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const value = await output.json();
+    if (value.message) {
+
+      let html = ""
+      let orderstatus = ""
+      const item = value.message
+      const entries = Object.entries(item.status);
+
+      entries.forEach(([key, val]) => {
+        if (val == "completed") {
+          orderstatus = key
+          return
+        }
+      });
+      html = ` <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center py-3">
+        </div>
+  
+        <div class="row">
+          <div class="col-lg-8">
+  
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="mb-3 d-flex justify-content-between">
+                  <div>
+                    <span class="me-3">${item.orderdate}</span>
+                    <span class="me-3">${item.orderid}</span>
+                    <!-- <span class="me-3">Visa -1234</span> -->
+                    <span class="badge rounded-pill bg-info">${orderstatus.toUpperCase()}</span>
+                  </div>
+                </div>
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex mb-2">
+                          <div class="flex-shrink-0">
+                            <img src="data:image/jpeg;base64,${item.itemstobuy.image}" alt width="35"
+                              class="img-fluid">
+                          </div>
+                          <div class="flex-lg-grow-1 ms-3">
+                            <h6 class="small mb-0"><a href="#" class="text-reset">${item.itemstobuy.productname}</a></h6>
+                            <span class="small">Category: ${item.itemstobuy.itemcategory}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>${item.noofitems}</td>
+                      <td class="text-end">₹${item.itemstobuy.price}</td>
+                    </tr>
+  
+                  </tbody>
+                  <tfoot>
+                    <tr class="fw-bold">
+                      <td colspan="2">TOTAL</td>
+                      <td class="text-end">₹${item.totalamount}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+  
+  
+            <div class="card-body">
+              <div class="row">
+  
+                <div class="card mb-3">
+                  <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Shipped By:</span> ${item.itemstobuy.sellerid}
+                    </div>
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span> ${orderstatus.toUpperCase()}
+                    </div>
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Expected Date:</span>${item.deliverydate}
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+                      <div class="step ${item.status.confirmed}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-cart"></i></div>
+                        </div>
+                        <h4 class="step-title">Confirmed Order</h4>
+                      </div>
+                      <div class="step ${item.status.processing}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-config"></i></div>
+                        </div>
+                        <h4 class="step-title">Processing Order</h4>
+                      </div>
+                      <div class="step ${item.status.quality}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-medal"></i></div>
+                        </div>
+                        <h4 class="step-title">Quality Check</h4>
+                      </div>
+                      <div class="step ${item.status.dispatched}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-car"></i></div>
+                        </div>
+                        <h4 class="step-title">Product Dispatched</h4>
+                      </div>
+                      <div class="step ${item.status.delivered}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-home"></i></div>
+                        </div>
+                        <h4 class="step-title">Product Delivered</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-sm-between align-items-center">
+                  <div class="custom-control custom-checkbox mr-3">
+                  </div>
+                </div>
+  
+  
+  
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+  
+            <div class="card mb-4">
+              <div class="card-body">
+                <h3 class="h6">Customer Notes</h3>
+                <p>The package will be delivered to this below mentioned address only.</p><p>If there is any problem feel free to contact us</p>
+              </div>
+            </div>
+            <div class="card mb-4">
+  
+              <div class="card-body">
+                <h3 class="h6">Shipping Information</h3>
+                <strong>Phone:</strong>
+                <span><a href="#" class="text-decoration-underline" target="_blank">${item.address.deliveryphoneno}</a> <i
+                    class="bi bi-box-arrow-up-right"></i> </span>
+                <hr>
+                <h3 class="h6">Address</h3>
+                <address>
+                  <strong>${item.address.firstname} ${item.address.lastname}</strong><br>
+                    ${item.address.streetname}<br>
+                    ${item.address.city} - ${item.address.pincode}
+                  <br>
+                  ${item.address.deliveryemail}
+                </address>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`
+      document.querySelector('.checkout-container').style.display = 'none'
+      document.getElementById("single-order-container").style.display = 'none'
+      document.getElementById("order-container").style.display ='none'
+      document.getElementById('checkout-container').style.display = 'none'
+      document.getElementById("js-display-items").style.display = 'none';
+      HideHomePage()
+      document.getElementById('single-order-container').innerHTML = html;
+      document.getElementById('single-order-container').style.display ='block';
+
+    } else if (value.error) {
+      showToast(value.error, "Error", 0)
+    }
+
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -911,4 +1151,4 @@ async function DisplayOrders(){
 //     } else {
 //       console.error("Button not found in the DOM.");
 //     }
-//   });
+//   })
