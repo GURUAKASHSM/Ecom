@@ -856,7 +856,7 @@ async function DisplayOrders() {
                 <div class="col my-auto border-line" style=" border-right: 1px solid rgb(226, 206, 226);cursor:pointer" onclick="GetOrder('${item.orderid}')">
                   <h5 >View Details</h5>
                 </div>
-                <div class="col my-auto border-line">
+                <div class="col my-auto border-line" onclick="DeleteOrder('${item.orderid}')" style="cursor:pointer;">
                   <h5>Cancel Order</h5>
                 </div>
               </div>
@@ -1071,6 +1071,37 @@ async function GetOrder(id) {
   } catch (error) {
     console.log(error)
   }
+}
+
+async function DeleteOrder(orderid){
+  try{
+    const storedData = localStorage.getItem("userdata");
+    const retrievedUserData = JSON.parse(storedData);
+    const data = {
+      token: retrievedUserData.token,
+      orderid: orderid,
+    }
+    console.log(data)
+    const output = await fetch('http://localhost:8080/deleteorder', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const value = await output.json();
+    if(value.message){
+      showToast(value.message,"Success",3)
+      DisplayOrders()
+      return
+    }else if(value.error){
+      showToast(value.message,"Error",3)
+    }
+
+  }catch(error){
+     console.log(error)
+  }
+
 }
 
 
