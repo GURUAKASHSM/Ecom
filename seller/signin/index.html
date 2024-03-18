@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 
-	<body>
+	<body >
 
 		<div class="wrapper">
 			<div class="inner">
@@ -21,19 +21,24 @@
 					<h3>Welcome Seller :)</h3>
 					<div class="form-holder">
 						<span class="lnr lnr-user"></span>
-						<input type="text" class="form-control" placeholder="Email">
+						<input type="text" class="form-control" placeholder="Email" id="seller-email">
 					</div>
 					<div class="form-holder">
 						<span class="lnr lnr-lock"></span>
-						<input type="password" class="form-control" placeholder="Password">
+						<input type="password" class="form-control" placeholder="Password" id="seller-password">
 					</div>
-					<button>
+					<button id="login-button" type="click">
 						<span>Login</span>
 					</button>
 				</form>
 				<img src="images/image-2.png" alt="" class="image-2">
 			</div>
 			
+		</div>
+		<div class="toast-container" style="display: none;">
+			<img class="js-toast-img" src="./assets/dontsee.webp" height="10px" width="10px">
+			<span class="js-toast-title"></span>
+			<span class="js-toast-content"></span>
 		</div>
 		
 		<script src="js/jquery-3.3.1.min.js"></script>

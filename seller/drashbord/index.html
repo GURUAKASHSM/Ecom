@@ -1621,25 +1621,12 @@
                       <div class="col-md-3 col-6">
                         <div class="d-flex align-items-center">
                           <div class="avatar">
-                            <div class="avatar-initial bg-primary rounded shadow">
-                              <i class="mdi mdi-trending-up mdi-24px"></i>
-                            </div>
-                          </div>
-                          <div class="ms-3">
-                            <div class="small mb-1">Sales</div>
-                            <h5 class="mb-0 sales-count">0k</h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3 col-6">
-                        <div class="d-flex align-items-center">
-                          <div class="avatar">
                             <div class="avatar-initial bg-success rounded shadow">
                               <i class="mdi mdi-account-outline mdi-24px"></i>
                             </div>
                           </div>
                           <div class="ms-3">
-                            <div class="small mb-1">Customers</div>
+                            <div class="small mb-1">Orders</div>
                             <h5 class="mb-0 customer-count">0k</h5>
                           </div>
                         </div>
@@ -1652,7 +1639,7 @@
                             </div>
                           </div>
                           <div class="ms-3">
-                            <div class="small mb-1">Product</div>
+                            <div class="small mb-1">Orders Completed</div>
                             <h5 class="mb-0 product-count">0k</h5>
                           </div>
                         </div>
@@ -1665,7 +1652,20 @@
                             </div>
                           </div>
                           <div class="ms-3">
-                            <div class="small mb-1">Seller</div>
+                            <div class="small mb-1">Order Inprogress</div>
+                            <h5 class="mb-0 seller-count">0k</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-6">
+                        <div class="d-flex align-items-center">
+                          <div class="avatar">
+                            <div class="avatar-initial bg-success rounded shadow">
+                              <i class="mdi mdi-account-outline mdi-24px"></i>
+                            </div>
+                          </div>
+                          <div class="ms-3">
+                            <div class="small mb-1">Total Amount</div>
                             <h5 class="mb-0 seller-count">0k</h5>
                           </div>
                         </div>
@@ -1675,115 +1675,6 @@
                 </div>
               </div>
               <!--/ Transactions -->
-
-              <!-- Weekly Overview Chart -->
-              <div class="col-xl-4 col-md-6">
-                <div class="card">
-                  <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title m-0 me-2">Seller</h5>
-                    <div class="dropdown">
-                      <button class="btn p-0" type="button" id="totalProfitID" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="mdi mdi-dots-vertical mdi-24px"></i>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalProfitID">
-                        <a class="dropdown-item" href="javascript:void(0);" onclick="DisplaySellerData()">Refresh</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body">
-
-                    <ul class="p-0 m-0 js-seller-data">
-
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <!--/ Weekly Overview Chart -->
-
-              <!-- Total Earnings -->
-
-              <!--/ Total Earnings -->
-
-              <!-- Four Cards -->
-              <div class="col-xl-4 col-md-6">
-                <div class="row gy-4">
-                  <!-- Total Profit line chart -->
-                  <div class="col-sm-6">
-                    <div class="card h-100">
-                      <div class="card-header pb-0">
-                        <h4 class="mb-0 total-sales-profit">$0k</h4>
-                      </div>
-                      <div class="card-body">
-                        <div id="totalProfitLineChart" class="mb-3"></div>
-                        <h6 class="text-center mb-0">Total Profit</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <!--/ Total Profit line chart -->
-                  <!-- Total Profit Weekly Project -->
-                  <div class="col-sm-6">
-                    <div class="card h-100">
-                      <div class="card-header d-flex align-items-center justify-content-between">
-                        <div class="avatar">
-                          <div class="avatar-initial bg-secondary rounded-circle shadow">
-                            <i class="mdi mdi-poll mdi-24px"></i>
-                          </div>
-                        </div>
-                        <div class="dropdown">
-                          <button class="btn p-0" type="button" id="totalProfitID" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical mdi-24px"></i>
-                          </button>
-                          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalProfitID">
-                            <a class="dropdown-item" href="javascript:void(0); onclick=" TotlalSales()">Refresh</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body mt-mg-1">
-                        <h6 class="mb-2">Total Profit</h6>
-                        <div class="d-flex flex-wrap align-items-center mb-2 pb-1">
-                          <h4 class="mb-0 me-2 profit">$0k</h4>
-                          <small class="text-success mt-1 profit-persent">+0%</small>
-                        </div>
-                        <small>Weekly Project</small>
-                      </div>
-                    </div>
-                  </div>
-                  <!--/ Total Profit Weekly Project -->
-                  <!-- New Yearly Project -->
-
-                  <!--/ New Yearly Project -->
-                  <!-- Sessions chart -->
-
-                  <!--/ Sessions chart -->
-                </div>
-              </div>
-              <!--/ Total Earning -->
-              <div class="col-xl-4 col-md-6">
-                <div class="card">
-                  <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title m-0 me-2">Feedbacks</h5>
-                    <div class="dropdown">
-                      <button class="btn p-0" type="button" id="totalProfitID" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="mdi mdi-dots-vertical mdi-24px"></i>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalProfitID">
-                        <a class="dropdown-item" href="javascript:void(0);" onclick="DisplayFeedBack()">Refresh</a>
-                      </div>
-
-                    </div>
-                  </div>
-                  <div class="card-body">
-
-                    <ul class="p-0 m-0 js-feedback-data">
-
-
-                    </ul>
-                  </div>
-                </div>
-              </div>
 
 
 
@@ -1796,11 +1687,11 @@
                     <table class="table">
                       <thead class="table-light">
                         <tr>
-                          <th class="text-truncate">Employee Name</th>
-                          <th class="text-truncate">Email</th>
-                          <th class="text-truncate">Role</th>
-                          <th class="text-truncate">Mobile No</th>
-                          <th class="text-truncate">Salary</th>
+                          <th class="text-truncate">Product Name</th>
+                          <th class="text-truncate">Product Category</th>
+                          <th class="text-truncate">Price</th>
+                          <th class="text-truncate">Qunatity</th>
+                          <th class="text-truncate">Available Qunatity</th>
                           <th class="text-truncate">Status</th>
                         </tr>
                       </thead>
