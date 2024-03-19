@@ -1056,7 +1056,6 @@ async function GetOrder(id) {
         </div>
       </div>`
       document.querySelector('.checkout-container').style.display = 'none'
-      document.getElementById("single-order-container").style.display = 'none'
       document.getElementById("order-container").style.display ='none'
       document.getElementById('checkout-container').style.display = 'none'
       document.getElementById("js-display-items").style.display = 'none';
