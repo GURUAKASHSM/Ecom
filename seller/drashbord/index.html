@@ -6,6 +6,7 @@
 <head>
   <meta charset="utf-8" />
   <!-- LINEARICONS -->
+  <title>Seller Dashboard</title>
   <link rel="stylesheet" href="./fonts/linearicons/style.css">
   <link rel="icon" type="image/png" href="./images/icons/favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
@@ -139,6 +140,18 @@
     .fc-button-group {
       float: none;
       text-align: center;
+    }
+    .addfeatures{
+      color: white;
+      background-color: rgb(31, 196, 31);
+      font-size: larger;
+      font-weight: bolder;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      border-radius: 10px;
+      padding-left: 3px;
+      margin-top: 8px;
     }
 
     .fc-day-header {
@@ -1379,62 +1392,39 @@
 
 
         <li class="menu-header fw-medium mt-4" style="margin-top: -1000px;">
-          <span class="menu-header-text">Apps &amp; Pages</span>
-        </li>
-        <!-- Apps -->
-        <!-- <li class="menu-item">
-          <a href="./listusers/index.html" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-message-outline"></i>
-            <div data-i18n="Chat" style="cursor: pointer;">Chat</div>
-
-          </a>
-        </li> -->
-
-        <li class="menu-item">
-          <a onclick="DisplayCalender()"
-            class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-calendar-blank-outline"></i>
-            <div data-i18n="Calendar" style="cursor: pointer;">Calendar</div>
-
-          </a>
+          <span class="menu-header-text">Pages</span>
         </li>
 
-        <!-- Pages -->
-        <li class="menu-item">
-          <a onclick="DisplayFeedBacks()" class="menu-link">
-            <i class="menu-icon tf-icons mdi  mdi-comment-outline"></i>
-            <div data-i18n="Account Settings" style="cursor: pointer;">Feedbacks</div>
-          </a>
 
-        </li>
+
+       <!--Ordered Customer-->
         <li class="menu-item">
           <a onclick="DisplayListUsers()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Account Settings" style="cursor: pointer;">Customer</div>
+            <i class="menu-icon tf-icons mdi mdi-account-multiple-outline"></i>
+            <div data-i18n="Account Settings" style="cursor: pointer;">Customers</div>
           </a>
 
         </li>
-        <li class="menu-item">
-          <a onclick="DisplayListSeller();" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Authentications" style="cursor: pointer;">Seller</div>
-          </a>
 
+        <li class="menu-header fw-medium mt-4">
+          <span class="menu-header-text">Products</span>
         </li>
-        <li class="menu-item">
-          <a onclick="DisplayAllWorkers()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Misc" style="cursor: pointer;">Workers</div>
-          </a>
 
-        </li>
         <li class="menu-item">
           <a onclick="DisplayListInventory()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-cube-outline"></i>
-            <div data-i18n="Misc" style="cursor: pointer;">Inventory</div>
+            <i class="menu-icon tf-icons mdi mdi-format-list-bulleted"></i>
+            <div data-i18n="Misc" style="cursor: pointer;">List</div>
           </a>
 
         </li>
+
+        <li class="menu-item" onclick="DisplayAddProduct()">
+          <a class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-plus-circle-outline"></i>
+            <div data-i18n="Tables" style="cursor: pointer;">Add</div>
+          </a>
+        </li>
+
 
 
 
@@ -1458,30 +1448,44 @@
           </a>
         </li>
 
+        <li class="menu-header fw-medium mt-4" style="margin-top: -1000px;">
+          <span class="menu-header-text">Orders</span>
+        </li>
 
-        <!-- Tables -->
-        <li class="menu-item" onclick="CreateSeller()">
-          <a class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account"></i>
-            <div data-i18n="Tables" style="cursor: pointer;">Create Seller</div>
+        <!-- Completed Orders -->
+        <li class="menu-item">
+          <a onclick="DisplayPendingOrders()" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-timer-sand"></i>
+            <div data-i18n="Misc" style="cursor: pointer;">Pending</div>
           </a>
         </li>
-        <!-- Data Tables -->
-        <li class="menu-item" onclick="CreateWorker()">
-          <a class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account"></i>
-            <div data-i18n="Datatables" style="cursor: pointer;">Create Employee</div>
 
+        <!--Yet To Deliver Orders -->
+        <li class="menu-item">
+          <a onclick="DisplayYettoGiveOrders()" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-truck-check-outline"></i>
+            <div data-i18n="Misc" style="cursor: pointer;">Yet to Deliver</div>
           </a>
         </li>
-        <!--Admin Create-->
-        <li class="menu-item" onclick="DisplayCreateAdmin()">
-          <a class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account"></i>
-            <div data-i18n="Datatables" style="cursor: pointer;">Create Admin</div>
 
+        <!-- Completed Orders -->
+        <li class="menu-item">
+          <a onclick="DisplayCompletedOrders()" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-check-circle-outline"></i>
+            <div data-i18n="Misc" style="cursor: pointer;">Completed</div>
           </a>
         </li>
+
+        <!-- All Orders -->
+        <li class="menu-item">
+          <a onclick="DisplayallOrders()" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-package-variant-closed"></i>
+            <div data-i18n="Misc" style="cursor: pointer;">Orders</div>
+          </a>
+        </li>
+        
+ 
+
         <!-- Misc -->
 
         </ul>
@@ -1533,7 +1537,7 @@
                           </div>
                         </div>
                         <div class="flex-grow-1">
-                          <h6 class="mb-0 admin-name"></h6>
+                          <h6 class="mb-0 seller-name"></h6>
                           <small class="text-muted">Admin</small>
                         </div>
                       </div>
@@ -1582,7 +1586,7 @@
               <div class="col-md-12 col-lg-4">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title mb-1 admin-target"></h4>
+                    <h4 class="card-title mb-1 seller-target"></h4>
                     <p class="pb-0">Target of the month</p>
                     <h4 class="text-primary mb-1">&#8377; 10,000</h4>
                     <p class="mb-2 pb-1 target-persentage">0% of target 🚀</p>
@@ -1614,7 +1618,7 @@
                         </div>
                       </div>
                     </div>
-                    <p class="mt-3"><span class="fw-medium total-growth">Total 0% growth</span> 😎 </p>
+                    <p class="mt-3"><span class="fw-medium total-growth">Add More Products to get more Sales & Profit</span> 😎 </p>
                   </div>
                   <div class="card-body" id="printableContent">
                     <div class="row g-3">
@@ -1627,7 +1631,7 @@
                           </div>
                           <div class="ms-3">
                             <div class="small mb-1">Orders</div>
-                            <h5 class="mb-0 customer-count">0k</h5>
+                            <h5 class="mb-0 orders-count">0k</h5>
                           </div>
                         </div>
                       </div>
@@ -1640,7 +1644,7 @@
                           </div>
                           <div class="ms-3">
                             <div class="small mb-1">Orders Completed</div>
-                            <h5 class="mb-0 product-count">0k</h5>
+                            <h5 class="mb-0 completed-count">0k</h5>
                           </div>
                         </div>
                       </div>
@@ -1653,7 +1657,7 @@
                           </div>
                           <div class="ms-3">
                             <div class="small mb-1">Order Inprogress</div>
-                            <h5 class="mb-0 seller-count">0k</h5>
+                            <h5 class="mb-0 inprogress-count">0k</h5>
                           </div>
                         </div>
                       </div>
@@ -1666,7 +1670,7 @@
                           </div>
                           <div class="ms-3">
                             <div class="small mb-1">Total Amount</div>
-                            <h5 class="mb-0 seller-count">0k</h5>
+                            <h5 class="mb-0 sales-count">0k</h5>
                           </div>
                         </div>
                       </div>
@@ -1687,11 +1691,11 @@
                     <table class="table">
                       <thead class="table-light">
                         <tr>
-                          <th class="text-truncate">Product Name</th>
-                          <th class="text-truncate">Product Category</th>
+                          <th class="text-truncate">Name</th>
+                          <th class="text-truncate">Category</th>
                           <th class="text-truncate">Price</th>
                           <th class="text-truncate">Qunatity</th>
-                          <th class="text-truncate">Available Qunatity</th>
+                          <th class="text-truncate">Stock Available</th>
                           <th class="text-truncate">Status</th>
                         </tr>
                       </thead>
@@ -1705,6 +1709,7 @@
               <!--/ Data Tables -->
             </div>
           </div>
+
           <!-- / Content -->
           <div id="snippetContent" style="display: none;">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
@@ -1734,36 +1739,8 @@
               </div>
             </div>
           </div>
-          <!-- Seller -->
-          <div id="sellersnip" style="display: none;">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-              integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
-            <div class="container mt-3 mb-4">
-              <div class="col-lg-9 mt-4 mt-lg-0">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
-                      <table class="table manage-candidates-top mb-0">
-                        <thead>
-                          <tr>
-                            <th>Seller Name</th>
-                            <th class="text-center">Mobile No</th>
-                            <th class="action text-right">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody class="seller-list-body">
+       
 
-                        </tbody>
-                      </table>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <!--Inventory-->
 
@@ -1796,36 +1773,7 @@
               </div>
             </div>
           </div>
-          <!--FeedBack-->
-          <div id="feedbacksnip" style="display: none;">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-              integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
-            <div class="container mt-3 mb-4">
-              <div class="col-lg-9 mt-4 mt-lg-0">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
-                      <table class="table manage-candidates-top mb-0">
-                        <thead>
-                          <tr>
-                            <th>Name</th>
-                            <th class="text-center">Feedback</th>
-                            <th class="action text-right">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody class="feedback-list-body">
-
-                        </tbody>
-                      </table>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         
           <!--Worker-->
           <div id="workersnip" style="display: none;">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
@@ -1840,9 +1788,12 @@
                       <table class="table manage-candidates-top mb-0">
                         <thead>
                           <tr>
-                            <th>Name</th>
-                            <th class="text-center">Mobile No</th>
+                            <th>Product Name</th>
+                            <th class="text-right">END Date</th>
+                            <th class="text-right">Quantity</th>
+                            <th class="text-right">Total Amount</th>
                             <th class="action text-right">Action</th>
+                            <th class="action text-right">Status</th>
                           </tr>
                         </thead>
                         <tbody class="worker-list-body">
@@ -1999,221 +1950,60 @@
           </div>
           <!--Register User-->
 
-          <div class="wrapper" style="display: none;">
+          <div class="wrapper" style="display: none; margin-top: -5px;">
             <div class="inner">
               <img src="images/seller-1.png" alt="" class="image-1" style="margin-left: -130px;">
-              <form action="" id="seller-form">
-                <h3>Create Seller</h3>
+              <form action="" id="product-form">
+                <h3>Add Products</h3>
                 <div class="form-holder">
                   <span class="lnr lnr-user"></span>
-                  <input type="text" class="form-control" id="seller-name" placeholder="Username"
-                    style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;">
+                  <input type="text" class="form-control product" id="product-name" placeholder="Product Name" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-phone-handset"></span>
-                  <input type="text" class="form-control" id="seller-phone" placeholder="Phone Number"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="text" class="form-control product" id="product-category" placeholder="Product Category" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-envelope"></span>
-                  <input type="text" class="form-control" id="seller-email" placeholder="Mail"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="number" class="form-control product" id="price" placeholder="Amount" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-lock"></span>
-                  <input type="password" class="form-control" id="seller-password" placeholder="Password"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="number" class="form-control product" id="quantity" placeholder="Quantity" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-lock"></span>
-                  <input type="password" class="form-control" id="seller-confirm-password"
-                    placeholder="Confirm Password"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="number" class="form-control product" id="stock-available" placeholder="Stock Available" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-home"></span>
-                  <input type="address" class="form-control" id="seller-address" placeholder="Address"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="text" class="form-control product" id="short-description" placeholder="Short Description" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                </div>
+                <div class="form-holder">
+                  <span class="lnr lnr-home"></span>
+                  <input type="text" class="form-control product" id="long-description" placeholder="Long Description" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-user"></span>
-                  <input type="file" class="form-control" id="seller-image" placeholder="Address"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="file" class="form-control product" id="product-image" placeholder="Product Image" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
-                <button type="submit">
+                <div id="features-holder">
+                  <div class="form-holder" style="display: flex;">
+                    <span class="lnr lnr-home"></span>
+                    <input type="text" class="form-control product features" id="features" placeholder="Features" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none; width: 300px;">
+                    <button type="button" class="addfeatures" onclick="AddFeatures()">+</button>
+                  </div>
+                </div>
+                
+                <button type="click" onclick="AddProducts(event)">
                   <span>Create</span>
                 </button>
               </form>
-              <img src="images/seller-2.png" alt="" class="image-2">
+              <img src="images/seller-2.png" alt="" class="image-2" style="padding: 10px;">
             </div>
-
           </div>
 
-          <!--Employee User-->
 
-          <div class="wrapper" id="employee-wrapper" style="display: none;">
-            <div class="inner">
-              <img src="images/image-1.png" alt="" class="image-1">
-              <form action="" id="Employee-form">
-                <h3>Create Employee</h3>
-                <div class="form-holder">
-                  <span class="lnr lnr-user"></span>
-                  <input type="text" class="form-control" id="worker-name" placeholder="Employee Name"
-                    style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;">
-                </div>
-                <div class="form-holder">
-                  <span class="lnr lnr-phone-handset"></span>
-                  <input type="text" class="form-control" id="worker-phone" placeholder="Employee Phone Number"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
-                </div>
-                <div class="form-holder">
-                  <span class="lnr lnr-envelope"></span>
-                  <input type="text" class="form-control" id="worker-email" placeholder="Employee Mail"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
-                </div>
-                <div class="form-holder">
-                  <span class="lnr lnr-lock"></span>
-                  <input type="text" class="form-control" id="worker-role" placeholder="Employee Role"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
-                </div>
-                <div class="form-holder">
-                  <span class="lnr lnr-lock"></span>
-                  <input type="number" class="form-control" id="worker-salary" placeholder="Employee Salary"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
-                </div>
-                <div class="form-holder">
-                  <span class="lnr lnr-user"></span>
-                  <input type="file" class="form-control" id="worker-image" placeholder="Address"
-                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
-                </div>
-                <button type="submit">
-                  <span>Create</span>
-                </button>
-              </form>
-              <img src="images/image-2.png" alt="" class="image-2">
-            </div>
-
-          </div>
-
-          <!--Create Admin-->
-          <div class="admin-wrapper" id="admin-wrapper" style="display: none;">
-            <div class="inner">
-              <img src="images/image-1.png" alt="" class="image-1">
-              <form action="" id="admin-form">
-                <div id="admin-input">
-                  <h3>Create Admin</h3>
-                  <div class="form-holder">
-                    <span class="lnr lnr-user"></span>
-                    <input type="text" class="form-control" id="admin-name" placeholder="UserName"
-                      oninput="CreateEmailandPassword()"
-                      style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;"
-                      required>
-                  </div>
-                  <div class="form-holder">
-                    <span class="lnr lnr-user"></span>
-                    <input type="email" class="form-control" id="admin-email" placeholder="Email"
-                      style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;"
-                      required>
-                  </div>
-                  <div class="form-holder">
-                    <span class="lnr lnr-lock"></span>
-                    <input type="password" class="form-control" id="admin-password" placeholder="Password"
-                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;"
-                      required>
-                  </div>
-                  <div class="form-holder">
-                    <span class="lnr lnr-lock"></span>
-                    <input type="password" class="form-control" id="admin-confirmpassword"
-                      placeholder="Confirm-Password"
-                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;"
-                      required>
-                  </div>
-                  <div class="form-holder">
-                    <span class="lnr lnr-location"></span>
-                    <input type="text" class="form-control" id="admin-ip" placeholder="IP"
-                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;"
-                      required>
-                  </div>
-                  <button type="submit">
-                    <span>Create</span>
-                  </button>
-                </div>
-                <div style="display: none;" id="qr-code">
-                  <div id="qrcode"></div>
-                  <h9 class="totp" style="margin-top: 20px;"></h9>
-                </div>
-              </form>
-
-
-              <img src="images/image-2.png" alt="" class="image-2">
-            </div>
-
-          </div>
-
-          <div class="display-view" style="display: none;"></div>
-
-          <div id="calendar" style="display: none;"></div>
-
-          <div class="event-wrapper" id="event-wrapper" style="display: none; margin-left: 35%; margin-top: 100px;">
-            <div class="inner">
-              <img src="images/image-1.png" alt="" class="image-1">
-              <form action="" id="event-form">
-                <div id="event-input">
-                  <h3 style="margin-top: -10px ;padding: 10px;">Add Event</h3>
-                  <div class="form-holder">
-                    <span class="far fa-clock"></span>
-                    <input type="datetime-local" class="form-control" id="event-start" placeholder="UserName"
-                      style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;"
-                      required>
-                  </div>
-                  <div class="form-holder">
-                    <span class="far fa-hourglass"></span>
-                    <input type="datetime-local" class="form-control" id="event-end" placeholder="Email"
-                      style="border-top: none;border-left: none;border-right: none; margin-left: 10px;outline: none;"
-                      required>
-                  </div>
-                  <div class="form-holder">
-                    <span class="far fa-check-square"></span>
-                    <input type="text" class="form-control" id="event-title" placeholder="Title"
-                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;"
-                      required>
-                  </div>
-                  <div class="form-holder">
-                    <span class="far fa-check-square"></span>
-                    <input type="text" class="form-control" id="event-todo" placeholder="Todo"
-                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;"
-                      required>
-                  </div>
-                  <button type="submit">
-                    <span>Add</span>
-                  </button>
-                </div>
-                <div style="display: none;" id="qr-code">
-                  <div id="qrcode"></div>
-                  <h9 class="totp" style="margin-top: 20px;"></h9>
-                </div>
-              </form>
-
-
-              <img src="images/image-2.png" alt="" class="image-2">
-            </div>
-
-          </div>
-          <!-- <div id="eventForm">
-              <h3>Add Event</h3>
-              <form id="eventForm">
-                  <label for="eventStartDateTime">Start:</label>
-                  <input type="datetime-local" id="eventStartDateTime" name="eventStartDateTime" required><br>
-          
-                  <label for="eventEndDateTime">End:</label>
-                  <input type="datetime-local" id="eventEndDateTime" name="eventEndDateTime" required><br>
-          
-                  <label for="eventTitle">About:</label>
-                  <input type="text" id="eventTitle" name="eventTitle" required><br>
-          
-                  <input type="submit" value="Add Event">
-              </form>
-          </div> -->
         
 
           <!-- / Footer -->
