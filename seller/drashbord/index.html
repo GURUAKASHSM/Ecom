@@ -13,6 +13,10 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
 
   <!--===============================================================================================-->
   <!-- <link rel="icon" type="image/png" href="/images/icons/favicon.ico" /> -->
@@ -111,6 +115,72 @@
       }
     }
 
+    .conformationoverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .confirmation-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      width: 400px;
+      text-align: center;
+    }
+
+    .conformationbuttons {
+      display: flex;
+      align-items: center;
+      align-self: center;
+      justify-content: center;
+    }
+
+    .conformationactive {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+
+    .confirmation-button {
+      background-color: #4CAF50;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 10px;
+      display: flex;
+      width: 100px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+
+    .confirmation-button:hover {
+      background-color: #45a049;
+    }
+
+    #confirmationfalse {
+      background-color: #f44336;
+    }
+
     #calendar {
       max-width: 800px;
       margin: 0 auto;
@@ -118,6 +188,182 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
       padding: 20px;
+    }
+
+    .steps .step {
+      display: block;
+      width: 100%;
+      margin-bottom: 35px;
+      text-align: center
+    }
+
+    .steps .step .step-icon-wrap {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 80px;
+      text-align: center
+    }
+
+    .steps .step .step-icon-wrap::before,
+    .steps .step .step-icon-wrap::after {
+      display: block;
+      position: absolute;
+      top: 50%;
+      width: 50%;
+      height: 3px;
+      margin-top: -1px;
+      background-color: #e1e7ec;
+      content: '';
+      z-index: 1
+    }
+
+    .steps .step .step-icon-wrap::before {
+      left: 0
+    }
+
+    .steps .step .step-icon-wrap::after {
+      right: 0
+    }
+
+    .steps .step .step-icon {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border: 1px solid #e1e7ec;
+      border-radius: 50%;
+      background-color: #f5f5f5;
+      color: #374250;
+      font-size: 38px;
+      line-height: 81px;
+      z-index: 5
+    }
+
+    .steps .step .step-title {
+      margin-top: 16px;
+      margin-bottom: 0;
+      color: #606975;
+      font-size: 14px;
+      font-weight: 500
+    }
+
+    .steps .step:first-child .step-icon-wrap::before {
+      display: none
+    }
+
+    .steps .step:last-child .step-icon-wrap::after {
+      display: none
+    }
+
+    .steps .step.completed .step-icon-wrap::before,
+    .steps .step.completed .step-icon-wrap::after {
+      background-color: #0da9ef
+    }
+
+    .steps .step.completed .step-icon {
+      border-color: #0da9ef;
+      background-color: #0da9ef;
+      color: #fff
+    }
+
+    @media (max-width: 576px) {
+
+      .flex-sm-nowrap .step .step-icon-wrap::before,
+      .flex-sm-nowrap .step .step-icon-wrap::after {
+        display: none
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .flex-md-nowrap .step .step-icon-wrap::before,
+      .flex-md-nowrap .step .step-icon-wrap::after {
+        display: none
+      }
+    }
+
+    @media (max-width: 991px) {
+
+      .flex-lg-nowrap .step .step-icon-wrap::before,
+      .flex-lg-nowrap .step .step-icon-wrap::after {
+        display: none
+      }
+    }
+
+    @media (max-width: 1200px) {
+
+      .flex-xl-nowrap .step .step-icon-wrap::before,
+      .flex-xl-nowrap .step .step-icon-wrap::after {
+        display: none
+      }
+    }
+
+    .bg-faded,
+    .bg-secondary {
+      background-color: #f5f5f5 !important;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 0 solid rgba(0, 0, 0, .125);
+      border-radius: 1rem;
+    }
+
+    .text-reset {
+      --bs-text-opacity: 1;
+      color: inherit !important;
+    }
+
+    a {
+      color: #5465ff;
+      text-decoration: none;
+    }
+
+    .pending-button {
+      margin-top: 10px;
+      margin-bottom: 0px;
+      color: white;
+      background-color: rgb(46, 201, 46);
+      border: none;
+      padding: 5px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      width: 100px;
+      height: 40px;
+      margin-left: 20px;
+    }
+
+    .completed-button {
+      display: none;
+    }
+
+    .pending-cancelbutton {
+      margin-top: 10px;
+      margin-bottom: 0px;
+      color: white;
+      background-color: #ef0d0d;
+      border: none;
+      border-radius: 5px;
+      height: 30px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      width: 130px;
+      margin-left: 550px;
+      margin-top: -30px;
+
+    }
+
+    .completed-cancelbutton {
+      display: none !important;
     }
 
 
@@ -141,7 +387,8 @@
       float: none;
       text-align: center;
     }
-    .addfeatures{
+
+    .addfeatures {
       color: white;
       background-color: rgb(31, 196, 31);
       font-size: larger;
@@ -1275,12 +1522,12 @@
     }
 
     #eventForm {
-            position: absolute;
-            top: 50px;
-            right: 10px;
-            height: 300px;
-            width: 300px;
-        }
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      height: 300px;
+      width: 300px;
+    }
 
     /* Add other calendar-specific styles as needed */
   </style>
@@ -1397,7 +1644,7 @@
 
 
 
-       <!--Ordered Customer-->
+        <!--Ordered Customer-->
         <li class="menu-item">
           <a onclick="DisplayListUsers()" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-account-multiple-outline"></i>
@@ -1483,8 +1730,8 @@
             <div data-i18n="Misc" style="cursor: pointer;">Orders</div>
           </a>
         </li>
-        
- 
+
+
 
         <!-- Misc -->
 
@@ -1618,7 +1865,8 @@
                         </div>
                       </div>
                     </div>
-                    <p class="mt-3"><span class="fw-medium total-growth">Add More Products to get more Sales & Profit</span> 😎 </p>
+                    <p class="mt-3"><span class="fw-medium total-growth">Add More Products to get more Sales &
+                        Profit</span> 😎 </p>
                   </div>
                   <div class="card-body" id="printableContent">
                     <div class="row g-3">
@@ -1739,7 +1987,7 @@
               </div>
             </div>
           </div>
-       
+
 
 
           <!--Inventory-->
@@ -1773,7 +2021,7 @@
               </div>
             </div>
           </div>
-         
+
           <!--Worker-->
           <div id="workersnip" style="display: none;">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
@@ -1828,16 +2076,14 @@
                   </div>
                   <div class="wrap-input100">
                     <select id="collection" class="input100" name="collection">
-                      <option value="customer">Customer</option>
-                      <option value="inventory">Inventory</option>
-                      <option value="seller">Seller</option>
+                      <option value="inventory">Inventory</option>  
                     </select>
                     <span class="focus-input100"></span>
                   </div>
 
                   <div class="p-t-13 p-b-9">
                     <span class="txt1">
-                      Delete by:
+                    Product Name:
                     </span>
                   </div>
                   <div class="wrap-input100 validate-input" data-validate="Password is required">
@@ -1889,9 +2135,7 @@
                   <div class="wrap-input100">
                     <select id="updatecollection" name="updatecollection" onchange="populateFieldOptions()"
                       class="input100">
-                      <option value="customer">Customer</option>
                       <option value="inventory">Inventory</option>
-                      <option value="seller">Seller</option>
                     </select>
                     <span class="focus-input100"></span>
                   </div>
@@ -1911,7 +2155,7 @@
 
                   <div class="p-t-13 p-b-9">
                     <span class="txt1">
-                      Update by:
+                      Product Name:
                     </span>
                   </div>
                   <div class="wrap-input100">
@@ -1957,44 +2201,53 @@
                 <h3>Add Products</h3>
                 <div class="form-holder">
                   <span class="lnr lnr-user"></span>
-                  <input type="text" class="form-control product" id="product-name" placeholder="Product Name" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="text" class="form-control product" id="product-name" placeholder="Product Name"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-phone-handset"></span>
-                  <input type="text" class="form-control product" id="product-category" placeholder="Product Category" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="text" class="form-control product" id="product-category" placeholder="Product Category"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-envelope"></span>
-                  <input type="number" class="form-control product" id="price" placeholder="Amount" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="number" class="form-control product" id="price" placeholder="Amount"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-lock"></span>
-                  <input type="number" class="form-control product" id="quantity" placeholder="Quantity" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="number" class="form-control product" id="quantity" placeholder="Quantity"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-lock"></span>
-                  <input type="number" class="form-control product" id="stock-available" placeholder="Stock Available" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="number" class="form-control product" id="stock-available" placeholder="Stock Available"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-home"></span>
-                  <input type="text" class="form-control product" id="short-description" placeholder="Short Description" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="text" class="form-control product" id="short-description" placeholder="Short Description"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-home"></span>
-                  <input type="text" class="form-control product" id="long-description" placeholder="Long Description" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="text" class="form-control product" id="long-description" placeholder="Long Description"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div class="form-holder">
                   <span class="lnr lnr-user"></span>
-                  <input type="file" class="form-control product" id="product-image" placeholder="Product Image" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
+                  <input type="file" class="form-control product" id="product-image" placeholder="Product Image"
+                    style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none;">
                 </div>
                 <div id="features-holder">
                   <div class="form-holder" style="display: flex;">
                     <span class="lnr lnr-home"></span>
-                    <input type="text" class="form-control product features" id="features" placeholder="Features" style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none; width: 300px;">
+                    <input type="text" class="form-control product features" id="features" placeholder="Features"
+                      style="border-top: none;border-left: none;border-right: none;margin-left: 10px;outline:none; width: 300px;">
                     <button type="button" class="addfeatures" onclick="AddFeatures()">+</button>
                   </div>
                 </div>
-                
+
                 <button type="click" onclick="AddProducts(event)">
                   <span>Create</span>
                 </button>
@@ -2003,8 +2256,19 @@
             </div>
           </div>
 
+          <div class="container-fluid" id="single-order-container" style="display: none;">
 
-        
+          </div>
+
+
+          <div id="conformationoverlay" class="conformationoverlay"></div>
+          <div id="confirmationDialog" class="confirmation-dialog">
+            <p class="conformation-question">Are you sure you want to proceed?</p>
+            <div class="conformationbuttons">
+              <button id="conformationtrue" class="confirmation-button">Yes</button>
+              <button id="confirmationfalse" class="confirmation-button">No</button>
+            </div>
+          </div>
 
           <!-- / Footer -->
 
@@ -2018,7 +2282,7 @@
     <!-- Overlay -->
     <div class="layout-overlay layout-menu-toggle"></div>
   </div>
-  
+
   <div class="toast-container" style="display: none;">
     <img class="js-toast-img" src="./assets/dontsee.webp" height="10px" width="10px">
     <span class="js-toast-title"></span>
@@ -2038,6 +2302,10 @@
   <script src="./assets/vendor/libs/node-waves/node-waves.js"></script>
   <script src="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
   <script src="./assets/vendor/js/menu.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- endbuild -->
 

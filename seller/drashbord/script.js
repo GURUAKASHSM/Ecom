@@ -6,6 +6,7 @@ function DisplayDrashBord() {
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'block';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
 }
 
 function DisplayEdit() {
@@ -16,6 +17,7 @@ function DisplayEdit() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'block';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
 
 }
 
@@ -27,8 +29,7 @@ function Deletedata() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'block';
-    
-
+    document.getElementById('single-order-container').style.display = 'none';
 }
 
 function DisplayCalender() {
@@ -40,8 +41,7 @@ function DisplayCalender() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
-
-
+    document.getElementById('single-order-container').style.display = 'none';
 }
 
 function DisplayEventForm() {
@@ -52,7 +52,7 @@ function DisplayEventForm() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
-
+    document.getElementById('single-order-container').style.display = 'none';
 }
 
 
@@ -64,8 +64,9 @@ function DisplayAddProduct() {
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'block';
     document.querySelector('.outer-container').style.display = 'none';
-
+    document.getElementById('single-order-container').style.display = 'none';
 }
+
 function DisplayUsers(){
     document.getElementById('snippetContent').style.display = 'block';
     document.getElementById('workersnip').style.display = 'none';
@@ -74,8 +75,9 @@ function DisplayUsers(){
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
-
+    document.getElementById('single-order-container').style.display = 'none';
 }
+
 function DisplayOrders(){
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
@@ -84,7 +86,32 @@ function DisplayOrders(){
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
 }
+
+function DisplayGetOrder(){
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'block';    
+}
+
+function DisplayInventoryBlock(){
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';    
+    document.getElementById('Inventorysnip').style.display = 'block';
+}
+
 
 
 
@@ -429,11 +456,9 @@ function DisplayListInventory() {
           </tr>`;
 
             });
+            DisplayInventoryBlock()
             document.querySelector('.inventory-list-body').innerHTML = html;
-            document.getElementById('workersnip').style.display = 'none';
-            document.querySelector('.container-p-y').style.display = 'none';
-            document.getElementById('snippetContent').style.display = 'none';
-            document.getElementById('Inventorysnip').style.display = 'block';
+
         })
         .catch(error => {
             showToast(error, "Error", 0);
@@ -492,16 +517,14 @@ const collectionSelectElement = document.getElementById("updatecollection");
 const fieldSelectElement = document.getElementById("field");
 
 const collectionselectOptions = {
-    customer: ["name", "email", "phonenumber", "age", "password", "firstname", "lastname", "houseno", "streetname", "city", "pincode"],
-    inventory: ["itemcategory", "itemname", "price", "quantity"],
-    seller: ["sellername", "selleremail", "password", "phoneno", "address"],
+    inventory: ["itemcategory", "itemname", "price", "quantity","sellerquantity","shortdiscription","longdiscription"],
 };
 function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 function populateFieldOptions() {
-    const selectedCollection = collectionSelectElement.value || customer;
+    const selectedCollection = collectionSelectElement.value || inventory;
     const options = collectionselectOptions[selectedCollection] || [];
 
     // Clear existing options
@@ -560,8 +583,206 @@ document.getElementById("update-form").addEventListener("submit", function (even
 });
 
 
+//Ordres
 
 
+  async function GetOrder(id) {
+    try {
+      const storedData = localStorage.getItem("sellerdata");
+      const retrievedUserData = JSON.parse(storedData);
+      const data = {
+        token: retrievedUserData.token,
+        orderid: id,
+      }
+      console.log(data)
+      const output = await fetch('http://localhost:8080/getcustomerorder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const value = await output.json();
+      if (value.message) {
+  
+        let html = ""
+        let orderstatus = ""
+        const item = value.message
+        const entries = Object.entries(item.status);
+  
+        entries.forEach(([key, val]) => {
+          if (val == "completed") {
+            orderstatus = key
+            return
+          }
+        });
+        html = `<div class="container">
+        
+        <div class="d-flex justify-content-between align-items-center py-3">
+        </div>
+  
+        <div class="row">
+          <div class="col-lg-8">
+  
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="mb-3 d-flex justify-content-between">
+                  <div>
+                    <span class="me-3">${item.orderdate}</span>
+                    <span class="me-3">${item.orderid}</span>
+                    <!-- <span class="me-3">CASH ON DELIVERY</span> -->
+                    <span class="badge rounded-pill bg-info">${orderstatus.toUpperCase()}</span>
+                    <button class="${item.status.dispatched}-cancelbutton" onclick="showConfirmation(DeleteOrder,'Are you sure want to Cancel this order ?','Yes','No','${item.orderid}')">Cancel Order</button>
+                  </div>
+                </div>
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex mb-2">
+                          <div class="flex-shrink-0">
+                            <img src="data:image/jpeg;base64,${item.itemstobuy.image}" alt width="70px" class="img-fluid">
+                          </div>
+                          <div class="flex-lg-grow-1 ms-3">
+                            <h6 class="small mb-0"><a href="#" class="text-reset">${item.itemstobuy.productname}</a></h6>
+                            <span class="small">Category: ${item.itemstobuy.itemcategory}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>${item.noofitems}</td>
+                      <td class="text-end">₹${item.itemstobuy.price}</td>
+                    </tr>                 
+                  </tbody>
+                 
+                  <tfoot>
+                  <hr>
+                    <tr class="fw-bold">
+                      
+                      <td colspan="2">TOTAL</td>
+                      <td class="text-end">₹${item.totalamount}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+  
+  
+            <div class="card-body"  style="padding:0px">
+              <div class="row" style="padding:0px">
+  
+                <div class="card mb-3">
+                  <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary" style="color:white;width:100%;margin-left:0px;margin-right:0px;max-width:100%">
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Shipped By:</span>
+                      ${item.itemstobuy.sellerid}
+                    </div>
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span>
+                      ${orderstatus.toUpperCase()}
+                    </div>
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Expected
+                        Date:</span>${item.deliverydate}
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+                      <div class="step ${item.status.confirmed}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-cart"></i></div>
+                        </div>
+                        <h4 class="step-title">Confirmed Order</h4>
+                      </div>
+                      <div class="step ${item.status.processing}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-config"></i></div>
+                        </div>
+                        <h4 class="step-title">Processing Order</h4>
+                        <button class="${item.status.processing}-button" onclick="UpdateOrderTracking('${item.orderid}','processing')">Completed</button>
+                      </div>
+                      <div class="step ${item.status.quality}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-medal"></i></div>
+                        </div>
+                        <h4 class="step-title">Quality Check</h4>
+                        <button class="${item.status.quality}-button" onclick="UpdateOrderTracking('${item.orderid}','quality')">Completed</button>
+                      </div>
+                      <div class="step ${item.status.dispatched}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-car"></i></div>
+                        </div>
+                        <h4 class="step-title">Product Dispatched</h4>
+                        <button class="${item.status.dispatched}-button" onclick="UpdateOrderTracking('${item.orderid}','dispatched')">Completed</button>
+                      </div>
+                      <div class="step ${item.status.delivered}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-home"></i></div>
+                        </div>
+                        <h4 class="step-title">Product Delivered</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-sm-between align-items-center">
+                  <div class="custom-control custom-checkbox mr-3">
+                  </div>
+                </div>
+  
+  
+  
+              </div>
+            </div>
+            </div>
+            <div class="col-lg-4">
+  
+            <div class="card mb-4">
+              <div class="card-body">
+              <h3 class="h6">Seller Notes</h3>`
+              if(item.status.dispatched == "pending"){
+                html += ` <p>Please press the Completed button after completing the task.</p>
+                <p>Make sure you deliver to the right address</p>
+                <p>If there is any problem feel free to contact us</p>`
+              }else{
+                html += ` <p>🎉Your part of work is done 🎊 </p>
+                <p>We will take care of the Rest 🤩🤩</p>
+                <p>If there is any problem feel free to contact us</p>`
+              }
+                
+            html += `
+              </div>
+            </div>
+            <div class="card mb-4">
+  
+              <div class="card-body">
+                <h3 class="h6">Shipping Information</h3>
+                <strong>Phone:</strong>
+                <span><a href="#" class="text-decoration-underline" target="_blank">${item.address.deliveryphoneno}</a> <i
+                    class="bi bi-box-arrow-up-right"></i> </span>
+                <hr>
+                <h3 class="h6">Address</h3>
+                <address>
+                  <strong>${item.address.firstname} ${item.address.lastname}</strong><br>
+                  ${item.address.streetname}<br>
+                  ${item.address.city} - ${item.address.pincode}
+                  <br>
+                  ${item.address.deliveryemail}
+                </address>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`
+        DisplayGetOrder()
+        document.getElementById('single-order-container').innerHTML = html;
+        document.getElementById('single-order-container').style.display ='block';
+  
+      } else if (value.error) {
+        showToast(value.error, "Error", 0)
+      }
+  
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
 
@@ -584,7 +805,13 @@ function DisplayCompletedOrders() {
         .then(response => response.json())
         .then(data => {
             let html = ""
-    
+            if(data.error){
+                showToast(data.error,"Error",0)
+                return
+            }
+            if(data.message == null){
+                html += `<img src="./images/no-data.gif"`
+            }else{
             data.message.forEach(order => {
 
                 html += `
@@ -614,7 +841,7 @@ function DisplayCompletedOrders() {
                     <td class="text-right">${order.totalamount}</td>
                     <td class="action text-right">
                         <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                            <li onclick="ViewData('${order.orderid}','order');recentPage = 'order';">
+                            <li onclick="GetOrder('${order.orderid}');recentPage = 'order';">
                                 <a class="text-danger" data-toggle="tooltip" title="View" data-original-title="View">
                                     <i class="far fa-eye"></i>
                                 </a>
@@ -625,6 +852,7 @@ function DisplayCompletedOrders() {
                 </tr>`;
 
             });
+        }
             document.querySelector('.worker-list-body').innerHTML = html;
         })
         .catch(error => {
@@ -654,48 +882,56 @@ function DisplayPendingOrders() {
         .then(response => response.json())
         .then(data => {
             let html = ""
-            console.log(data.result)
-            data.message.forEach(order => {
+            if(data.error){
+                showToast(data.error,"Error",0)
+                return
+            }
+            if(data.message == null){
+                html += `<img src="./images/no-data.gif"`
+            }else{
+                data.message.forEach(order => {
 
-                html += `
-                <tr class="candidates-list">
-                    <td class="title">
-                        <div class="thumb">
-                            <img class="img-fluid" src="data:image/jpeg;base64,${order.itemstobuy.image}" alt="">
-                        </div>
-                        <div class="candidate-list-details">
-                            <div class="candidate-list-info">
-                                <div class="candidate-list-title customer">
-                                    <h5 class="mb-0"><a href="#">${order.itemstobuy.productname.toUpperCase()}</a></h5>
-                                </div>
-                                <div class="candidate-list-option">
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-filter pr-1"></i>${order.itemstobuy.itemcategory}</li>
-                                    </ul>
+                    html += `
+                    <tr class="candidates-list">
+                        <td class="title">
+                            <div class="thumb">
+                                <img class="img-fluid" src="data:image/jpeg;base64,${order.itemstobuy.image}" alt="">
+                            </div>
+                            <div class="candidate-list-details">
+                                <div class="candidate-list-info">
+                                    <div class="candidate-list-title customer">
+                                        <h5 class="mb-0"><a href="#">${order.itemstobuy.productname.toUpperCase()}</a></h5>
+                                    </div>
+                                    <div class="candidate-list-option">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-filter pr-1"></i>${order.itemstobuy.itemcategory}</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="candidate-list-favourite-time text-right">
-                        <a class="candidate-list-favourite order-2 text-danger" href="#"></a>
-                        <span class="candidate-list-time order-1">${order.deliverydate}</span>
-                    </td>
-                    <td class="text-right">${order.itemstobuy.quantity}</td>
-                    <td class="text-right">${order.totalamount}</td>
-                    <td class="action text-right">
-                        <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                            <li onclick="ViewData('${order.orderid}','order');recentPage = 'order';">
-                                <a class="text-danger" data-toggle="tooltip" title="View" data-original-title="View">
-                                    <i class="far fa-eye"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </td>
-                    <td><span class="badge bg-label-warning rounded-pill">Pending</span></td>
-                </tr>
-            `;
-
-            });
+                        </td>
+                        <td class="candidate-list-favourite-time text-right">
+                            <a class="candidate-list-favourite order-2 text-danger" href="#"></a>
+                            <span class="candidate-list-time order-1">${order.deliverydate}</span>
+                        </td>
+                        <td class="text-right">${order.itemstobuy.quantity}</td>
+                        <td class="text-right">${order.totalamount}</td>
+                        <td class="action text-right">
+                            <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                                <li onclick="GetOrder('${order.orderid}');recentPage = 'order';">
+                                    <a class="text-danger" data-toggle="tooltip" title="View" data-original-title="View">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                        <td><span class="badge bg-label-warning rounded-pill">Pending</span></td>
+                    </tr>
+                `;
+    
+                });
+            }
+           
             document.querySelector('.worker-list-body').innerHTML = html;
         })
         .catch(error => {
@@ -717,7 +953,13 @@ function DisplayallOrders() {
         .then(response => response.json())
         .then(data => {
             let html = ""
-            console.log(data.message)
+            if(data.error){
+                showToast(data.error,"Error",0)
+                return
+            }
+            if(data.message == null){
+                html += `<img src="./images/no-data.gif"`
+            }else{
             data.message.forEach(order => {
 
                 html += `
@@ -747,7 +989,7 @@ function DisplayallOrders() {
                     <td class="text-right">${order.totalamount}</td>
                     <td class="action text-right">
                         <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                            <li onclick="ViewData('${order.orderid}','order');recentPage = 'order';">
+                            <li onclick="GetOrder('${order.orderid}');recentPage = 'order';">
                                 <a class="text-danger" data-toggle="tooltip" title="View" data-original-title="View">
                                     <i class="far fa-eye"></i>
                                 </a>
@@ -758,6 +1000,7 @@ function DisplayallOrders() {
                 </tr>`;
 
             });
+        }
             document.querySelector('.worker-list-body').innerHTML = html;
         })
         .catch(error => {
@@ -780,7 +1023,13 @@ function DisplayYettoGiveOrders() {
         .then(response => response.json())
         .then(data => {
             let html = ""
-            console.log(data.result)
+            if(data.error){
+                showToast(data.error,"Error",0)
+                return
+            }
+            if(data.message == null){
+                html += `<img src="./images/no-data.gif"`
+            }else{
             data.message.forEach(order => {
 
                 html += `
@@ -810,7 +1059,7 @@ function DisplayYettoGiveOrders() {
                     <td class="text-right">${order.totalamount}</td>
                     <td class="action text-right">
                         <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                            <li onclick="ViewData('${order.orderid}','order');recentPage = 'order';">
+                            <li onclick="GetOrder('${order.orderid}');recentPage = 'order';">
                                 <a class="text-danger" data-toggle="tooltip" title="View" data-original-title="View">
                                     <i class="far fa-eye"></i>
                                 </a>
@@ -821,6 +1070,7 @@ function DisplayYettoGiveOrders() {
                 </tr>`;
 
             });
+        }
             document.querySelector('.worker-list-body').innerHTML = html;
         })
         .catch(error => {
@@ -1044,128 +1294,6 @@ function BackButton() {
     }
 }
 
-$(document).ready(async function () {
-    // Initialize FullCalendar
-    $('#calendar').fullCalendar({
-        header: {
-            left: 'prev,next',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        editable: true,
-        events: await fetchEventsFromBackend(),
-
-        eventClick: function (event) {
-            showTodoList(event);
-        },
-        dayClick: function () {
-            // Handle day click (add to-do item)
-            DisplayEventForm();
-        }
-
-    });
-
-    async function fetchEventsFromBackend() {
-        var adminData = localStorage.getItem('admindata');
-        var adminObject = JSON.parse(adminData);
-        const data = {
-            email: adminObject.username,
-        };
-
-        try {
-            const response = await fetch("http://localhost:8080/getevent", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            const apiResponse = await response.json();
-            const fullCalendarEvents = convertApiResponseToFullCalendarEvents(apiResponse.message);
-
-            console.log('FullCalendar Events:', fullCalendarEvents); // Log the events before returning
-
-            return fullCalendarEvents;
-        } catch (error) {
-            return [];
-        }
-    }
-
-    function convertApiResponseToFullCalendarEvents(apiResponse) {
-        console.log(apiResponse)
-        return apiResponse.map(event => {
-            console.log('Converted Event:', event.title);
-            return {
-                title: event.title,
-                start: event.start,
-                end: event.end,
-                todos: event.todos
-            };
-        });
-    }
-
-    function showTodoList(event) {
-        const todos = event.todos || [];
-        let todoList = `To-Do :`;
-        if (todos.length === 0) {
-            todoList += 'No items.';
-        } else {
-            todos.forEach((item, index) => {
-                todoList += ` ${item}`;
-            });
-        }
-        showToast(todoList, "Info", 3)
-    }
-
-
-
-});
-
-
-document.getElementById("event-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const start = document.getElementById("event-start").value;
-    const end = document.getElementById("event-end").value;
-    const title = document.getElementById("event-title").value;
-    const todo = document.getElementById("event-todo").value;
-    var adminData = localStorage.getItem('admindata');
-    var adminObject = JSON.parse(adminData);
-    console.log(adminData.username)
-
-    const requestData = {
-        email: adminObject.username,
-        start,
-        end,
-        title,
-        todos: [todo]
-    };
-    console.log(requestData)
-
-    // Send a DELETE request to your server to delete the data
-    fetch("http://localhost:8080/addevent", {
-        method: "POST", // Use DELETE method to delete data
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(requestData)
-    })
-        .then(response => response.json())
-        .then(data => {
-
-            if (data.message) {
-                showToast(data.message, "Success", 3)
-                document.getElementById("event-form").reset()
-            } else if (data.error) {
-                showToast(data.error, "Warning", 0)
-            }
-        })
-        .catch(error => {
-            showToast(data.error, "Warning", 0)
-        });
-
-});
 
 
 
@@ -1284,5 +1412,85 @@ function validateForm() {
         return true
     }
 }
+//Update Order Tracking 
+function UpdateOrderTracking(orderid,feild){
+    const storedData = localStorage.getItem("sellerdata");
+    const retrievedUserData = JSON.parse(storedData);
+    const data = {
+        token: retrievedUserData.token,
+        orderid:orderid,
+        feild,
+    }
+    fetch('http://localhost:8080/updateordertracking', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(output => {
+            if (output.message) {
+                showToast(output.message, "Info", 3)
+                GetOrder(orderid);
+            } else if (output.error) {
+                showToast(output.message, "Error", 0)
+            }
+        })
+        .catch(error => {
+            showToast(error, 'Error', 0);
+        });
+}
 
+// Conformation Box
+function showConfirmation(function_name,question,option1,option2,id) {
+    console.log("In Conformation")
+    document.getElementById("conformationoverlay").classList.add("conformationactive");
+    document.getElementById("confirmationDialog").classList.add("conformationactive");
+    document.querySelector(".conformation-question").innerHTML = question;
+    document.getElementById("conformationtrue").innerHTML = option1;
+    document.getElementById("confirmationfalse").innerHTML = option2;
+
+    document.getElementById("conformationtrue").addEventListener("click", function() {
+        function_name(id);
+        hideConfirmationDialog();
+    });
+    document.getElementById("confirmationfalse").addEventListener("click", function() {
+        hideConfirmationDialog();
+    });
+}
+
+function hideConfirmationDialog() {
+    document.getElementById("conformationoverlay").classList.remove("conformationactive");
+    document.getElementById("confirmationDialog").classList.remove("conformationactive");
+}
+
+// Async function to delete order
+async function DeleteOrder(id) {
+    try {
+        console.log("Called Delete order")
+        const storedData = localStorage.getItem("sellerdata");
+        const retrievedUserData = JSON.parse(storedData);
+        const data = {
+            token: retrievedUserData.token,
+            orderid: id,
+        }
+        console.log(data)
+        const output = await fetch('http://localhost:8080/deleteorder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        const value = await output.json();
+        if (value.message) {
+            showToast(value.message, "Success", 3)
+        } else if (value.error) {
+            showToast(value.error, "Error", 0)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 
