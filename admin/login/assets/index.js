@@ -42,7 +42,7 @@ document.querySelector('.login100-form-btn').addEventListener('click', () => {
 
                 setTimeout(() => {
                     const userData = {
-                        'token': token,
+                        'token': data.token,
                         'username': formData.email
                     };
                     const jsonString = JSON.stringify(userData);

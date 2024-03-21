@@ -363,6 +363,11 @@
       border: 1px solid #dddddd;
     }
 
+    .navbar-wrapper::-webkit-scrollbar {
+      width: 0;
+      /* Make the scrollbar width 0 */
+    }
+
     .panel-light-blue>.panel-heading {
       color: #fff;
       background-color: #3498db;
@@ -1262,12 +1267,12 @@
     }
 
     #eventForm {
-            position: absolute;
-            top: 50px;
-            right: 10px;
-            height: 300px;
-            width: 300px;
-        }
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      height: 300px;
+      width: 300px;
+    }
 
     /* Add other calendar-specific styles as needed */
   </style>
@@ -1364,25 +1369,23 @@
         </div>
 
         <div class="menu-inner-shadow"></div>
+        <div class="navbar-wrapper" style="height: calc(100vh - 50px); overflow-y: auto;">
+          <ul class="menu-inner py-1" style="max-height: 50px;">
+            <!-- Dashboards -->
+            <li class="menu-item active open" onclick="DisplayDrashBord();">
+              <a class="menu-link menu">
+                <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+                <div data-i18n="menu-link" style="color: aliceblue;">Dashboard</div>
 
-        <ul class="menu-inner py-1" style="max-height: 50px;">
-          <!-- Dashboards -->
-          <li class="menu-item active open" onclick="DisplayDrashBord();">
-            <a class="menu-link menu">
-              <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
-              <div data-i18n="menu-link" style="color: aliceblue;">Dashboard</div>
-
-        </ul>
-        </li>
-
-
+          </ul>
+          </li>
 
 
-        <li class="menu-header fw-medium mt-4" style="margin-top: -1000px;">
-          <span class="menu-header-text">Apps &amp; Pages</span>
-        </li>
-        <!-- Apps -->
-        <!-- <li class="menu-item">
+
+
+
+          <!-- Apps -->
+          <!-- <li class="menu-item">
           <a href="./listusers/index.html" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-message-outline"></i>
             <div data-i18n="Chat" style="cursor: pointer;">Chat</div>
@@ -1390,101 +1393,173 @@
           </a>
         </li> -->
 
-        <li class="menu-item">
-          <a onclick="DisplayCalender()"
-            class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-calendar-blank-outline"></i>
-            <div data-i18n="Calendar" style="cursor: pointer;">Calendar</div>
+          <li class="menu-item">
+            <a onclick="DisplayCalender()" class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-calendar-blank-outline"></i>
+              <div data-i18n="Calendar" style="cursor: pointer;">Calendar</div>
 
-          </a>
-        </li>
+            </a>
+          </li>
 
-        <!-- Pages -->
-        <li class="menu-item">
-          <a onclick="DisplayFeedBacks()" class="menu-link">
-            <i class="menu-icon tf-icons mdi  mdi-comment-outline"></i>
-            <div data-i18n="Account Settings" style="cursor: pointer;">Feedbacks</div>
-          </a>
+          <li class="menu-header fw-medium mt-4" style="margin-top: -1000px;">
+            <span class="menu-header-text">Lists</span>
+          </li>
 
-        </li>
-        <li class="menu-item">
-          <a onclick="DisplayListUsers()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Account Settings" style="cursor: pointer;">Customer</div>
-          </a>
+          <!-- Pages -->
+          <li class="menu-item">
+            <a onclick="DisplayFeedBacks()" class="menu-link">
+              <i class="menu-icon tf-icons mdi  mdi-comment-outline"></i>
+              <div data-i18n="Account Settings" style="cursor: pointer;">Feedbacks</div>
+            </a>
 
-        </li>
-        <li class="menu-item">
-          <a onclick="DisplayListSeller();" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Authentications" style="cursor: pointer;">Seller</div>
-          </a>
+          </li>
+          <li class="menu-item">
+            <a onclick="DisplayListUsers()" class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
+              <div data-i18n="Account Settings" style="cursor: pointer;">Customer</div>
+            </a>
 
-        </li>
-        <li class="menu-item">
-          <a onclick="DisplayAllWorkers()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-            <div data-i18n="Misc" style="cursor: pointer;">Workers</div>
-          </a>
+          </li>
+          <li class="menu-item">
+            <a onclick="DisplayListSeller();" class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-account-tag-outline"></i>
+              <div data-i18n="Authentications" style="cursor: pointer;">Seller</div>
+            </a>
 
-        </li>
-        <li class="menu-item">
-          <a onclick="DisplayListInventory()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-cube-outline"></i>
-            <div data-i18n="Misc" style="cursor: pointer;">Inventory</div>
-          </a>
+          </li>
+          <li class="menu-item">
+            <a onclick="DisplayAllWorkers()" class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-account-hard-hat-outline"></i>
+              <div data-i18n="Misc" style="cursor: pointer;">Workers</div>
+            </a>
 
-        </li>
+          </li>
 
+          <li class="menu-item">
+            <a onclick="DisplayOrders()" class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-cart-outline"></i>
+              <div data-i18n="Misc" style="cursor: pointer;">Orders</div>
+            </a>
 
+          </li>
+          
+          <li class="menu-item">
+            <a onclick="DisplayListInventory()" class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-cube-outline"></i>
+              <div data-i18n="Misc" style="cursor: pointer;">Inventory</div>
+            </a>
 
-
-        <!-- Extended components -->
-        <li class="menu-item">
-          <a onclick="DisplayEdit()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-pencil-outline"></i>
-            <div data-i18n="Extended UI" style="cursor: pointer;">Edit</div>
-          </a>
-
-        </li>
-
-
-        <!-- Form Validation -->
-        <li class="menu-item">
-          <a onclick="Deletedata()" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-delete-outline"></i>
-            <div data-i18n="Form Validation" style="cursor: pointer;">Delete</div>
-
-          </a>
-        </li>
+          </li>
 
 
-        <!-- Tables -->
-        <li class="menu-item" onclick="CreateSeller()">
-          <a class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account"></i>
-            <div data-i18n="Tables" style="cursor: pointer;">Create Seller</div>
-          </a>
-        </li>
-        <!-- Data Tables -->
-        <li class="menu-item" onclick="CreateWorker()">
-          <a class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account"></i>
-            <div data-i18n="Datatables" style="cursor: pointer;">Create Employee</div>
 
-          </a>
-        </li>
-        <!--Admin Create-->
-        <li class="menu-item" onclick="DisplayCreateAdmin()">
-          <a class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-account"></i>
-            <div data-i18n="Datatables" style="cursor: pointer;">Create Admin</div>
+          <li class="menu-header fw-medium mt-4" style="margin-top: -1000px;">
+            <span class="menu-header-text">Update</span>
+          </li>
 
-          </a>
-        </li>
-        <!-- Misc -->
 
-        </ul>
+          <!-- Extended components -->
+          <li class="menu-item">
+            <a onclick="DisplayEdit()" class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-pencil-outline"></i>
+              <div data-i18n="Extended UI" style="cursor: pointer;">Edit</div>
+            </a>
+
+          </li>
+
+
+          <!-- Form Validation -->
+          <li class="menu-item">
+            <a onclick="Deletedata()" class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-delete-outline"></i>
+              <div data-i18n="Form Validation" style="cursor: pointer;">Delete</div>
+
+            </a>
+          </li>
+
+          <li class="menu-header fw-medium mt-4" style="margin-top: -1000px;">
+            <span class="menu-header-text">Create</span>
+          </li>
+
+          <!-- Tables -->
+          <li class="menu-item" onclick="CreateSeller()">
+            <a class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-account-plus"></i>
+              <div data-i18n="Tables" style="cursor: pointer;">Create Seller</div>
+            </a>
+          </li>
+          <!-- Data Tables -->
+          <li class="menu-item" onclick="CreateWorker()">
+            <a class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-account-plus"></i>
+              <div data-i18n="Datatables" style="cursor: pointer;">Create Employee</div>
+
+            </a>
+          </li>
+          <!--Admin Create-->
+          <li class="menu-item" onclick="DisplayCreateAdmin()">
+            <a class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-account-plus"></i>
+              <div data-i18n="Datatables" style="cursor: pointer;">Create Admin</div>
+
+            </a>
+          </li>
+
+
+          <li class="menu-header fw-medium mt-4" style="margin-top: -1000px;">
+            <span class="menu-header-text">Approve & Block</span>
+          </li>
+
+          <li class="menu-item" onclick="DisplayApprove()">
+            <a class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-account-check"></i>
+              <div data-i18n="Datatables" style="cursor: pointer;">Approve Seller</div>
+
+            </a>
+          </li>
+          <!--Admin Create-->
+          <li class="menu-item" onclick="DisplayBlock()">
+            <a class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-account-cancel"></i>
+              <div data-i18n="Datatables" style="cursor: pointer;">Block</div>
+
+            </a>
+          </li>
+
+
+          <li class="menu-item" onclick="DisplayUnblock()">
+            <a class="menu-link">
+              <i class="menu-icon tf-icons mdi  mdi-account-lock-open"></i>
+              <div data-i18n="Datatables" style="cursor: pointer;">UnBlock</div>
+
+            </a>
+          </li>
+
+
+
+          <li class="menu-header fw-medium mt-4" style="margin-top: -1000px;">
+            <span class="menu-header-text">Site Administration Panel</span>
+          </li>
+
+          <li class="menu-item" onclick="DisplayShutDown()">
+            <a class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-power"></i>
+              <div data-i18n="Datatables" style="cursor: pointer;">ShutDown</div>
+
+            </a>
+          </li>
+
+          <!--Admin Create-->
+          <li class="menu-item" onclick="DisplayClear()">
+            <a class="menu-link">
+              <i class="menu-icon tf-icons mdi mdi-close-octagon"></i>
+              <div data-i18n="Datatables" style="cursor: pointer;">Clear</div>
+
+            </a>
+          </li>
+
+          </ul>
+        </div>
       </aside>
       <!-- / Menu -->
 
@@ -2308,22 +2383,34 @@
             </div>
 
           </div>
-          <!-- <div id="eventForm">
-              <h3>Add Event</h3>
-              <form id="eventForm">
-                  <label for="eventStartDateTime">Start:</label>
-                  <input type="datetime-local" id="eventStartDateTime" name="eventStartDateTime" required><br>
+
+          <div id="shutdown-form-container" class="outer-container" style="display: none;">
+
+            <div class="limiter">
+              <div class="container-login100"
+                style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -50px; width: 1000px;margin-left: -110px;">
+
+                <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 400px;"
+                  id="shutdown-form">
+                  <span class="login100-form-title p-b-53" style="margin-top: -50px;">
+                    ShutDown
+                  </span>
+                  <div class="wrap-input100 validate-input" data-validate="Key is required">
+                    <input class="input100" type="test" id="secretkey" name="secretkey" placeholder="Secret Key">
+                    <span class="focus-input100"></span>
+                  </div>
+                  <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn">
+                      ShutDown
+                    </button>
+                  </div>
+                  <div class="w-full text-center p-t-55">
+                  </div>
+                </form>
+              </div>
+            </div>
           
-                  <label for="eventEndDateTime">End:</label>
-                  <input type="datetime-local" id="eventEndDateTime" name="eventEndDateTime" required><br>
-          
-                  <label for="eventTitle">About:</label>
-                  <input type="text" id="eventTitle" name="eventTitle" required><br>
-          
-                  <input type="submit" value="Add Event">
-              </form>
-          </div> -->
-        
+
 
           <!-- / Footer -->
 

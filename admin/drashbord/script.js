@@ -361,6 +361,7 @@ function addDeleteIcon(feedbackBox, email, feedback) {
 
 function DisplayListUsers() {
     console.log("Displaylist")
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
@@ -482,6 +483,7 @@ function DeleteData(email, coll) {
 
 function DisplayListSeller() {
     console.log("Displaylist")
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
@@ -560,6 +562,7 @@ function DisplayListSeller() {
 
 function DisplayListInventory() {
     console.log("Displaylist")
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
@@ -644,6 +647,7 @@ function EditData(id, coll) {
 
 
 function Deletedata() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'block';
     document.querySelector('.container-p-y').style.display = 'none';
@@ -696,6 +700,7 @@ document.getElementById("delete-form").addEventListener("submit", function (even
 });
 
 function DisplayEdit() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
@@ -786,6 +791,7 @@ document.getElementById("update-form").addEventListener("submit", function (even
 
 
 function CreateSeller() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'block';
@@ -860,6 +866,7 @@ sellerForm.addEventListener('submit', (e) => {
 
 
 function DisplayDrashBord() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'block';
@@ -877,6 +884,7 @@ function DisplayDrashBord() {
 }
 
 function CreateWorker() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
@@ -932,6 +940,7 @@ document.getElementById("employee-wrapper").addEventListener("submit", function 
 });
 
 function DisplayCreateAdmin() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
@@ -1035,6 +1044,7 @@ function search() {
 
 function DisplayFeedBacks() {
     console.log("Displaylist")
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
@@ -1107,6 +1117,7 @@ function DisplayFeedBacks() {
 
 function DisplayAllWorkers() {
     console.log("Displaylist")
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
@@ -1177,6 +1188,7 @@ function DisplayAllWorkers() {
 
 
 function ViewData(id, profession) {
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
@@ -1711,6 +1723,7 @@ $(document).ready(async function () {
 
 });
 function DisplayCalender() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
@@ -1728,6 +1741,7 @@ function DisplayCalender() {
 }
 
 function DisplayEventForm() {
+        document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
@@ -1814,3 +1828,55 @@ function BlockUser(email,collection){
             showToast(data.error, "Warning", 0)
         });
 }
+
+function DisplayShutDown() {
+    document.getElementById("shutdown-form-container").style.display = 'block';
+document.getElementById('employee-wrapper').style.display = 'none';
+document.getElementById('workersnip').style.display = 'none';
+document.querySelector('.wrapper').style.display = 'none';
+document.querySelector('.outer-container').style.display = 'none';
+document.querySelector('.container-p-y').style.display = 'none';
+document.getElementById('snippetContent').style.display = 'none';
+document.getElementById('sellersnip').style.display = 'none';
+document.getElementById('Inventorysnip').style.display = 'none';
+document.getElementById('feedbacksnip').style.display = 'none';
+document.querySelector('.display-view').style.display = 'none';
+document.getElementById('admin-wrapper').style.display = 'none';
+document.getElementById("calendar").style.display = 'block';
+document.getElementById('update-form-admin-container').style.display = 'none';
+document.getElementById("calendar").style.display = 'none';
+document.getElementById("event-wrapper").style.display = 'none';
+}
+
+document.getElementById("shutdown-form").addEventListener("submit",()=>{
+    var adminData = localStorage.getItem('admindata');
+    var adminObject = JSON.parse(adminData);
+    const formData = {
+        token : adminObject.token,
+        password: (document.getElementById("secretkey").value).trim()
+    }
+    if(formData.password == ""){
+        showToast("Key Required to ShutDown","Danger",0)
+        return
+    }
+
+    fetch("http://localhost:8080/shutdown", {
+        method: "POST", // Use DELETE method to delete data
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.message) {
+                showToast(data.message, "Success", 3)
+            } else if (data.error) {
+                showToast(data.error, "Warning", 0)
+            }
+        })
+        .catch(error => {
+            showToast(data.error, "Warning", 0)
+        });
+})
