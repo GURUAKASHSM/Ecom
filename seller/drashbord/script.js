@@ -7,6 +7,8 @@ function DisplayDrashBord() {
     document.querySelector('.container-p-y').style.display = 'block';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById('single-order-container').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'none'
 }
 
 function DisplayEdit() {
@@ -18,7 +20,8 @@ function DisplayEdit() {
     document.getElementById('update-form-admin-container').style.display = 'block';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById('single-order-container').style.display = 'none';
-
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'none'
 }
 
 function Deletedata() {
@@ -30,6 +33,8 @@ function Deletedata() {
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'block';
     document.getElementById('single-order-container').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'none'
 }
 
 function DisplayCalender() {
@@ -42,6 +47,8 @@ function DisplayCalender() {
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById('single-order-container').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'none'
 }
 
 function DisplayEventForm() {
@@ -53,6 +60,8 @@ function DisplayEventForm() {
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById('single-order-container').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'none'
 }
 
 
@@ -65,9 +74,11 @@ function DisplayAddProduct() {
     document.querySelector('.wrapper').style.display = 'block';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById('single-order-container').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'none'
 }
 
-function DisplayUsers(){
+function DisplayUsers() {
     document.getElementById('snippetContent').style.display = 'block';
     document.getElementById('workersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
@@ -76,9 +87,11 @@ function DisplayUsers(){
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById('single-order-container').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'none'
 }
 
-function DisplayOrders(){
+function DisplayOrders() {
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
@@ -87,9 +100,11 @@ function DisplayOrders(){
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById('single-order-container').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'none'
 }
 
-function DisplayGetOrder(){
+function DisplayGetOrder() {
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
@@ -97,10 +112,12 @@ function DisplayGetOrder(){
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
-    document.getElementById('single-order-container').style.display = 'block';    
+    document.getElementById('single-order-container').style.display = 'block';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'none'
 }
 
-function DisplayInventoryBlock(){
+function DisplayInventoryBlock() {
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
@@ -108,9 +125,40 @@ function DisplayInventoryBlock(){
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
-    document.getElementById('single-order-container').style.display = 'none';    
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'block';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'none'
 }
+
+function DisplayViewData() {
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'block';
+    document.getElementById("feedback").style.display = 'none'
+}
+
+function DisplayFeedBack() {
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("feedback").style.display = 'block'
+}
+
 
 
 
@@ -299,7 +347,7 @@ function showToast(str, war, no) {
 
 function DisplayListUsers() {
     DisplayUsers()
-    
+
     fetch("http://localhost:8080/buyedcustomer", {
         method: "POST",
         headers: {
@@ -339,7 +387,7 @@ function DisplayListUsers() {
               <span class="candidate-list-time order-1">${customer.phonenumber}</span></td>
             <td>
               <ul class="list-unstyled mb-0 d-flex justify-content-end">
-              <li onclick="ViewData('${customer.email}','customer');recentPage = 'customer';"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+              <li onclick="ViewData('${customer.email}','customer');"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
               class="fas fa-eye"></i></a>
               </li>
               </ul>
@@ -416,7 +464,7 @@ function DisplayListInventory() {
             let html = ""
 
             data.message.forEach(customer => {
-
+                console.log(customer)
                 html += `
             <tr class="candidates-list inventory-list">
             <td class="title">
@@ -443,13 +491,13 @@ function DisplayListInventory() {
               <span class="candidate-list-time order-1">${customer.price}</span></td>
             <td>
               <ul class="list-unstyled mb-0 d-flex justify-content-end">
-              <li onclick="ViewData('${customer.itemname}','inventory');recentPage = 'inventory';"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+              <li onclick="ViewInventoryData('${customer.productid}');"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
               class="fas fa-eye"></i></a>
               </li>
-              <li onclick="EditData('${customer.itemname}','inventory');recentPage = 'inventory';"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+              <li onclick="EditData('${customer.productid}');"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
               class="fas fa-pencil-alt"></i></a>
               </li>
-                <li  onclick="DeleteData('${customer.itemname}','inven');recentPage = 'inventory';"><a class="text-danger" data-toggle="tooltip" title=""
+                <li  onclick="showConfirmation(DeleteInventory,'Are you sure want to Delete the Product with name ${customer.itemname}','YES','NO','${customer.productid}');"><a class="text-danger" data-toggle="tooltip" title=""
                     data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
               </ul>
             </td>
@@ -465,8 +513,7 @@ function DisplayListInventory() {
         });
 }
 
-function EditData(id, coll) {
-    document.getElementById("updatecollection").value = coll;
+function EditData(id) {
     document.getElementById("idname").value = id;
     populateFieldOptions();
     DisplayEdit();
@@ -478,17 +525,17 @@ function EditData(id, coll) {
 
 document.getElementById("delete-form").addEventListener("submit", function (event) {
     event.preventDefault();
-
-    const collection = document.getElementById("collection").value;
+    console.log("Called Delete Product")
+    const storedData = localStorage.getItem("sellerdata");
+    const retrievedUserData = JSON.parse(storedData);
     const idValue = document.getElementById("id").value;
-
     const requestData = {
-        collection: collection,
-        idValue: idValue
+        token: retrievedUserData.token,
+        productid: idValue.trim()
     };
 
     // Send a DELETE request to your server to delete the data
-    fetch("http://localhost:8080/deletedata", {
+    fetch("http://localhost:8080/deleteproductbyseller", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -497,17 +544,15 @@ document.getElementById("delete-form").addEventListener("submit", function (even
     })
         .then(response => response.json())
         .then(data => {
-            const resultDiv = document.getElementById("result");
-            if (data === true) {
-                showToast("Deleted Sucessfull", "Success", 3)
+            if (data.message) {
+                showToast(data.message, "Success", 3)
                 document.getElementById("id").value = "";
-            } else {
-                showToast("Error in Deleting", "Danger", 0)
+            } else if (data.error) {
+                showToast(data.error, "Error", 0)
             }
         })
         .catch(error => {
-            const resultDiv = document.getElementById("result-container");
-            resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            console.log(error)
         });
 });
 
@@ -517,7 +562,7 @@ const collectionSelectElement = document.getElementById("updatecollection");
 const fieldSelectElement = document.getElementById("field");
 
 const collectionselectOptions = {
-    inventory: ["itemcategory", "itemname", "price", "quantity","sellerquantity","shortdiscription","longdiscription"],
+    inventory: ["itemcategory", "itemname", "price", "quantity", "sellerquantity", "shortdiscription", "longdiscription"],
 };
 function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -544,21 +589,20 @@ populateFieldOptions()
 
 document.getElementById("update-form").addEventListener("submit", function (event) {
     event.preventDefault();
-
-    const updatecollection = document.getElementById("updatecollection").value;
-    const idname = document.getElementById("idname").value;
+    console.log("Called Update Product")
+    const idname = (document.getElementById("idname").value).trim();
     const field = document.getElementById("field").value;
-    const newvalue = document.getElementById("newvalue").value;
-
+    const newvalue = ((document.getElementById("newvalue").value).trim()).toUpperCase();
+    const storedData = localStorage.getItem("sellerdata");
+    const retrievedUserData = JSON.parse(storedData);
     const requestData = {
-        collection: updatecollection,
-        email: idname,
-        field: field,
+        token: retrievedUserData.token,
+        productid: idname,
+        attribute: field,
         newvalue: newvalue
     };
     console.log(requestData)
-
-    fetch("http://localhost:8080/update", {
+    fetch("http://localhost:8080/updateproductbyseller", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -568,17 +612,49 @@ document.getElementById("update-form").addEventListener("submit", function (even
         .then(response => response.json())
         .then(data => {
 
-            if (data) {
-                showToast("Updated Successfully", "Success", 3)
+            if (data.message) {
+                showToast(data.message, "Success", 3)
                 document.getElementById("update-form").reset();
-            } else {
-                showToast("Update Failes", "Danger", 0)
-                document.getElementById("update-form").reset();
+            } else if (data.error) {
+                showToast(data.error, "Danger", 0)
             }
         })
         .catch(error => {
-            const resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            console.log(error)
+        });
+});
+
+
+document.getElementById("feedback-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log("Called feedback")
+    const feedback = document.getElementById("feedbackinput").value;
+    const storedData = localStorage.getItem("sellerdata");
+    const retrievedUserData = JSON.parse(storedData);
+    const requestData = {
+        token: retrievedUserData.token,
+        feedback,
+    };
+    console.log(requestData)
+    fetch("http://localhost:8080/insertsellerfeedback", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestData)
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.message) {
+                showToast(data.message, "Success", 3)
+                document.getElementById("feedback-form").reset();
+            } else if (data.error) {
+                showToast(data.error, "Danger", 0)
+            }
+        })
+        .catch(error => {
+            console.log(error)
         });
 });
 
@@ -586,37 +662,37 @@ document.getElementById("update-form").addEventListener("submit", function (even
 //Ordres
 
 
-  async function GetOrder(id) {
+async function GetOrder(id) {
     try {
-      const storedData = localStorage.getItem("sellerdata");
-      const retrievedUserData = JSON.parse(storedData);
-      const data = {
-        token: retrievedUserData.token,
-        orderid: id,
-      }
-      console.log(data)
-      const output = await fetch('http://localhost:8080/getcustomerorder', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-      const value = await output.json();
-      if (value.message) {
-  
-        let html = ""
-        let orderstatus = ""
-        const item = value.message
-        const entries = Object.entries(item.status);
-  
-        entries.forEach(([key, val]) => {
-          if (val == "completed") {
-            orderstatus = key
-            return
-          }
+        const storedData = localStorage.getItem("sellerdata");
+        const retrievedUserData = JSON.parse(storedData);
+        const data = {
+            token: retrievedUserData.token,
+            orderid: id,
+        }
+        console.log(data)
+        const output = await fetch('http://localhost:8080/getcustomerorder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         });
-        html = `<div class="container">
+        const value = await output.json();
+        if (value.message) {
+
+            let html = ""
+            let orderstatus = ""
+            const item = value.message
+            const entries = Object.entries(item.status);
+
+            entries.forEach(([key, val]) => {
+                if (val == "completed") {
+                    orderstatus = key
+                    return
+                }
+            });
+            html = `<div class="container">
         
         <div class="d-flex justify-content-between align-items-center py-3">
         </div>
@@ -737,16 +813,16 @@ document.getElementById("update-form").addEventListener("submit", function (even
             <div class="card mb-4">
               <div class="card-body">
               <h3 class="h6">Seller Notes</h3>`
-              if(item.status.dispatched == "pending"){
+            if (item.status.dispatched == "pending") {
                 html += ` <p>Please press the Completed button after completing the task.</p>
                 <p>Make sure you deliver to the right address</p>
                 <p>If there is any problem feel free to contact us</p>`
-              }else{
+            } else {
                 html += ` <p>🎉Your part of work is done 🎊 </p>
                 <p>We will take care of the Rest 🤩🤩</p>
                 <p>If there is any problem feel free to contact us</p>`
-              }
-                
+            }
+
             html += `
               </div>
             </div>
@@ -771,18 +847,18 @@ document.getElementById("update-form").addEventListener("submit", function (even
           </div>
         </div>
       </div>`
-        DisplayGetOrder()
-        document.getElementById('single-order-container').innerHTML = html;
-        document.getElementById('single-order-container').style.display ='block';
-  
-      } else if (value.error) {
-        showToast(value.error, "Error", 0)
-      }
-  
+            DisplayGetOrder()
+            document.getElementById('single-order-container').innerHTML = html;
+            document.getElementById('single-order-container').style.display = 'block';
+
+        } else if (value.error) {
+            showToast(value.error, "Error", 0)
+        }
+
     } catch (error) {
-      console.log(error)
+        console.log(error)
     }
-  }
+}
 
 
 
@@ -805,16 +881,16 @@ function DisplayCompletedOrders() {
         .then(response => response.json())
         .then(data => {
             let html = ""
-            if(data.error){
-                showToast(data.error,"Error",0)
+            if (data.error) {
+                showToast(data.error, "Error", 0)
                 return
             }
-            if(data.message == null){
+            if (data.message == null) {
                 html += `<img src="./images/no-data.gif"`
-            }else{
-            data.message.forEach(order => {
+            } else {
+                data.message.forEach(order => {
 
-                html += `
+                    html += `
                 <tr class="candidates-list">
                     <td class="title">
                         <div class="thumb">
@@ -841,7 +917,7 @@ function DisplayCompletedOrders() {
                     <td class="text-right">${order.totalamount}</td>
                     <td class="action text-right">
                         <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                            <li onclick="GetOrder('${order.orderid}');recentPage = 'order';">
+                            <li onclick="GetOrder('${order.orderid}');">
                                 <a class="text-danger" data-toggle="tooltip" title="View" data-original-title="View">
                                     <i class="far fa-eye"></i>
                                 </a>
@@ -851,8 +927,8 @@ function DisplayCompletedOrders() {
                     <td><span class="badge bg-label-warning rounded-pill">Completed</span></td>
                 </tr>`;
 
-            });
-        }
+                });
+            }
             document.querySelector('.worker-list-body').innerHTML = html;
         })
         .catch(error => {
@@ -862,7 +938,7 @@ function DisplayCompletedOrders() {
 
 function capitalizeFirstLetter(str) {
     if (str.length === 0) {
-        return str; 
+        return str;
     } else {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
@@ -882,13 +958,13 @@ function DisplayPendingOrders() {
         .then(response => response.json())
         .then(data => {
             let html = ""
-            if(data.error){
-                showToast(data.error,"Error",0)
+            if (data.error) {
+                showToast(data.error, "Error", 0)
                 return
             }
-            if(data.message == null){
+            if (data.message == null) {
                 html += `<img src="./images/no-data.gif"`
-            }else{
+            } else {
                 data.message.forEach(order => {
 
                     html += `
@@ -918,7 +994,7 @@ function DisplayPendingOrders() {
                         <td class="text-right">${order.totalamount}</td>
                         <td class="action text-right">
                             <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                                <li onclick="GetOrder('${order.orderid}');recentPage = 'order';">
+                                <li onclick="GetOrder('${order.orderid}');">
                                     <a class="text-danger" data-toggle="tooltip" title="View" data-original-title="View">
                                         <i class="far fa-eye"></i>
                                     </a>
@@ -928,10 +1004,10 @@ function DisplayPendingOrders() {
                         <td><span class="badge bg-label-warning rounded-pill">Pending</span></td>
                     </tr>
                 `;
-    
+
                 });
             }
-           
+
             document.querySelector('.worker-list-body').innerHTML = html;
         })
         .catch(error => {
@@ -953,16 +1029,16 @@ function DisplayallOrders() {
         .then(response => response.json())
         .then(data => {
             let html = ""
-            if(data.error){
-                showToast(data.error,"Error",0)
+            if (data.error) {
+                showToast(data.error, "Error", 0)
                 return
             }
-            if(data.message == null){
+            if (data.message == null) {
                 html += `<img src="./images/no-data.gif"`
-            }else{
-            data.message.forEach(order => {
+            } else {
+                data.message.forEach(order => {
 
-                html += `
+                    html += `
                 <tr class="candidates-list">
                     <td class="title">
                         <div class="thumb">
@@ -989,7 +1065,7 @@ function DisplayallOrders() {
                     <td class="text-right">${order.totalamount}</td>
                     <td class="action text-right">
                         <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                            <li onclick="GetOrder('${order.orderid}');recentPage = 'order';">
+                            <li onclick="GetOrder('${order.orderid}');">
                                 <a class="text-danger" data-toggle="tooltip" title="View" data-original-title="View">
                                     <i class="far fa-eye"></i>
                                 </a>
@@ -999,8 +1075,8 @@ function DisplayallOrders() {
                     <td><span class="badge bg-label-warning rounded-pill">${capitalizeFirstLetter(order.status.delivered)}</span></td>
                 </tr>`;
 
-            });
-        }
+                });
+            }
             document.querySelector('.worker-list-body').innerHTML = html;
         })
         .catch(error => {
@@ -1023,16 +1099,16 @@ function DisplayYettoGiveOrders() {
         .then(response => response.json())
         .then(data => {
             let html = ""
-            if(data.error){
-                showToast(data.error,"Error",0)
+            if (data.error) {
+                showToast(data.error, "Error", 0)
                 return
             }
-            if(data.message == null){
+            if (data.message == null) {
                 html += `<img src="./images/no-data.gif"`
-            }else{
-            data.message.forEach(order => {
+            } else {
+                data.message.forEach(order => {
 
-                html += `
+                    html += `
                 <tr class="candidates-list">
                     <td class="title">
                         <div class="thumb">
@@ -1059,7 +1135,7 @@ function DisplayYettoGiveOrders() {
                     <td class="text-right">${order.totalamount}</td>
                     <td class="action text-right">
                         <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                            <li onclick="GetOrder('${order.orderid}');recentPage = 'order';">
+                            <li onclick="GetOrder('${order.orderid}');">
                                 <a class="text-danger" data-toggle="tooltip" title="View" data-original-title="View">
                                     <i class="far fa-eye"></i>
                                 </a>
@@ -1069,8 +1145,8 @@ function DisplayYettoGiveOrders() {
                     <td><span class="badge bg-label-warning rounded-pill">${capitalizeFirstLetter(order.status.delivered)}</span></td>
                 </tr>`;
 
-            });
-        }
+                });
+            }
             document.querySelector('.worker-list-body').innerHTML = html;
         })
         .catch(error => {
@@ -1093,104 +1169,9 @@ function ViewData(id, profession) {
         .then(response => response.json())
         .then(data => {
             console.log(data.message)
-
             let html = ""
-            if (profession == 'inventory') {
-                html = `
+            html = `
                 <div class="container" style="width:1500px;max-width:1500px; margin-left:300px">
-                <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
-                <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
-                <div class="panel panel-white profile-widget">
-                <div class="row">
-                <div class="col-sm-12">
-                <div class="image-container bg2">
-                <img src="data:image/jpeg;base64,${data.message.image}" class="avatar" alt="avatar" height="100px" >
-                </div>
-                </div>
-                <div class="col-sm-12">
-                <div class="details">
-                <h4>${data.message.itemname} <i class="fa fa-sheild"></i></h4>
-                <div class="mg-top-10">
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="row">
-                <div class="col-sm-6"   >
-                <div class="panel panel-white border-top-purple">
-                <div class="panel-heading">
-                <h3 class="panel-title" style="height:30px;">Item Info</h3>
-                </div>
-                <div class="panel-body" style="padding:30px; border-radius:5px">
-                <div class="body-section">
-                <h5 class="section-heading">Item Name : <span class="message">${data.message.itemname}</span></h5>
-                </div>
-                <div class="body-section">
-                <h5 class="section-heading">Category :
-                <span class="message">${data.message.itemcategory}</span>
-               </h5>
-               </div>
-                <div class="body-section">
-                <h5 class="section-heading">Price : <span class="message" >${data.message.price}  </span> </h5>
-                </div>
-                <div class="body-section">
-                <!-- <a href="#" class="btn btn-purple btn-sm">Edit</a> -->
-                </div>
-                </div>
-                </div>
-    
-                <div class="panel">
-              
-    
-                </div>
-                </div>
-                <div class="col-sm-6">
-                <div class="panel panel-white border-top-green">
-                <div class="panel-heading">
-                <h3 class="panel-title">Seller Info</h3>
-              
-                
-                
-                </div>
-                <div class="panel-body" style="padding:30px">
-    
-    
-                <div class="body-section">
-                <h5 class="section-heading">Seller Name : <span class="message">  ${data.message.sellername}</span></h5>
-                </div>
-
-                <div class="body-section">
-                <h5 class="section-heading">Quantity : <span class="message">${data.message.quantity}</span></h5>
-                </div>
-    
-                <div class="body-section">
-                <h5 class="section-heading">Available Quantity:  <span class="message">${data.message.sellerquantity}</span></h5>
-                </div>
-
-
-            
-                </div>
-                </div>
-                <div class="panel ">
-    
-                </div>
-      
-    
-                
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-            `;
-
-            } else if (profession == 'customer') {
-                html = `
-                <div class="container" style="width:1500px;max-width:1500px; margin-left:300px">
-                <i class="fas fa-arrow-left back-icon" onclick="BackButton()"></i>
                 <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                 <div class="panel panel-white profile-widget">
@@ -1267,7 +1248,117 @@ function ViewData(id, profession) {
                 </div>
                 </div>
             `;
-            } 
+            DisplayViewData()
+            document.querySelector('.display-view').innerHTML = html;
+            document.querySelector('.display-view').style.display = 'block';
+        })
+        .catch(error => {
+            console.log(error)
+        });
+
+}
+
+
+function ViewInventoryData(id) {
+    console.log("Called View Product")
+    const storedData = localStorage.getItem("sellerdata");
+    const retrievedUserData = JSON.parse(storedData);
+    fetch("http://localhost:8080/getproductforseller", {
+        method: "POST", // Use DELETE method to delete data
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ productid: id, token: retrievedUserData.token })
+    })
+
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message)
+            let html = ""
+            html = `
+                <div class="container" style="width:1500px;max-width:1500px; margin-left:300px">
+                <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                <div class="panel panel-white profile-widget">
+                <div class="row">
+                <div class="col-sm-12">
+                <div class="image-container bg2">
+                <img src="data:image/jpeg;base64,${data.message.image}" class="avatar" alt="avatar" height="100px" >
+                </div>
+                </div>
+                <div class="col-sm-12">
+                <div class="details">
+                <h4>${data.message.itemname} <i class="fa fa-sheild"></i></h4>
+                <div class="mg-top-10">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-6"   >
+                <div class="panel panel-white border-top-purple">
+                <div class="panel-heading">
+                <h3 class="panel-title" style="height:30px;">Product Info</h3>
+                </div>
+                <div class="panel-body" style="padding:30px; border-radius:5px">
+                <div class="body-section">
+                <h5 class="section-heading">Product Name : <span class="message">${data.message.itemname}</span></h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">ID : <span class="message" >${data.message.productid}  </span> </h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Price : <span class="message" >${data.message.price}  </span> </h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Quantity : <span class="message" >${data.message.quantity}  </span> </h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Stock Available : <span class="message" >${data.message.sellerquantity}  </span> </h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Short Discription : <span class="message" >${data.message.shortdis}  </span> </h5>
+                </div>
+                <div class="body-section">
+                <h5 class="section-heading">Long Discription : <span class="message" >${data.message.longdis}  </span> </h5>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <div class="col-sm-6">
+                <div class="panel panel-white border-top-green">
+                <div class="panel-heading">
+                <h3 class="panel-title">Seller Info</h3>
+               
+                </div>
+                <div class="panel-body" style="padding:30px">
+    
+    
+                <div class="body-section">
+                <h5 class="section-heading">Seller Name : <span class="message">${data.message.sellername}</span></h5>
+                </div>
+    
+                <div class="body-section">
+                <h5 class="section-heading">Seller ID:  <span class="message">${data.message.sellerid}</span></h5>
+                </div>            
+                </div>
+                </div>
+                <div class="panel ">
+    
+                </div>
+      
+    
+                
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            `;
+            DisplayViewData()
             document.querySelector('.display-view').innerHTML = html;
             document.querySelector('.display-view').style.display = 'block';
         })
@@ -1281,18 +1372,7 @@ function ViewData(id, profession) {
 
 
 
-var recentPage = ''
-function BackButton() {
-    if (recentPage == 'inventory') {
-        DisplayListInventory()
-    } else if (recentPage == 'seller') {
-        DisplayListSeller()
-    } else if (recentPage == 'customer') {
-        DisplayListUsers()
-    } else if (recentPage == 'worker') {
-        DisplayAllWorkers()
-    }
-}
+
 
 
 
@@ -1413,12 +1493,12 @@ function validateForm() {
     }
 }
 //Update Order Tracking 
-function UpdateOrderTracking(orderid,feild){
+function UpdateOrderTracking(orderid, feild) {
     const storedData = localStorage.getItem("sellerdata");
     const retrievedUserData = JSON.parse(storedData);
     const data = {
         token: retrievedUserData.token,
-        orderid:orderid,
+        orderid: orderid,
         feild,
     }
     fetch('http://localhost:8080/updateordertracking', {
@@ -1443,7 +1523,7 @@ function UpdateOrderTracking(orderid,feild){
 }
 
 // Conformation Box
-function showConfirmation(function_name,question,option1,option2,id) {
+function showConfirmation(function_name, question, option1, option2, id) {
     console.log("In Conformation")
     document.getElementById("conformationoverlay").classList.add("conformationactive");
     document.getElementById("confirmationDialog").classList.add("conformationactive");
@@ -1451,11 +1531,11 @@ function showConfirmation(function_name,question,option1,option2,id) {
     document.getElementById("conformationtrue").innerHTML = option1;
     document.getElementById("confirmationfalse").innerHTML = option2;
 
-    document.getElementById("conformationtrue").addEventListener("click", function() {
+    document.getElementById("conformationtrue").addEventListener("click", function () {
         function_name(id);
         hideConfirmationDialog();
     });
-    document.getElementById("confirmationfalse").addEventListener("click", function() {
+    document.getElementById("confirmationfalse").addEventListener("click", function () {
         hideConfirmationDialog();
     });
 }
@@ -1493,4 +1573,35 @@ async function DeleteOrder(id) {
         console.log(error)
     }
 }
+
+// Delete Items in Inventory
+async function DeleteInventory(id) {
+    try {
+        console.log("Called Delete Product")
+        const storedData = localStorage.getItem("sellerdata");
+        const retrievedUserData = JSON.parse(storedData);
+        const data = {
+            token: retrievedUserData.token,
+            productid: id,
+        }
+        console.log(data)
+        const output = await fetch('http://localhost:8080/deleteproductbyseller', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        const value = await output.json();
+        if (value.message) {
+            showToast(value.message, "Success", 3)
+            DisplayListInventory()
+        } else if (value.error) {
+            showToast(value.error, "Error", 0)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
