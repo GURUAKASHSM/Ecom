@@ -364,11 +364,14 @@ function DisplayListUsers() {
     document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
@@ -438,7 +441,7 @@ function DeleteData(email, coll) {
     if (coll == 'cus') {
         const collection = "customer";
         requestData.collection = collection
-    } else if (coll == "sel") {
+    } else if (coll == "sel" || coll == "seller") {
         const collection = "seller";
         requestData.collection = collection
     } else if (coll == "inven") {
@@ -467,6 +470,8 @@ function DeleteData(email, coll) {
                     DisplayListSeller()
                 } else if (coll == "inven") {
                     DisplayListInventory()
+                } else if (coll == "seller") {
+                    Displayallnotapprovedseller()
                 }
 
             } else {
@@ -486,12 +491,15 @@ function DisplayListSeller() {
     document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
@@ -564,12 +572,15 @@ function DisplayListInventory() {
     console.log("Displaylist")
     document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
@@ -652,11 +663,14 @@ function Deletedata() {
     document.querySelector('.outer-container').style.display = 'block';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
@@ -702,12 +716,15 @@ document.getElementById("delete-form").addEventListener("submit", function (even
 function DisplayEdit() {
     document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
@@ -795,8 +812,11 @@ function CreateSeller() {
     document.getElementById('employee-wrapper').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'block';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
@@ -870,9 +890,12 @@ function DisplayDrashBord() {
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'block';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
@@ -888,10 +911,13 @@ function CreateWorker() {
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
@@ -944,13 +970,16 @@ function DisplayCreateAdmin() {
     document.getElementById('employee-wrapper').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'block';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById("qr-code").style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
@@ -1047,11 +1076,14 @@ function DisplayFeedBacks() {
     document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'block';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
@@ -1120,9 +1152,12 @@ function DisplayAllWorkers() {
     document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
@@ -1192,7 +1227,10 @@ function ViewData(id, profession) {
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
@@ -1729,6 +1767,7 @@ function DisplayCalender() {
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
@@ -1737,17 +1776,20 @@ function DisplayCalender() {
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById("calendar").style.display = 'block';
     document.getElementById("event-wrapper").style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById('update-form-admin-container').style.display = 'none';
 }
 
 function DisplayEventForm() {
-        document.getElementById("shutdown-form-container").style.display = 'none';
+    document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
@@ -1756,6 +1798,8 @@ function DisplayEventForm() {
     document.getElementById("calendar").style.display = 'block';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'block';
 }
 
@@ -1803,8 +1847,8 @@ document.getElementById("event-form").addEventListener("submit", function (event
 
 });
 
-function BlockUser(email,collection){
-   const formData = {
+function BlockUser(email, collection) {
+    const formData = {
         email,
         collection,
     }
@@ -1831,32 +1875,35 @@ function BlockUser(email,collection){
 
 function DisplayShutDown() {
     document.getElementById("shutdown-form-container").style.display = 'block';
-document.getElementById('employee-wrapper').style.display = 'none';
-document.getElementById('workersnip').style.display = 'none';
-document.querySelector('.wrapper').style.display = 'none';
-document.querySelector('.outer-container').style.display = 'none';
-document.querySelector('.container-p-y').style.display = 'none';
-document.getElementById('snippetContent').style.display = 'none';
-document.getElementById('sellersnip').style.display = 'none';
-document.getElementById('Inventorysnip').style.display = 'none';
-document.getElementById('feedbacksnip').style.display = 'none';
-document.querySelector('.display-view').style.display = 'none';
-document.getElementById('admin-wrapper').style.display = 'none';
-document.getElementById("calendar").style.display = 'block';
-document.getElementById('update-form-admin-container').style.display = 'none';
-document.getElementById("calendar").style.display = 'none';
-document.getElementById("event-wrapper").style.display = 'none';
+    document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById("calendar").style.display = 'block';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
 }
 
-document.getElementById("shutdown-form").addEventListener("submit",()=>{
+document.getElementById("shutdown-form").addEventListener("submit", () => {
     var adminData = localStorage.getItem('admindata');
     var adminObject = JSON.parse(adminData);
     const formData = {
-        token : adminObject.token,
+        token: adminObject.token,
         password: (document.getElementById("secretkey").value).trim()
     }
-    if(formData.password == ""){
-        showToast("Key Required to ShutDown","Danger",0)
+    if (formData.password == "") {
+        showToast("Key Required to ShutDown", "Danger", 0)
         return
     }
 
@@ -1880,3 +1927,225 @@ document.getElementById("shutdown-form").addEventListener("submit",()=>{
             showToast(data.error, "Warning", 0)
         });
 })
+
+function DisplayClearForm() {
+    document.getElementById("shutdown-form-container").style.display = 'none'
+    document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.getElementById("notapprovedseller").style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'block'
+}
+
+document.getElementById("cleardb-form").addEventListener("submit", () => {
+
+    const password = (document.getElementById("dbsecretkey").value).trim()
+    if (password == "AnonClearDB") {
+        DisplayClearData()
+    } else {
+        showToast("Invalid Key", "Error", 3)
+    }
+})
+
+function DisplayClearData() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
+    document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.getElementById("notapprovedseller").style.display = 'none';
+    document.getElementById("clearbuttons-container").style.display = 'block';
+}
+
+function ClearDB(collection) {
+    var adminData = localStorage.getItem('admindata');
+    var adminObject = JSON.parse(adminData);
+    const formData = {
+        id: adminObject.token,
+        collection,
+    }
+    fetch("http://localhost:8080/cleardb", {
+        method: "POST", // Use DELETE method to delete data
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.message) {
+                showToast(data.message, "Success", 3)
+            } else if (data.error) {
+                showToast(data.error, "Warning", 0)
+            }
+        })
+        .catch(error => {
+            showToast(data.error, "Warning", 0)
+        });
+}
+
+// Display Conformation
+
+function showConfirmation(function_name, question, option1, option2, id) {
+    console.log("In Conformation")
+    document.getElementById("conformationoverlay").classList.add("conformationactive");
+    document.getElementById("confirmationDialog").classList.add("conformationactive");
+    document.querySelector(".conformation-question").innerHTML = question;
+    document.getElementById("conformationtrue").innerHTML = option1;
+    document.getElementById("confirmationfalse").innerHTML = option2;
+
+    document.getElementById("conformationtrue").addEventListener("click", function () {
+        function_name(id);
+        hideConfirmationDialog();
+    });
+    document.getElementById("confirmationfalse").addEventListener("click", function () {
+        hideConfirmationDialog();
+    });
+}
+
+function hideConfirmationDialog() {
+    document.getElementById("conformationoverlay").classList.remove("conformationactive");
+    document.getElementById("confirmationDialog").classList.remove("conformationactive");
+}
+
+function Displayallnotapprovedseller() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
+    document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.getElementById("clearbuttons-container").style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'block';
+    var adminData = localStorage.getItem('admindata');
+    var adminObject = JSON.parse(adminData);
+    const formData = {
+        token: adminObject.token,
+    }
+    fetch("http://localhost:8080/getallnotapprovedseller", {
+        method: "POST", // Use DELETE method to delete data
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('.notapprovedseller-list-body').innerHTML = "";
+            if (data.message) {
+                let html = ""
+                data.message.forEach((items) => {
+                    html += `
+                    
+            <tr class="candidates-list">
+            <td class="title">
+              <div class="thumb"> <img class="img-fluid"
+                  src="data:image/jpeg;base64,${items.image}" alt="">
+              </div>
+              <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                  <div class="candidate-list-title customer">
+                    <h5 class="mb-0"><a href="#">${items.sellername}</a></h5>
+                  </div>
+                  <div class="candidate-list-option">
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-filter pr-1"></i>${items.selleremail}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="candidate-list-favourite-time text-center"> <a
+                class="candidate-list-favourite order-2 text-danger" href="#"></a>
+              <span class="candidate-list-time order-1">${items.phoneno}</span></td>
+            <td>
+              <ul class="list-unstyled mb-0 d-flex justify-content-end">
+               <li  onclick="ViewData('${items.selleremail}','seller');recentPage = 'worker';"><a class="text-danger" data-toggle="tooltip" title=""
+              data-original-title="Delete"><i class="far fa-eye"></i></a></li>
+                <li  onclick="DeleteData('${items.selleremail}','seller');recentPage = 'worker';"><a class="text-danger" data-toggle="tooltip" title=""
+                data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                <li  onclick="ApproveSeller('${items.sellerid}');recentPage = 'worker';"><a class="text-danger" data-toggle="tooltip" title=""
+                data-original-title="Delete"><i class="far fa-check-circle approve-icon"></i></a></li>
+              </ul>
+            </td>
+          </tr>
+                    `
+
+                })
+                document.querySelector('.notapprovedseller-list-body').innerHTML = html
+            } else if (data.error) {
+                showToast(data.error, "Warning", 0)
+            }
+        })
+        .catch(error => {
+            showToast(error, "Warning", 0)
+        });
+}
+
+function ApproveSeller(id){
+    var adminData = localStorage.getItem('admindata');
+    var adminObject = JSON.parse(adminData);
+    const formData = {
+        token: adminObject.token,
+        sellerid,
+    }
+    fetch("http://localhost:8080/approveseller", {
+        method: "POST", // Use DELETE method to delete data
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.message) {
+                showToast(data.message, "Success", 3)
+            } else if (data.error) {
+                showToast(data.error, "Warning", 0)
+            }
+        })
+        .catch(error => {
+            showToast(data.error, "Warning", 0)
+        });
+}

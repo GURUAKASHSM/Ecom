@@ -130,6 +130,72 @@
       margin: 5px;
     }
 
+    .conformationoverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .confirmation-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      width: 400px;
+      text-align: center;
+    }
+
+    .conformationbuttons {
+      display: flex;
+      align-items: center;
+      align-self: center;
+      justify-content: center;
+    }
+
+    .conformationactive {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+
+    .confirmation-button {
+      background-color: #4CAF50;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 10px;
+      display: flex;
+      width: 100px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+
+    .confirmation-button:hover {
+      background-color: #45a049;
+    }
+
+    #confirmationfalse {
+      background-color: #f44336;
+    }
+    
     .fc-prev-button:hover,
     .fc-next-button:hover,
     .fc-today-button:hover {
@@ -1510,7 +1576,7 @@
             <span class="menu-header-text">Approve & Block</span>
           </li>
 
-          <li class="menu-item" onclick="DisplayApprove()">
+          <li class="menu-item" onclick="Displayallnotapprovedseller()">
             <a class="menu-link">
               <i class="menu-icon tf-icons mdi mdi-account-check"></i>
               <div data-i18n="Datatables" style="cursor: pointer;">Approve Seller</div>
@@ -1550,7 +1616,7 @@
           </li>
 
           <!--Admin Create-->
-          <li class="menu-item" onclick="DisplayClear()">
+          <li class="menu-item" onclick="DisplayClearForm()">
             <a class="menu-link">
               <i class="menu-icon tf-icons mdi mdi-close-octagon"></i>
               <div data-i18n="Datatables" style="cursor: pointer;">Clear</div>
@@ -2181,6 +2247,36 @@
             <div id="dropDownSelect1"></div>
 
           </div>
+
+          <div id="notapprovedseller" style="display: none;">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+              integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
+            <div class="container mt-3 mb-4">
+              <div class="col-lg-9 mt-4 mt-lg-0">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                      <table class="table manage-candidates-top mb-0">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th class="text-center">Mobile No</th>
+                            <th class="action text-right">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody class="notapprovedseller-list-body">
+
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <!--Register User-->
 
           <div class="wrapper" style="display: none;">
@@ -2334,9 +2430,11 @@
 
           </div>
 
+
+
           <div class="display-view" style="display: none;"></div>
 
-          <div id="calendar" style="display: none;"></div>
+          <div id="calendar" style="display: none;margin-left: 200px;"></div>
 
           <div class="event-wrapper" id="event-wrapper" style="display: none; margin-left: 35%; margin-top: 100px;">
             <div class="inner">
@@ -2383,12 +2481,15 @@
             </div>
 
           </div>
+          </div>
+
+
 
           <div id="shutdown-form-container" class="outer-container" style="display: none;">
 
             <div class="limiter">
               <div class="container-login100"
-                style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -50px; width: 1000px;margin-left: -110px;">
+                style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -50px; width: 1000px;margin-left: -200px;">
 
                 <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 400px;"
                   id="shutdown-form">
@@ -2396,7 +2497,7 @@
                     ShutDown
                   </span>
                   <div class="wrap-input100 validate-input" data-validate="Key is required">
-                    <input class="input100" type="test" id="secretkey" name="secretkey" placeholder="Secret Key">
+                    <input class="input100" type="password" id="secretkey" name="secretkey" placeholder="Secret Key">
                     <span class="focus-input100"></span>
                   </div>
                   <div class="container-login100-form-btn m-t-17">
@@ -2409,7 +2510,79 @@
                 </form>
               </div>
             </div>
-          
+           </div>
+         
+         
+
+            <!--Clear DB-->
+            <div id="clear-form-container" class="outer-container" style="display: none;">
+
+              <div class="limiter">
+                <div class="container-login100"
+                  style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -50px; width: 1000px;margin-left: -200px;">
+  
+                  <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 400px;"
+                    id="cleardb-form">
+                    <span class="login100-form-title p-b-53" style="margin-top: -50px;">
+                      Clear DataBase
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Key is required">
+                      <input class="input100" type="password" id="dbsecretkey" name="secretkey" placeholder="Secret Key">
+                      <span class="focus-input100"></span>
+                    </div>
+                    <div class="container-login100-form-btn m-t-17">
+                      <button class="login100-form-btn">
+                        Submit
+                      </button>
+                    </div>
+                    <div class="w-full text-center p-t-55">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+              <!--Clear DB Button-->
+              <div id="clearbuttons-container"  style="display: none;">
+                <div class="chart-container" >
+                  <div class="items">
+                      <ul>
+                          <li>
+                              <a onclick="showConfirmation(ClearDB,'Are you sure want to clear all DataBase ?','Delete','Cancel','all')">All</a>
+                              <ul>
+                                  <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear all Worker DataBase ?','Delete','Cancel','worker');">Worker</a></li>
+                                  <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear all Seller DataBase ?','Delete','Cancel','sellerall');">Seller</a>
+                                      <ul class="feedback-orders-items">
+                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Seller DataBase ?','Delete','Cancel','seller');">Seller</a></li>
+                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Inventory DataBase ?','Delete','Cancel','inventory');">Inventory</a></li>
+                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Orders DataBase ?','Delete','Cancel','orders');">Orders</a></li>
+                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear FeedBack DataBase ?','Delete','Cancel','feedback');">Feedback</a></li>
+                                      </ul>
+                                  </li>
+                                  <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear All Customer DataBase ?','Delete','Cancel','customer');">Customer</a>
+                                      <ul class="feedback-orders-items">
+                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Customer DataBase ?','Delete','Cancel','customer');">Customer</a></li>
+                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear FeedBack DataBase ?','Delete','Cancel','feedback');">Feedback</a></li>
+                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Orders DataBase ?','Delete','Cancel','orders');">Orders</a></li>
+                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Cart DataBase ?','Delete','Cancel','cart');">Cart</a></li>
+                                      </ul>
+                                  </li>
+                                  <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear all Admin DataBase ?','Delete','Cancel','adminall');">Admin</a>
+                                      <ul class="feedback-orders-items">
+                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Admin DataBase ?','Delete','Cancel','admin');">Admin</a></li>
+                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Calendar DataBase ?','Delete','Cancel','calender');">Calendar</a></li>
+                                      </ul>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+              
+                  </div>
+                  </div>
+              </div>  
+             </div>
+             </div>
+
 
 
           <!-- / Footer -->
@@ -2428,6 +2601,15 @@
     <img class="js-toast-img" src="./assets/dontsee.webp" height="10px" width="10px">
     <span class="js-toast-title"></span>
     <span class="js-toast-content"></span>
+  </div>
+
+  <div id="conformationoverlay" class="conformationoverlay"></div>
+  <div id="confirmationDialog" class="confirmation-dialog">
+    <p class="conformation-question">Are you sure you want to proceed?</p>
+    <div class="conformationbuttons">
+      <button id="conformationtrue" class="confirmation-button">Yes</button>
+      <button id="confirmationfalse" class="confirmation-button">No</button>
+    </div>
   </div>
   <!-- / Layout wrapper -->
 
