@@ -32,7 +32,7 @@ sellerForm.addEventListener('submit', (e) => {
         }
 
         // Send the seller data as JSON in the request body
-        fetch('http://localhost:8080/registerseller', {
+        fetch('https://localhost:8080/registerseller', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ function showToast(str, war, no) {
         email: document.getElementById("seller-email").value,
         verification: otp,
     };
-    fetch("http://localhost:8080/verifyselleremail", {
+    fetch("https://localhost:8080/verifyselleremail", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

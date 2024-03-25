@@ -36,7 +36,7 @@ document.getElementById("customerForm").addEventListener("click", function (even
         return
     }
     // Send a POST request to your Go backend
-    fetch("http://localhost:8080/create", {
+    fetch("https://localhost:8080/create", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -158,7 +158,7 @@ document.getElementById("otp-verify").addEventListener("click",(event)=>{
         email: document.getElementById("email").value,
         verification: otp,
     };
-    fetch("http://localhost:8080/verifyemail", {
+    fetch("https://localhost:8080/verifyemail", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

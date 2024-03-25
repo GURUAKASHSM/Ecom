@@ -143,6 +143,168 @@
       transition: opacity 0.3s ease;
     }
 
+    .status-button {
+      margin-top: 10px;
+      margin-bottom: 0px;
+      color: white;
+      background-color: #0da9ef;
+      border: none;
+      padding: 10px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+    }
+
+    .steps .step {
+      display: block;
+      width: 100%;
+      margin-bottom: 35px;
+      text-align: center
+    }
+
+    .steps .step .step-icon-wrap {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 80px;
+      text-align: center
+    }
+
+    .steps .step .step-icon-wrap::before,
+    .steps .step .step-icon-wrap::after {
+      display: block;
+      position: absolute;
+      top: 50%;
+      width: 50%;
+      height: 3px;
+      margin-top: -1px;
+      background-color: #e1e7ec;
+      content: '';
+      z-index: 1
+    }
+
+    .steps .step .step-icon-wrap::before {
+      left: 0
+    }
+
+    .steps .step .step-icon-wrap::after {
+      right: 0
+    }
+
+    .steps .step .step-icon {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border: 1px solid #e1e7ec;
+      border-radius: 50%;
+      background-color: #f5f5f5;
+      color: #374250;
+      font-size: 38px;
+      line-height: 81px;
+      z-index: 5
+    }
+
+    .steps .step .step-title {
+      margin-top: 16px;
+      margin-bottom: 0;
+      color: #606975;
+      font-size: 14px;
+      font-weight: 500
+    }
+
+    .steps .step:first-child .step-icon-wrap::before {
+      display: none
+    }
+
+    .steps .step:last-child .step-icon-wrap::after {
+      display: none
+    }
+
+    .steps .step.completed .step-icon-wrap::before,
+    .steps .step.completed .step-icon-wrap::after {
+      background-color: #0da9ef
+    }
+
+    .steps .step.completed .step-icon {
+      border-color: #0da9ef;
+      background-color: #0da9ef;
+      color: #fff
+    }
+
+    @media (max-width: 576px) {
+
+      .flex-sm-nowrap .step .step-icon-wrap::before,
+      .flex-sm-nowrap .step .step-icon-wrap::after {
+        display: none
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .flex-md-nowrap .step .step-icon-wrap::before,
+      .flex-md-nowrap .step .step-icon-wrap::after {
+        display: none
+      }
+    }
+
+    @media (max-width: 991px) {
+
+      .flex-lg-nowrap .step .step-icon-wrap::before,
+      .flex-lg-nowrap .step .step-icon-wrap::after {
+        display: none
+      }
+    }
+
+    @media (max-width: 1200px) {
+
+      .flex-xl-nowrap .step .step-icon-wrap::before,
+      .flex-xl-nowrap .step .step-icon-wrap::after {
+        display: none
+      }
+    }
+
+    .bg-faded,
+    .bg-secondary {
+      background-color: #f5f5f5 !important;
+    }
+
+    .card {
+      box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 0 solid rgba(0, 0, 0, .125);
+      border-radius: 1rem;
+    }
+
+    .text-reset {
+      --bs-text-opacity: 1;
+      color: inherit !important;
+    }
+
+    .cancel-order {
+      margin-top: 10px;
+      margin-bottom: 0px;
+      color: white;
+      background-color: #ef0d0d;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      margin-left: 230px;
+    }
+
     .confirmation-dialog {
       position: fixed;
       top: 50%;
@@ -195,7 +357,7 @@
     #confirmationfalse {
       background-color: #f44336;
     }
-    
+
     .fc-prev-button:hover,
     .fc-next-button:hover,
     .fc-today-button:hover {
@@ -1371,7 +1533,9 @@
   <link rel="stylesheet" href="./assets/vendor/css/core.css" class="template-customizer-core-css" />
   <link rel="stylesheet" href="./assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
   <link rel="stylesheet" href="./assets/css/demo.css" />
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
   <!-- Vendors CSS -->
   <link rel="stylesheet" href="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
   <link rel="stylesheet" href="./assets/vendor/libs/apex-charts/apex-charts.css" />
@@ -1508,7 +1672,7 @@
             </a>
 
           </li>
-          
+
           <li class="menu-item">
             <a onclick="DisplayListInventory()" class="menu-link">
               <i class="menu-icon tf-icons mdi mdi-cube-outline"></i>
@@ -1587,19 +1751,13 @@
           <li class="menu-item" onclick="DisplayBlock()">
             <a class="menu-link">
               <i class="menu-icon tf-icons mdi mdi-account-cancel"></i>
-              <div data-i18n="Datatables" style="cursor: pointer;">Block</div>
+              <div data-i18n="Datatables" style="cursor: pointer;">Access Control</div>
 
             </a>
           </li>
 
 
-          <li class="menu-item" onclick="DisplayUnblock()">
-            <a class="menu-link">
-              <i class="menu-icon tf-icons mdi  mdi-account-lock-open"></i>
-              <div data-i18n="Datatables" style="cursor: pointer;">UnBlock</div>
 
-            </a>
-          </li>
 
 
 
@@ -2165,6 +2323,65 @@
 
           </div>
 
+          <!--BLOCK / UNBLOCK-->
+
+          <div id="block-form-container" class="outer-container" style="display: none;">
+            <i class="fas fa-arrow-left back-icon" onclick="BackButton()" style="margin-left: -70px;"></i>
+
+            <div class="limiter">
+              <div class="container-login100"
+                style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -110px; width: 1000px;margin-left: -110px;">
+
+                <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 500px;"
+                  id="block-form">
+                  <span class="login100-form-title p-b-53" style="margin-top: -50px;">
+                    Access Control
+                  </span>
+                  <div class="p-t-31 p-b-9" style="margin-top: -30px;">
+                    <span class="txt1">
+                      Select Collection:
+                    </span>
+                  </div>
+                  <div class="wrap-input100">
+                    <select id="blockcollection" class="input100" name="collection">
+                      <option value="customer">Customer</option>
+                      <option value="seller">Seller</option>
+                    </select>
+                    <span class="focus-input100"></span>
+                  </div>
+
+                  <div class="p-t-13 p-b-9">
+                    <span class="txt1">
+                      Email to Block:
+                    </span>
+                  </div>
+                  <div class="wrap-input100 validate-input" data-validate="Email is required">
+                    <input class="input100" type="test" id="blockemail" name="blockemail">
+                    <span class="focus-input100"></span>
+                  </div>
+
+                  <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn" onclick="BLockbyemail(event)">
+                      BLOCK / UNBLOCK
+                    </button>
+                  </div>
+
+                  <div class="w-full text-center p-t-55">
+
+
+
+                  </div>
+                </form>
+              </div>
+
+            </div>
+
+
+            <div id="dropDownSelect1"></div>
+
+          </div>
+
+
           <!--Edit Data-->
           <div id="update-form-admin-container" class="outer-container" style="display: none;">
 
@@ -2481,121 +2698,183 @@
             </div>
 
           </div>
-          </div>
-
-
-
-          <div id="shutdown-form-container" class="outer-container" style="display: none;">
-
-            <div class="limiter">
-              <div class="container-login100"
-                style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -50px; width: 1000px;margin-left: -200px;">
-
-                <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 400px;"
-                  id="shutdown-form">
-                  <span class="login100-form-title p-b-53" style="margin-top: -50px;">
-                    ShutDown
-                  </span>
-                  <div class="wrap-input100 validate-input" data-validate="Key is required">
-                    <input class="input100" type="password" id="secretkey" name="secretkey" placeholder="Secret Key">
-                    <span class="focus-input100"></span>
-                  </div>
-                  <div class="container-login100-form-btn m-t-17">
-                    <button class="login100-form-btn">
-                      ShutDown
-                    </button>
-                  </div>
-                  <div class="w-full text-center p-t-55">
-                  </div>
-                </form>
-              </div>
-            </div>
-           </div>
-         
-         
-
-            <!--Clear DB-->
-            <div id="clear-form-container" class="outer-container" style="display: none;">
-
-              <div class="limiter">
-                <div class="container-login100"
-                  style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -50px; width: 1000px;margin-left: -200px;">
-  
-                  <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 400px;"
-                    id="cleardb-form">
-                    <span class="login100-form-title p-b-53" style="margin-top: -50px;">
-                      Clear DataBase
-                    </span>
-                    <div class="wrap-input100 validate-input" data-validate="Key is required">
-                      <input class="input100" type="password" id="dbsecretkey" name="secretkey" placeholder="Secret Key">
-                      <span class="focus-input100"></span>
-                    </div>
-                    <div class="container-login100-form-btn m-t-17">
-                      <button class="login100-form-btn">
-                        Submit
-                      </button>
-                    </div>
-                    <div class="w-full text-center p-t-55">
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-              <!--Clear DB Button-->
-              <div id="clearbuttons-container"  style="display: none;">
-                <div class="chart-container" >
-                  <div class="items">
-                      <ul>
-                          <li>
-                              <a onclick="showConfirmation(ClearDB,'Are you sure want to clear all DataBase ?','Delete','Cancel','all')">All</a>
-                              <ul>
-                                  <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear all Worker DataBase ?','Delete','Cancel','worker');">Worker</a></li>
-                                  <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear all Seller DataBase ?','Delete','Cancel','sellerall');">Seller</a>
-                                      <ul class="feedback-orders-items">
-                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Seller DataBase ?','Delete','Cancel','seller');">Seller</a></li>
-                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Inventory DataBase ?','Delete','Cancel','inventory');">Inventory</a></li>
-                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Orders DataBase ?','Delete','Cancel','orders');">Orders</a></li>
-                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear FeedBack DataBase ?','Delete','Cancel','feedback');">Feedback</a></li>
-                                      </ul>
-                                  </li>
-                                  <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear All Customer DataBase ?','Delete','Cancel','customer');">Customer</a>
-                                      <ul class="feedback-orders-items">
-                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Customer DataBase ?','Delete','Cancel','customer');">Customer</a></li>
-                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear FeedBack DataBase ?','Delete','Cancel','feedback');">Feedback</a></li>
-                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Orders DataBase ?','Delete','Cancel','orders');">Orders</a></li>
-                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Cart DataBase ?','Delete','Cancel','cart');">Cart</a></li>
-                                      </ul>
-                                  </li>
-                                  <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear all Admin DataBase ?','Delete','Cancel','adminall');">Admin</a>
-                                      <ul class="feedback-orders-items">
-                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Admin DataBase ?','Delete','Cancel','admin');">Admin</a></li>
-                                          <li><a onclick="showConfirmation(ClearDB,'Are you sure want to clear Calendar DataBase ?','Delete','Cancel','calender');">Calendar</a></li>
-                                      </ul>
-                                  </li>
-                              </ul>
-                          </li>
-                      </ul>
-              
-                  </div>
-                  </div>
-              </div>  
-             </div>
-             </div>
-
-
-
-          <!-- / Footer -->
-
-          <div class="content-backdrop fade"></div>
         </div>
-        <!-- Content wrapper -->
-      </div>
-      <!-- / Layout page -->
-    </div>
 
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
+        <div class="container-fluid" id="single-order-container" style="display: none;">
+
+        </div>
+
+
+        <div id="shutdown-form-container" class="outer-container" style="display: none;">
+
+          <div class="limiter">
+            <div class="container-login100"
+              style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -50px; width: 1000px;margin-left: -200px;">
+
+              <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 400px;"
+                id="shutdown-form">
+                <span class="login100-form-title p-b-53" style="margin-top: -50px;">
+                  ShutDown
+                </span>
+                <div class="wrap-input100 validate-input" data-validate="Key is required">
+                  <input class="input100" type="password" id="secretkey" name="secretkey" placeholder="Secret Key">
+                  <span class="focus-input100"></span>
+                </div>
+                <div class="container-login100-form-btn m-t-17">
+                  <button class="login100-form-btn">
+                    ShutDown
+                  </button>
+                </div>
+                <div class="w-full text-center p-t-55">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--Clear DB-->
+        <div id="clear-form-container" class="outer-container" style="display: none;">
+
+          <div class="limiter">
+            <div class="container-login100"
+              style="background-image: url('images/bg-01.jpg'); background-size: 80% 80%; margin-top: -50px; width: 1000px;margin-left: -200px;">
+
+              <form class="login100-form validate-form flex-sb flex-w" style="width: 500px; height: 400px;"
+                id="cleardb-form">
+                <span class="login100-form-title p-b-53" style="margin-top: -50px;">
+                  Clear DataBase
+                </span>
+                <div class="wrap-input100 validate-input" data-validate="Key is required">
+                  <input class="input100" type="password" id="dbsecretkey" name="secretkey" placeholder="Secret Key">
+                  <span class="focus-input100"></span>
+                </div>
+                <div class="container-login100-form-btn m-t-17">
+                  <button class="login100-form-btn">
+                    Submit
+                  </button>
+                </div>
+                <div class="w-full text-center p-t-55">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Clear DB Button-->
+      <div id="clearbuttons-container" style="display: none;">
+        <div class="chart-container">
+          <div class="items">
+            <ul>
+              <li>
+                <a
+                  onclick="showConfirmation(ClearDB,'Are you sure want to clear all DataBase ?','Delete','Cancel','all')">All</a>
+                <ul>
+                  <li><a
+                      onclick="showConfirmation(ClearDB,'Are you sure want to clear all Worker DataBase ?','Delete','Cancel','worker');">Worker</a>
+                  </li>
+                  <li><a
+                      onclick="showConfirmation(ClearDB,'Are you sure want to clear all Seller DataBase ?','Delete','Cancel','sellerall');">Seller</a>
+                    <ul class="feedback-orders-items">
+                      <li><a
+                          onclick="showConfirmation(ClearDB,'Are you sure want to clear Seller DataBase ?','Delete','Cancel','seller');">Seller</a>
+                      </li>
+                      <li><a
+                          onclick="showConfirmation(ClearDB,'Are you sure want to clear Inventory DataBase ?','Delete','Cancel','inventory');">Inventory</a>
+                      </li>
+                      <li><a
+                          onclick="showConfirmation(ClearDB,'Are you sure want to clear Orders DataBase ?','Delete','Cancel','orders');">Orders</a>
+                      </li>
+                      <li><a
+                          onclick="showConfirmation(ClearDB,'Are you sure want to clear FeedBack DataBase ?','Delete','Cancel','feedback');">Feedback</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a
+                      onclick="showConfirmation(ClearDB,'Are you sure want to clear All Customer DataBase ?','Delete','Cancel','customer');">Customer</a>
+                    <ul class="feedback-orders-items">
+                      <li><a
+                          onclick="showConfirmation(ClearDB,'Are you sure want to clear Customer DataBase ?','Delete','Cancel','customer');">Customer</a>
+                      </li>
+                      <li><a
+                          onclick="showConfirmation(ClearDB,'Are you sure want to clear FeedBack DataBase ?','Delete','Cancel','feedback');">Feedback</a>
+                      </li>
+                      <li><a
+                          onclick="showConfirmation(ClearDB,'Are you sure want to clear Orders DataBase ?','Delete','Cancel','orders');">Orders</a>
+                      </li>
+                      <li><a
+                          onclick="showConfirmation(ClearDB,'Are you sure want to clear Cart DataBase ?','Delete','Cancel','cart');">Cart</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a
+                      onclick="showConfirmation(ClearDB,'Are you sure want to clear all Admin DataBase ?','Delete','Cancel','adminall');">Admin</a>
+                    <ul class="feedback-orders-items">
+                      <li><a
+                          onclick="showConfirmation(ClearDB,'Are you sure want to clear Admin DataBase ?','Delete','Cancel','admin');">Admin</a>
+                      </li>
+                      <li><a
+                          onclick="showConfirmation(ClearDB,'Are you sure want to clear Calendar DataBase ?','Delete','Cancel','calender');">Calendar</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seller -->
+
+  <div id="orders-container" style="display: none;margin-top: -750px;margin-left: 500px;">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+      integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
+    <div class="container mt-3 mb-4">
+      <div class="col-lg-9 mt-4 mt-lg-0">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+              <table class="table manage-candidates-top mb-0">
+                <thead>
+                  <tr>
+                    <th>Procuct Name</th>
+                    <th class="text-center">Customer ID</th>
+                    <th class="action text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="orders-list-body">
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+  <!-- / Footer -->
+
+  <div class="content-backdrop fade"></div>
+  </div>
+  <!-- Content wrapper -->
+  </div>
+  <!-- / Layout page -->
+  </div>
+
+  <!-- Overlay -->
+  <div class="layout-overlay layout-menu-toggle"></div>
   </div>
   <div class="toast-container" style="display: none;">
     <img class="js-toast-img" src="./assets/dontsee.webp" height="10px" width="10px">

@@ -4,7 +4,7 @@ function checkforLocal() {
   if (storedData !== null) {
 
     const retrievedUserData = JSON.parse(storedData);
-    fetch("http://localhost:8080/validatetoken", {
+    fetch("https://localhost:8080/validatetoken", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ document.getElementById("signin-button").addEventListener("click", function (eve
     return
   }
   // Send a POST request to your Go backend
-  fetch("http://localhost:8080/login", {
+  fetch("https://localhost:8080/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -181,7 +181,7 @@ function showToast(str, war, no) {
 //         email: infosLparse.mailL,
 //         password: "tamil",
 //     };
-//     fetch("http://localhost:8080/login", {
+//     fetch("https://localhost:8080/login", {
 //         method: "POST",
 //         headers: {
 //             "Content-Type": "application/json",

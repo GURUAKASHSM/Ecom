@@ -14,7 +14,7 @@ const formData = {
 
 
 function DisplayData() {
-    fetch("http://localhost:8080/adminpage", {
+    fetch("https://localhost:8080/adminpage", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -62,7 +62,7 @@ function LogOut() {
 
 function DisplaySellerData() {
     let count = 0
-    fetch("http://localhost:8080/getallsellerdata", {
+    fetch("https://localhost:8080/getallsellerdata", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -104,7 +104,7 @@ function DisplaySellerData() {
 DisplaySellerData();
 
 function DisplayWorkers() {
-    fetch("http://localhost:8080/getworkers", {
+    fetch("https://localhost:8080/getworkers", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -149,7 +149,7 @@ DisplayWorkers()
 
 
 function TotlalSales() {
-    fetch("http://localhost:8080/adminpage", {
+    fetch("https://localhost:8080/adminpage", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -194,7 +194,7 @@ function calculatePercentage(totalAmount, receivedAmount) {
 }
 function DisplayFeedBack() {
     let count = 0;
-    fetch("http://localhost:8080/getfeedback", {
+    fetch("https://localhost:8080/getfeedback", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -239,7 +239,7 @@ function DisplayFeedBack() {
 DisplayFeedBack()
 
 function deleteFeedback(email, feedback) {
-    fetch("http://localhost:8080/deletefeedback", {
+    fetch("https://localhost:8080/deletefeedback", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -336,7 +336,7 @@ function addDeleteIcon(feedbackBox, email, feedback) {
     deleteIcon.innerHTML = "&#10006;"; // X icon
     deleteIcon.addEventListener("click", function () {
         // Send email and feedback to the "/deletefeedback" route
-        fetch("http://localhost:8080/deletefeedback", {
+        fetch("https://localhost:8080/deletefeedback", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -367,7 +367,9 @@ function DisplayListUsers() {
     document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById("clearbuttons-container").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
@@ -375,11 +377,12 @@ function DisplayListUsers() {
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'block';
-    fetch('http://localhost:8080/getallcustomerdata')
+    fetch('https://localhost:8080/getallcustomerdata')
         .then(response => response.json())
         .then(data => {
             let html = ""
@@ -452,7 +455,7 @@ function DeleteData(email, coll) {
 
 
     // Send a DELETE request to your server to delete the data
-    fetch("http://localhost:8080/deletedata", {
+    fetch("https://localhost:8080/deletedata", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -495,9 +498,12 @@ function DisplayListSeller() {
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById("clearbuttons-container").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
@@ -506,7 +512,7 @@ function DisplayListSeller() {
     document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'block';
-    fetch("http://localhost:8080/getallsellerdata", {
+    fetch("https://localhost:8080/getallsellerdata", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -576,11 +582,14 @@ function DisplayListInventory() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById("clear-form-container").style.display = 'none'
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById("clearbuttons-container").style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
@@ -588,7 +597,7 @@ function DisplayListInventory() {
     document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'block';
     document.getElementById('update-form-admin-container').style.display = 'none';
-    fetch("http://localhost:8080/getallinventorydata", {
+    fetch("https://localhost:8080/getallinventorydata", {
         method: "GET", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -662,10 +671,12 @@ function Deletedata() {
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'block';
     document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById("clear-form-container").style.display = 'none'
     document.querySelector('.wrapper').style.display = 'none';
@@ -674,6 +685,7 @@ function Deletedata() {
     document.getElementById('admin-wrapper').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
 }
@@ -690,7 +702,7 @@ document.getElementById("delete-form").addEventListener("submit", function (even
     };
 
     // Send a DELETE request to your server to delete the data
-    fetch("http://localhost:8080/deletedata", {
+    fetch("https://localhost:8080/deletedata", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -716,11 +728,14 @@ document.getElementById("delete-form").addEventListener("submit", function (even
 function DisplayEdit() {
     document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
@@ -782,7 +797,7 @@ document.getElementById("update-form").addEventListener("submit", function (even
     };
     console.log(requestData)
 
-    fetch("http://localhost:8080/update", {
+    fetch("https://localhost:8080/update", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -813,8 +828,11 @@ function CreateSeller() {
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'block';
     document.getElementById("notapprovedseller").style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById("clear-form-container").style.display = 'none'
+    document.getElementById("block-form-container").style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
@@ -861,7 +879,7 @@ sellerForm.addEventListener('submit', (e) => {
         }
 
         // Send the seller data as JSON in the request body
-        fetch('http://localhost:8080/createseller', {
+        fetch('https://localhost:8080/createseller', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -891,7 +909,10 @@ function DisplayDrashBord() {
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'block';
     document.getElementById("clearbuttons-container").style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
@@ -913,13 +934,16 @@ function CreateWorker() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
@@ -945,7 +969,7 @@ document.getElementById("employee-wrapper").addEventListener("submit", function 
         console.log(formData)
 
         // Send a POST request to your Go backend
-        fetch("http://localhost:8080/createworker", {
+        fetch("https://localhost:8080/createworker", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -973,15 +997,18 @@ function DisplayCreateAdmin() {
     document.getElementById("clear-form-container").style.display = 'none'
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'block';
     document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById("qr-code").style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
@@ -1009,7 +1036,7 @@ document.getElementById("admin-wrapper").addEventListener("submit", function (ev
     console.log(formData)
 
     // Send a POST request to your Go backend
-    fetch("http://localhost:8080/createadmin", {
+    fetch("https://localhost:8080/createadmin", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -1076,13 +1103,16 @@ function DisplayFeedBacks() {
     document.getElementById("shutdown-form-container").style.display = 'none';
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'block';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
@@ -1091,7 +1121,7 @@ function DisplayFeedBacks() {
     document.getElementById("calendar").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('workersnip').style.display = 'none';
-    fetch("http://localhost:8080/getfeedback", {
+    fetch("https://localhost:8080/getfeedback", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -1153,6 +1183,7 @@ function DisplayAllWorkers() {
     document.getElementById('employee-wrapper').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
     document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
@@ -1161,13 +1192,15 @@ function DisplayAllWorkers() {
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById('workersnip').style.display = 'block';
-    fetch("http://localhost:8080/getworkers", {
+    fetch("https://localhost:8080/getworkers", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -1231,9 +1264,12 @@ function ViewData(id, profession) {
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById("notapprovedseller").style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
@@ -1241,7 +1277,7 @@ function ViewData(id, profession) {
     document.getElementById("calendar").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
 
-    fetch("http://localhost:8080/getdata", {
+    fetch("https://localhost:8080/getdata", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -1712,7 +1748,7 @@ $(document).ready(async function () {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/getevent", {
+            const response = await fetch("https://localhost:8080/getevent", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -1766,6 +1802,8 @@ function DisplayCalender() {
     document.getElementById('workersnip').style.display = 'none';
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
@@ -1775,6 +1813,7 @@ function DisplayCalender() {
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById("calendar").style.display = 'block';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById("clear-form-container").style.display = 'none'
@@ -1791,6 +1830,8 @@ function DisplayEventForm() {
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
@@ -1798,6 +1839,7 @@ function DisplayEventForm() {
     document.getElementById("calendar").style.display = 'block';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById("clearbuttons-container").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'block';
@@ -1824,7 +1866,7 @@ document.getElementById("event-form").addEventListener("submit", function (event
     console.log(requestData)
 
     // Send a DELETE request to your server to delete the data
-    fetch("http://localhost:8080/addevent", {
+    fetch("https://localhost:8080/addevent", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -1852,7 +1894,7 @@ function BlockUser(email, collection) {
         email,
         collection,
     }
-    fetch("http://localhost:8080/block", {
+    fetch("https://localhost:8080/block", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -1880,13 +1922,16 @@ function DisplayShutDown() {
     document.getElementById("clear-form-container").style.display = 'none'
     document.querySelector('.wrapper').style.display = 'none';
     document.querySelector('.outer-container').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById("calendar").style.display = 'block';
     document.getElementById('update-form-admin-container').style.display = 'none';
@@ -1907,7 +1952,7 @@ document.getElementById("shutdown-form").addEventListener("submit", () => {
         return
     }
 
-    fetch("http://localhost:8080/shutdown", {
+    fetch("https://localhost:8080/shutdown", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -1936,12 +1981,15 @@ function DisplayClearForm() {
     document.querySelector('.outer-container').style.display = 'none';
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
@@ -1971,15 +2019,18 @@ function DisplayClearData() {
     document.querySelector('.container-p-y').style.display = 'none';
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById("clear-form-container").style.display = 'none'
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'none';
     document.getElementById("clearbuttons-container").style.display = 'block';
 }
@@ -1991,7 +2042,7 @@ function ClearDB(collection) {
         id: adminObject.token,
         collection,
     }
-    fetch("http://localhost:8080/cleardb", {
+    fetch("https://localhost:8080/cleardb", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -2047,22 +2098,25 @@ function Displayallnotapprovedseller() {
     document.getElementById('snippetContent').style.display = 'none';
     document.getElementById('sellersnip').style.display = 'none';
     document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
     document.getElementById('feedbacksnip').style.display = 'none';
     document.querySelector('.display-view').style.display = 'none';
     document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
     document.getElementById('update-form-admin-container').style.display = 'none';
     document.getElementById("calendar").style.display = 'none';
     document.getElementById("event-wrapper").style.display = 'none';
     document.getElementById("clear-form-container").style.display = 'none'
     document.getElementById("clearbuttons-container").style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
     document.getElementById("notapprovedseller").style.display = 'block';
     var adminData = localStorage.getItem('admindata');
     var adminObject = JSON.parse(adminData);
     const formData = {
         token: adminObject.token,
     }
-    fetch("http://localhost:8080/getallnotapprovedseller", {
+    fetch("https://localhost:8080/getallnotapprovedseller", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -2122,14 +2176,14 @@ function Displayallnotapprovedseller() {
         });
 }
 
-function ApproveSeller(id){
+function ApproveSeller(id) {
     var adminData = localStorage.getItem('admindata');
     var adminObject = JSON.parse(adminData);
     const formData = {
         token: adminObject.token,
-        sellerid,
+        sellerid: id,
     }
-    fetch("http://localhost:8080/approveseller", {
+    fetch("https://localhost:8080/approveseller", {
         method: "POST", // Use DELETE method to delete data
         headers: {
             "Content-Type": "application/json"
@@ -2141,6 +2195,7 @@ function ApproveSeller(id){
 
             if (data.message) {
                 showToast(data.message, "Success", 3)
+                Displayallnotapprovedseller();
             } else if (data.error) {
                 showToast(data.error, "Warning", 0)
             }
@@ -2149,3 +2204,381 @@ function ApproveSeller(id){
             showToast(data.error, "Warning", 0)
         });
 }
+
+function DisplayBlock() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
+    document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'block';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.getElementById("clearbuttons-container").style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
+    document.getElementById("orders-container").style.display = 'none';
+}
+
+function BLockbyemail(event) {
+    event.preventDefault();
+    let email = (document.getElementById("blockemail").value).trim()
+    let collection = document.getElementById("blockcollection").value;
+    console.log(email, collection)
+    BlockUser(email, collection)
+    document.getElementById("blockemail").value = ""
+}
+
+function DisplayOrders() {
+    document.getElementById("shutdown-form-container").style.display = 'none';
+    document.getElementById('employee-wrapper').style.display = 'none';
+    document.getElementById('workersnip').style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.querySelector('.wrapper').style.display = 'none';
+    document.querySelector('.outer-container').style.display = 'none';
+    document.querySelector('.container-p-y').style.display = 'none';
+    document.getElementById('snippetContent').style.display = 'none';
+    document.getElementById('sellersnip').style.display = 'none';
+    document.getElementById('Inventorysnip').style.display = 'none';
+    document.getElementById("block-form-container").style.display = 'none';
+    document.getElementById('feedbacksnip').style.display = 'none';
+    document.querySelector('.display-view').style.display = 'none';
+    document.getElementById('admin-wrapper').style.display = 'none';
+    document.getElementById('single-order-container').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById('update-form-admin-container').style.display = 'none';
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("event-wrapper").style.display = 'none';
+    document.getElementById("clear-form-container").style.display = 'none'
+    document.getElementById("clearbuttons-container").style.display = 'none';
+    document.getElementById("notapprovedseller").style.display = 'none';
+    document.getElementById("orders-container").style.display = 'block';
+    var adminData = localStorage.getItem('admindata');
+    var adminObject = JSON.parse(adminData);
+    const formData = {
+        token: adminObject.token,
+    }
+
+    fetch("https://localhost:8080/getallorders", {
+        method: "POST", // Use DELETE method to delete data
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+
+        .then(response => response.json())
+        .then(data => {
+            let html = ""
+            data.message.forEach(items => {
+
+                html += `
+            <tr class="candidates-list seller-list">
+            <td class="title">
+              <div class="thumb"> <img class="img-fluid"
+                  src="data:image/jpeg;base64,${items.itemstobuy.image}" alt="">
+              </div>
+              <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                  <div class="candidate-list-title seller">
+                    <h5 class="mb-0"><a href="#">${items.itemstobuy.productname.toUpperCase()}</a></h5>
+                  </div>
+                  <div class="candidate-list-option">
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-filter pr-1"></i>${items.itemstobuy.itemcategory}
+                      </li>
+                      <li><i class="fas fa-map-marker-alt pr-1"></i>${items.itemstobuy.quantity}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="candidate-list-favourite-time text-center"> <a
+                class="candidate-list-favourite order-2 text-danger" href="#"></a>
+              <span class="candidate-list-time order-1">${items.customerid}</span></td>
+            <td>
+              <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                    <li onclick="GetOrder('${items.orderid}','seller');recentPage = 'inventory';"><a  class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i
+                    class="fas fa-eye"></i></a>
+                    </li>
+                <li  onclick="DeleteOrder('${items.orderid}','sel');recentPage = 'inventory';"><a class="text-danger" data-toggle="tooltip" title=""
+                    data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+              </ul>
+            </td>
+          </tr>`;
+
+            });
+            document.querySelector('.orders-list-body').innerHTML = html;
+        })
+        .catch(error => {
+            showToast(error, "Error", 0);
+        });
+}
+
+
+async function GetOrder(id) {
+    try {
+        document.getElementById("shutdown-form-container").style.display = 'none';
+        document.getElementById('employee-wrapper').style.display = 'none';
+        document.getElementById('workersnip').style.display = 'none';
+        document.getElementById("clear-form-container").style.display = 'none'
+        document.querySelector('.wrapper').style.display = 'none';
+        document.querySelector('.outer-container').style.display = 'none';
+        document.querySelector('.container-p-y').style.display = 'none';
+        document.getElementById('snippetContent').style.display = 'none';
+        document.getElementById('sellersnip').style.display = 'none';
+        document.getElementById('Inventorysnip').style.display = 'none';
+        document.getElementById("block-form-container").style.display = 'none';
+        document.getElementById('feedbacksnip').style.display = 'none';
+        document.querySelector('.display-view').style.display = 'none';
+        document.getElementById('admin-wrapper').style.display = 'none';
+        document.getElementById('single-order-container').style.display = 'none';
+        document.getElementById("calendar").style.display = 'none';
+        document.getElementById('update-form-admin-container').style.display = 'none';
+        document.getElementById("calendar").style.display = 'none';
+        document.getElementById("event-wrapper").style.display = 'none';
+        document.getElementById("clear-form-container").style.display = 'none'
+        document.getElementById("clearbuttons-container").style.display = 'none';
+        document.getElementById("notapprovedseller").style.display = 'none';
+        document.getElementById("orders-container").style.display = 'none';
+        var adminData = localStorage.getItem('admindata');
+        var adminObject = JSON.parse(adminData);
+        const data = {
+            token: adminObject.token,
+            orderid: id,
+        }
+        console.log(data)
+        const output = await fetch('https://localhost:8080/getcustomerorderforadmin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        const value = await output.json();
+        console.log(value)
+        if (value.message) {
+
+            let html = ""
+            let orderstatus = ""
+            const item = value.message
+            console.log(value)
+            const entries = Object.entries(item.status);
+
+            entries.forEach(([key, val]) => {
+                if (val == "completed") {
+                    orderstatus = key
+                    return
+                }
+            });
+
+            html = `<div class="container">
+        
+        <div class="d-flex justify-content-between align-items-center py-3">
+        </div>
+  
+        <div class="row">
+          <div class="col-lg-8">
+  
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="mb-3 d-flex justify-content-between">
+                  <div>
+                    <span class="me-3">${item.orderdate}</span>
+                    <span class="me-3">${item.orderid}</span>
+                    <!-- <span class="me-3">CASH ON DELIVERY</span> -->
+                    <span class="badge rounded-pill bg-info">${orderstatus.toUpperCase()}</span>
+                    <button class="${item.status.dispatched}-cancelbutton" onclick="showConfirmation(DeleteOrder,'Are you sure want to Cancel this order ?','Yes','No','${item.orderid}')">Cancel Order</button>
+                  </div>
+                </div>
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex mb-2">
+                          <div class="flex-shrink-0">
+                            <img src="data:image/jpeg;base64,${item.itemstobuy.image}" alt width="70px" class="img-fluid">
+                          </div>
+                          <div class="flex-lg-grow-1 ms-3">
+                            <h6 class="small mb-0"><a href="#" class="text-reset">${item.itemstobuy.productname}</a></h6>
+                            <span class="small">Category: ${item.itemstobuy.itemcategory}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>${item.noofitems}</td>
+                      <td class="text-end">₹${item.itemstobuy.price}</td>
+                    </tr>                 
+                  </tbody>
+                 
+                  <tfoot>
+                  <hr>
+                    <tr class="fw-bold">
+                      
+                      <td colspan="2">TOTAL</td>
+                      <td class="text-end">₹${item.totalamount}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+  
+  
+            <div class="card-body"  style="padding:0px">
+              <div class="row" style="padding:0px">
+  
+                <div class="card mb-3">
+                  <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary" style="color:white;width:100%;margin-left:0px;margin-right:0px;max-width:100%">
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Shipped By:</span>
+                      ${item.itemstobuy.sellerid}
+                    </div>
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span>
+                      ${orderstatus.toUpperCase()}
+                    </div>
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Expected
+                        Date:</span>${item.deliverydate}
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+                      <div class="step ${item.status.confirmed}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-cart"></i></div>
+                        </div>
+                        <h4 class="step-title">Confirmed Order</h4>
+                      </div>
+                      <div class="step ${item.status.processing}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-config"></i></div>
+                        </div>
+                        <h4 class="step-title">Processing Order</h4>
+                        
+                      </div>
+                      <div class="step ${item.status.quality}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-medal"></i></div>
+                        </div>
+                        <h4 class="step-title">Quality Check</h4>
+                       
+                      </div>
+                      <div class="step ${item.status.dispatched}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-car"></i></div>
+                        </div>
+                        <h4 class="step-title">Product Dispatched</h4>
+        
+                      </div>
+                      <div class="step ${item.status.delivered}">
+                        <div class="step-icon-wrap">
+                          <div class="step-icon"><i class="pe-7s-home"></i></div>
+                        </div>
+                        <h4 class="step-title">Product Delivered</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-sm-between align-items-center">
+                  <div class="custom-control custom-checkbox mr-3">
+                  </div>
+                </div>
+  
+  
+  
+              </div>
+            </div>
+            </div>
+            <div class="col-lg-4">
+  
+            <div class="card mb-4">
+              <div class="card-body">
+              <h3 class="h6">Admin Notes</h3>`
+            if (item.status.dispatched == "pending") {
+                html += ` <p>Seller is processing the order.</p>
+                <p>Order Cancellation will affect Seller & Customer rateing</p>
+                <p>Any problem feel free to contact us</p>`
+            } else {
+                html += ` <p>🎉Order Delivered Successfully 🎊 </p>
+                <p>Custmer can return if needed🤩🤩</p>
+                <p>Any problem feel free to contact us</p>`
+            }
+
+            html += `
+              </div>
+            </div>
+            <div class="card mb-4">
+  
+              <div class="card-body">
+                <h3 class="h6">Shipping Information</h3>
+                <strong>Phone:</strong>
+                <span><a href="#" class="text-decoration-underline" target="_blank">${item.address.deliveryphoneno}</a> <i
+                    class="bi bi-box-arrow-up-right"></i> </span>
+                <hr>
+                <h3 class="h6">Address</h3>
+                <address>
+                  <strong>${item.address.firstname} ${item.address.lastname}</strong><br>
+                  ${item.address.streetname}<br>
+                  ${item.address.city} - ${item.address.pincode}
+                  <br>
+                  ${item.address.deliveryemail}
+                </address>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`
+            
+            document.getElementById('single-order-container').innerHTML = html;
+            document.getElementById('single-order-container').style.display = 'block';
+
+        } else if (value.error) {
+            showToast(value.error, "Error", 0)
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// Async function to delete order
+async function DeleteOrder(id) {
+    try {
+        var adminData = localStorage.getItem('admindata');
+        var adminObject = JSON.parse(adminData);
+        const data = {
+            token: adminObject.token,
+            orderid: id,
+        }
+        console.log(data)
+        const output = await fetch('https://localhost:8080/deleteorder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        const value = await output.json();
+        if (value.message) {
+            showToast(value.message, "Success", 3)
+            DisplayOrders()
+        } else if (value.error) {
+            showToast(value.error, "Error", 0)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
